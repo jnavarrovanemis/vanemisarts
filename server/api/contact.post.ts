@@ -1,6 +1,8 @@
 // server/api/contact.post.ts
+import { promises as dns } from 'node:dns'
 import { z } from 'zod'
 
+// Esquema de validación con Zod
 const ContactSchema = z.object({
   name: z.string().min(2).max(100).trim(),
   email: z.string().email().max(200).trim().toLowerCase(),
@@ -8,16 +10,42 @@ const ContactSchema = z.object({
   message: z.string().min(10).max(2000).trim()
 })
 
+/**
+ * Verifica si un dominio tiene registros MX (Mail Exchange) configurados.
+ */
+async function hasValidMxRecords(email: string): Promise<boolean> {
+  const domain = email.split('@')[1]
+  try {
+    const addresses = await dns.resolveMx(domain)
+    return addresses && addresses.length > 0
+  } catch {
+    return false
+  }
+}
+
+/**
+ * Lista negra simple de proveedores de correos temporales o desechables.
+ */
+const DISPOSABLE_DOMAINS = [
+  'mailinator.com',
+  '10minutemail.com',
+  'temp-mail.org',
+  'yopmail.com',
+  'guerrillamail.com'
+]
+
 export default defineEventHandler(async (event) => {
   const { contactEmail } = useRuntimeConfig()
 
+  // 1. Verificar configuración del servidor
   if (!contactEmail) {
     throw createError({
       statusCode: 500,
-      statusMessage: 'Configuración de servidor incompleta'
+      statusMessage: 'Configuración de servidor incompleta (Falta email de destino)'
     })
   }
 
+  // 2. Leer y validar el cuerpo de la petición con Zod
   const raw = await readBody(event)
   const parsed = ContactSchema.safeParse(raw)
 
@@ -30,9 +58,26 @@ export default defineEventHandler(async (event) => {
   }
 
   const { name, email, interest, message } = parsed.data
+  const domain = email.split('@')[1]
 
-  // FormSubmit requiere Origin y Referer del navegador para aceptar peticiones
-  // de servidor a servidor — los reenviamos desde los headers de la petición original
+  // 3. Validación: ¿Es un correo temporal?
+  if (DISPOSABLE_DOMAINS.includes(domain)) {
+    throw createError({
+      statusCode: 422,
+      statusMessage: 'Por favor, utiliza una dirección de correo permanente.'
+    })
+  }
+
+  // 4. Validación: ¿El dominio existe y puede recibir correos (DNS MX)?
+  const hasMx = await hasValidMxRecords(email)
+  if (!hasMx) {
+    throw createError({
+      statusCode: 422,
+      statusMessage: 'El dominio de tu correo no es válido o no puede recibir mensajes.'
+    })
+  }
+
+  // 5. Preparar envío a FormSubmit
   const origin = getHeader(event, 'origin') || 'http://localhost:3000'
 
   try {
@@ -46,7 +91,7 @@ export default defineEventHandler(async (event) => {
       },
       body: {
         nombre: name,
-        email,
+        email: email,
         servicio: interest ?? 'No especificado',
         mensaje: message,
         _subject: `🚀 Nuevo Lead: ${name}`,
@@ -56,10 +101,11 @@ export default defineEventHandler(async (event) => {
     })
 
     return { success: true }
-  } catch {
+  } catch (error) {
+    console.error('FormSubmit Error:', error)
     throw createError({
       statusCode: 502,
-      statusMessage: 'Error al procesar el envío del formulario con el proveedor externo.'
+      statusMessage: 'Error al procesar el envío con el proveedor externo.'
     })
   }
 })

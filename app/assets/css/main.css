@@ -1,0 +1,79 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+@import '~/assets/css/color-mode-transition.css';
+
+@theme static {
+  --font-sans: 'Public Sans', sans-serif;
+
+  /* --- Paleta 0: Original de la instalación de Tailwind CSS --- */
+  --color-green-50: #EFFDF5;
+  --color-green-100: #D9FBE8;
+  --color-green-200: #B3F5D1;
+  --color-green-300: #75EDAE;
+  --color-green-400: #00DC82;
+  --color-green-500: #00C16A;
+  --color-green-600: #00A155;
+  --color-green-700: #007F45;
+  --color-green-800: #016538;
+  --color-green-900: #0A5331;
+  --color-green-950: #052E16;
+
+  /* --- Paleta 1: Fucsia / Rosa --- */
+  --color-fucsia-50: #FFE6F7;
+  --color-fucsia-100: #FFB8E7;
+  --color-fucsia-200: #FF8AD8;
+  --color-fucsia-300: #FF5CC9;
+  --color-fucsia-400: #FF2EB9;
+  --color-fucsia-500: #FF00AA;
+  --color-fucsia-600: #D1008B;
+  --color-fucsia-700: #A4006D;
+  --color-fucsia-800: #75004E;
+  --color-fucsia-900: #470030;
+  --color-fucsia-950: #1A0011;
+
+  /* --- Paleta 2: Azul Eléctrico --- */
+  --color-azul-50: #EAE6FF;
+  --color-azul-100: #C3B8FF;
+  --color-azul-200: #9D8AFF;
+  --color-azul-300: #775CFF;
+  --color-azul-400: #512EFF;
+  --color-azul-500: #2A00FF;
+  --color-azul-600: #2300D1;
+  --color-azul-700: #1B00A3;
+  --color-azul-800: #17008B;
+  --color-azul-900: #0C0047;
+  --color-azul-950: #04001A;
+
+  /* --- Paleta 3: Verde Neón --- */
+  /* Nota: Si quieres reemplazar el verde por defecto de Tailwind, 
+     llámalo --color-green-50, etc. Aquí uso 'verde' para diferenciarlo. */
+  --color-verde-50: #E6FFED;
+  --color-verde-100: #B8FFCD;
+  --color-verde-200: #8AFFAD;
+  --color-verde-300: #5CFF8D;
+  --color-verde-400: #2EFF6D;
+  --color-verde-500: #00FF4D;
+  --color-verde-600: #00D13F;
+  --color-verde-700: #00A331;
+  --color-verde-800: #007523;
+  --color-verde-900: #003F13;
+  --color-verde-950: #001A08;
+  
+}
+
+@layer base {
+  body {
+    /* MODO CLARO: Usa el tono 50 de tu color o blanco */
+    @apply bg-azul-50 text-slate-900;
+    
+    /* Suaviza el cambio de color al alternar modos */
+    @apply transition-colors duration-300;
+  }
+
+  /* MODO OSCURO */
+  :root.dark body {
+    /* Usa el tono 950 de tu color para un fondo profundo pero con tinte */
+    @apply bg-azul-950 text-azul-50;
+  }
+}
+

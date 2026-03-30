@@ -1,0 +1,101 @@
+{
+    "navigation": {
+      "services": "Services",
+      "skills": "Skills",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "welcome": "Welcome",
+    "description": "This is an internationalization example.",
+    "hero": {
+      "greeting": "🚀 Boost your brand",
+      "title": "Digital Strategy",
+      "subtitle": "Video Marketing & Social Media",
+      "description": "We transform your vision into visual content that connects, engages, and converts followers into loyal clients.",
+      "cta": "Book a Consultation",
+      "button": "View Case Studies",
+      "scroll": "Discover how we do it"
+    },
+    "about": {
+      "badge": "🎨 Creativity with strategy",
+      "title": "We don't just create content.",
+      "titleAccent": "We build brands that connect.",
+      "description": "Vanemis Arts was born from the belief that a good story, well told and well distributed, can transform a brand. We combine digital strategy, visual production and community management so your online presence doesn't just look good — it feels right.",
+      "stats": {
+        "years": "Years of experience",
+        "brands": "Brands worked with",
+        "content": "Pieces produced",
+        "reach": "Reach generated"
+      },
+      "pillars": {
+        "strategy": {
+          "title": "360° Strategy",
+          "desc": "We design content plans focused on real results: community growth, retention and conversion. Every post has a purpose within a larger system.",
+          "tag": "Planning & ROI"
+        },
+        "video": {
+          "title": "Video as language",
+          "desc": "Specialized in video editing and dynamic visual narratives built for the scroll era. From Reels to content series, we make your brand stop the thumb.",
+          "tag": "Reels · TikTok · YouTube"
+        },
+        "management": {
+          "title": "Management with soul",
+          "desc": "Hybrid experience across agency and corporate environments managing multiple accounts with judgment, organization and without losing each brand's authentic voice.",
+          "tag": "Community Management"
+        }
+      },
+      "footer": "Currently refining advanced post-production techniques."
+    },
+    "skills": {
+      "title": "Skills",
+      "subtitle": "Technologies I work with",
+      "footer": "Constantly updating my stack"
+    },
+    "projects": {
+      "title": "Projects",
+      "subtitle": "Some of my recent work",
+      "view": "View Project",
+      "code": "View Code"
+    },
+    "contact": {
+      "status": "Available for new projects",
+      "title": "Let's talk about your project",
+      "subtitle": "Tell us your idea and we'll get back to you within 24 hours.",
+      "form": {
+        "labels": {
+          "name": "Name",
+          "email": "Email",
+          "interest": "Service of interest",
+          "message": "Message"
+        },
+        "placeholders": {
+          "name": "Your full name",
+          "select": "How can we help you?",
+          "message": "Tell us about your project, goals or any questions you have..."
+        },
+        "interests": {
+          "community": "Community Management",
+          "video": "Video Editing",
+          "strategy": "Digital Strategy",
+          "other": "Other"
+        },
+        "errors": {
+          "title": "Failed to send",
+          "name": "Name must be at least 2 characters",
+          "email": "Enter a valid email",
+          "message": "Message must be at least 10 characters",
+          "generic": "An error occurred while sending. Please try again."
+        },
+        "submit": "Send Message",
+        "sending": "Sending..."
+      },
+      "success": {
+        "title": "Message sent!",
+        "message": "Thanks for reaching out. We'll get back to you within 24 hours.",
+        "button": "Send another message"
+      }
+    },
+    "footer": {
+      "rights": "All rights reserved."
+    }
+  }

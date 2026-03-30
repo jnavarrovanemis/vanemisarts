@@ -1,0 +1,101 @@
+{
+    "navigation": {
+      "services": "Servicios",
+      "skills": "Habilidades",
+      "about": "Nosotros",
+      "contact": "Contacto"
+    },
+    "welcome": "Bienvenido",
+    "description": "Este es un ejemplo de internacionalización.",
+    "hero": {
+      "greeting": "🚀 Impulsa tu marca",
+      "title": "Estrategia Digital",
+      "subtitle": "Video Marketing & Social Media",
+      "description": "Transformamos tu visión en contenido visual que conecta, engancha y convierte seguidores en clientes fieles.",
+      "cta": "Agenda una Asesoría",
+      "button": "Ver Casos de Éxito",
+      "scroll": "Descubre cómo lo hacemos"
+    },
+    "about": {
+      "badge": "🎨 Creatividad con estrategia",
+      "title": "No solo creamos contenido.",
+      "titleAccent": "Construimos marcas que conectan.",
+      "description": "Vanemis Arts nació de la convicción de que una buena historia, bien contada y bien distribuida, puede transformar una marca. Combinamos estrategia digital, producción visual y gestión de comunidades para que tu presencia online no solo se vea — se sienta.",
+      "stats": {
+        "years": "Años de experiencia",
+        "brands": "Marcas trabajadas",
+        "content": "Piezas producidas",
+        "reach": "Alcance generado"
+      },
+      "pillars": {
+        "strategy": {
+          "title": "Estrategia 360°",
+          "desc": "Diseñamos planes de contenido orientados a resultados reales: crecimiento de comunidad, retención y conversión. Cada publicación tiene un propósito dentro de un sistema mayor.",
+          "tag": "Planificación & ROI"
+        },
+        "video": {
+          "title": "Video como lenguaje",
+          "desc": "Especializados en edición de video y narrativas visuales dinámicas pensadas para la era del scroll. Desde Reels hasta series de contenido, hacemos que tu marca detenga el pulgar.",
+          "tag": "Reels · TikTok · YouTube"
+        },
+        "management": {
+          "title": "Gestión con alma",
+          "desc": "Experiencia híbrida entre agencia y corporativo gestionando múltiples cuentas con criterio, organización y sin perder la voz auténtica de cada marca.",
+          "tag": "Community Management"
+        }
+      },
+      "footer": "Actualmente perfeccionando técnicas avanzadas de postproducción."
+    },
+    "skills": {
+      "title": "Habilidades",
+      "subtitle": "Herramientas con las que trabajamos",
+      "footer": "Actualizando el stack constantemente"
+    },
+    "projects": {
+      "title": "Proyectos",
+      "subtitle": "Algunos de nuestros trabajos recientes",
+      "view": "Ver Proyecto",
+      "code": "Ver Código"
+    },
+    "contact": {
+      "status": "Disponible para nuevos proyectos",
+      "title": "Hablemos de tu proyecto",
+      "subtitle": "Cuéntanos tu idea y te respondemos en menos de 24 horas.",
+      "form": {
+        "labels": {
+          "name": "Nombre",
+          "email": "Email",
+          "interest": "Servicio de interés",
+          "message": "Mensaje"
+        },
+        "placeholders": {
+          "name": "Tu nombre completo",
+          "select": "¿En qué podemos ayudarte?",
+          "message": "Cuéntanos sobre tu proyecto, objetivos o cualquier pregunta..."
+        },
+        "interests": {
+          "community": "Community Management",
+          "video": "Edición de Video",
+          "strategy": "Estrategia Digital",
+          "other": "Otro"
+        },
+        "errors": {
+          "title": "Error al enviar",
+          "name": "El nombre debe tener al menos 2 caracteres",
+          "email": "Ingresa un email válido",
+          "message": "El mensaje debe tener al menos 10 caracteres",
+          "generic": "Ocurrió un error al enviar. Intenta de nuevo."
+        },
+        "submit": "Enviar Mensaje",
+        "sending": "Enviando..."
+      },
+      "success": {
+        "title": "¡Mensaje enviado!",
+        "message": "Gracias por escribirnos. Te respondemos en menos de 24 horas.",
+        "button": "Enviar otro mensaje"
+      }
+    },
+    "footer": {
+      "rights": "Todos los derechos reservados."
+    }
+  }

@@ -1,10 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-01-15',
-
-  devtools: {
-    enabled: true
-  },
 
   modules: [
     '@nuxt/eslint',
@@ -13,11 +8,11 @@ export default defineNuxtConfig({
     '@vueuse/motion/nuxt'
   ],
 
-  css: ['~/assets/css/main.css'],
-
-  routeRules: {
-    '/': { prerender: true }
+  devtools: {
+    enabled: true
   },
+
+  css: ['~/assets/css/main.css'],
 
   runtimeConfig: {
     // Nuxt mapea NUXT_CONTACT_EMAIL → contactEmail automáticamente en runtime.
@@ -26,6 +21,11 @@ export default defineNuxtConfig({
     contactEmail: '',
     public: {}
   },
+
+  routeRules: {
+    '/': { prerender: true }
+  },
+  compatibilityDate: '2025-01-15',
 
   eslint: {
     config: {

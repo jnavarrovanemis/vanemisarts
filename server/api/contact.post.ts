@@ -1,4 +1,4 @@
-// server/api/contact.post.ts
+import { promises as dns } from 'node:dns'
 import { z } from 'zod'
 
 const ContactSchema = z.object({
@@ -8,8 +8,24 @@ const ContactSchema = z.object({
   message: z.string().min(10).max(2000).trim()
 })
 
+async function hasValidMxRecords(email: string): Promise<boolean> {
+  const domain = email.split('@')[1]
+  if (!domain) return false // Seguridad extra para TS
+
+  try {
+    const addresses = await dns.resolveMx(domain)
+    return addresses && addresses.length > 0
+  } catch {
+    return false
+  }
+}
+
+const DISPOSABLE_DOMAINS = ['mailinator.com', '10minutemail.com', 'temp-mail.org']
+
 export default defineEventHandler(async (event) => {
-  const { contactEmail } = useRuntimeConfig()
+  const config = useRuntimeConfig()
+  // Forzamos a TS a tratarlo como string para el fetch posterior
+  const contactEmail = config.contactEmail as string
 
   if (!contactEmail) {
     throw createError({
@@ -24,18 +40,27 @@ export default defineEventHandler(async (event) => {
   if (!parsed.success) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'Datos del formulario inválidos',
+      statusMessage: 'Datos inválidos',
       data: parsed.error.flatten().fieldErrors
     })
   }
 
   const { name, email, interest, message } = parsed.data
+  const domain = email.split('@')[1] ?? '' // Evita que domain sea undefined
 
-  // FormSubmit requiere Origin y Referer del navegador para aceptar peticiones
-  // de servidor a servidor — los reenviamos desde los headers de la petición original
+  if (DISPOSABLE_DOMAINS.includes(domain)) {
+    throw createError({ statusCode: 422, statusMessage: 'Correo temporal no permitido' })
+  }
+
+  const hasMx = await hasValidMxRecords(email)
+  if (!hasMx) {
+    throw createError({ statusCode: 422, statusMessage: 'Dominio de correo inválido' })
+  }
+
   const origin = getHeader(event, 'origin') || 'http://localhost:3000'
 
   try {
+    // Aquí es donde contactEmail daba error de 'undefined'
     await $fetch(`https://formsubmit.co/ajax/${contactEmail}`, {
       method: 'POST',
       headers: {
@@ -57,9 +82,6 @@ export default defineEventHandler(async (event) => {
 
     return { success: true }
   } catch {
-    throw createError({
-      statusCode: 502,
-      statusMessage: 'Error al procesar el envío del formulario con el proveedor externo.'
-    })
+    throw createError({ statusCode: 502, statusMessage: 'Error con el proveedor externo' })
   }
 })

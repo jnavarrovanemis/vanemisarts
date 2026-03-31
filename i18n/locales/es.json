@@ -58,40 +58,63 @@
       "code": "Ver Código"
     },
     "contact": {
-      "status": "Disponible para nuevos proyectos",
+      "status": "Disponibles para nuevos proyectos",
       "title": "Hablemos de tu proyecto",
-      "subtitle": "Cuéntanos tu idea y te respondemos en menos de 24 horas.",
+      "subtitle": "Cuéntanos tu idea y te responderemos en menos de 24 horas.",
       "form": {
+        "steps": {
+          "step1": "Información básica",
+          "step2": "Detalles del proyecto"
+        },
         "labels": {
           "name": "Nombre",
-          "email": "Email",
+          "email": "Correo electrónico",
+          "phone": "WhatsApp / Teléfono (Opcional)",
+          "projectStage": "¿En qué etapa se encuentra tu proyecto?",
           "interest": "Servicio de interés",
-          "message": "Mensaje"
+          "website": "Sitio Web o Instagram (Si ya tienes)",
+          "project": "Cuéntanos sobre tu proyecto (Opcional)"
         },
         "placeholders": {
           "name": "Tu nombre completo",
-          "select": "¿En qué podemos ayudarte?",
-          "message": "Cuéntanos sobre tu proyecto, objetivos o cualquier pregunta..."
+          "email": "hola{'@'}vanemisarts.com",
+          "phone": "+58 412 0000000",
+          "stageSelect": "Selecciona una opción",
+          "interestSelect": "¿En qué te podemos ayudar?",
+          "website": "www.vanemisarts.com o {'@'}vanemisarts",
+          "project": "¿Qué objetivos quieres lograr?"
+        },
+        "stages": {
+          "idea": "Tengo una idea y quiero lanzarla",
+          "starting": "Recién empezando (Menos de 1 año)",
+          "established": "Negocio establecido buscando crecer"
         },
         "interests": {
+          "web": "Desarrollo Web",
           "community": "Community Management",
+          "branding": "Branding e Identidad",
+          "strategy": "Estrategia de Marketing",
           "video": "Edición de Video",
-          "strategy": "Estrategia Digital",
           "other": "Otro"
         },
         "errors": {
           "title": "Error al enviar",
           "name": "El nombre debe tener al menos 2 caracteres",
-          "email": "Ingresa un email válido",
-          "message": "El mensaje debe tener al menos 10 caracteres",
-          "generic": "Ocurrió un error al enviar. Intenta de nuevo."
+          "email": "Ingresa un correo válido",
+          "stage": "Por favor, indícanos en qué etapa estás",
+          "interest": "Por favor, selecciona un servicio",
+          "generic": "Ocurrió un error al enviar. Inténtalo de nuevo."
         },
-        "submit": "Enviar Mensaje",
-        "sending": "Enviando..."
+        "buttons": {
+          "next": "Siguiente paso",
+          "back": "Volver",
+          "submit": "Hablemos de tu proyecto",
+          "sending": "Enviando..."
+        }
       },
       "success": {
         "title": "¡Mensaje enviado!",
-        "message": "Gracias por escribirnos. Te respondemos en menos de 24 horas.",
+        "message": "Gracias por contactarnos. Te responderemos en menos de 24 horas.",
         "button": "Enviar otro mensaje"
       }
     },

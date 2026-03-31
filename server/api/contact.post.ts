@@ -1,36 +1,24 @@
-import { promises as dns } from 'node:dns'
+// server/api/contact.post.ts
 import { z } from 'zod'
 
+// 1. Actualizamos el esquema para que coincida con el frontend
 const ContactSchema = z.object({
-  name: z.string().min(2).max(100).trim(),
-  email: z.string().email().max(200).trim().toLowerCase(),
-  interest: z.string().max(100).optional(),
-  message: z.string().min(10).max(2000).trim()
+  name: z.string().min(2, 'El nombre es muy corto').max(100).trim(),
+  email: z.string().email('Email inválido').max(200).trim().toLowerCase(),
+  phone: z.string().max(50).trim().optional(),
+  projectStage: z.string().min(1, 'La etapa es requerida').max(50).trim(),
+  website: z.string().max(200).trim().optional(),
+  interest: z.string().min(1, 'El interés es requerido').max(100).trim(),
+  project: z.string().max(3000).trim().optional()
 })
 
-async function hasValidMxRecords(email: string): Promise<boolean> {
-  const domain = email.split('@')[1]
-  if (!domain) return false // Seguridad extra para TS
-
-  try {
-    const addresses = await dns.resolveMx(domain)
-    return addresses && addresses.length > 0
-  } catch {
-    return false
-  }
-}
-
-const DISPOSABLE_DOMAINS = ['mailinator.com', '10minutemail.com', 'temp-mail.org']
-
 export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig()
-  // Forzamos a TS a tratarlo como string para el fetch posterior
-  const contactEmail = config.contactEmail as string
+  const { contactEmail } = useRuntimeConfig()
 
   if (!contactEmail) {
     throw createError({
       statusCode: 500,
-      statusMessage: 'Configuración de servidor incompleta'
+      statusMessage: 'Configuración de servidor incompleta (contactEmail faltante)'
     })
   }
 
@@ -40,27 +28,25 @@ export default defineEventHandler(async (event) => {
   if (!parsed.success) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'Datos inválidos',
+      statusMessage: 'Datos del formulario inválidos',
+      // Formateamos los errores para que el frontend los pueda leer fácilmente
       data: parsed.error.flatten().fieldErrors
     })
   }
 
-  const { name, email, interest, message } = parsed.data
-  const domain = email.split('@')[1] ?? '' // Evita que domain sea undefined
-
-  if (DISPOSABLE_DOMAINS.includes(domain)) {
-    throw createError({ statusCode: 422, statusMessage: 'Correo temporal no permitido' })
-  }
-
-  const hasMx = await hasValidMxRecords(email)
-  if (!hasMx) {
-    throw createError({ statusCode: 422, statusMessage: 'Dominio de correo inválido' })
-  }
+  // 2. Extraemos todos los campos validados
+  const { name, email, phone, projectStage, website, interest, project } = parsed.data
 
   const origin = getHeader(event, 'origin') || 'http://localhost:3000'
 
+  // Opcional: Diccionario para traducir el valor de projectStage en el correo
+  const stageMap: Record<string, string> = {
+    idea: 'Tengo una idea',
+    starting: 'Empezando',
+    established: 'Negocio establecido'
+  }
+
   try {
-    // Aquí es donde contactEmail daba error de 'undefined'
     await $fetch(`https://formsubmit.co/ajax/${contactEmail}`, {
       method: 'POST',
       headers: {
@@ -70,18 +56,26 @@ export default defineEventHandler(async (event) => {
         'Referer': `${origin}/`
       },
       body: {
-        nombre: name,
-        email,
-        servicio: interest ?? 'No especificado',
-        mensaje: message,
-        _subject: `🚀 Nuevo Lead: ${name}`,
+        Nombre: name,
+        Email: email,
+        Teléfono: phone || 'No especificado',
+        Sitio_Web: website || 'No especificado',
+        Etapa_Del_Proyecto: stageMap[projectStage] || projectStage,
+        Servicio_De_Interés: interest,
+        Detalles_Del_Proyecto: project || 'No especificado',
+        // Configuraciones de FormSubmit
+        _subject: `🚀 Nuevo Lead: ${name} - ${interest}`,
         _template: 'table',
         _captcha: 'false'
       }
     })
 
     return { success: true }
-  } catch {
-    throw createError({ statusCode: 502, statusMessage: 'Error con el proveedor externo' })
+  } catch (error) {
+    console.error('Error enviando a FormSubmit:', error)
+    throw createError({
+      statusCode: 502,
+      statusMessage: 'Error al procesar el envío del formulario con el proveedor externo.'
+    })
   }
 })

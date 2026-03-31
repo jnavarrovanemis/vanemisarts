@@ -1,4 +1,4 @@
-// server/api/contact.post.ts
+import { promises as dns } from 'node:dns'
 import { z } from 'zod'
 
 // 1. Actualizamos el esquema para que coincida con el frontend
@@ -14,8 +14,24 @@ const ContactSchema = z.object({
   project: z.string().max(3000).trim().optional()
 })
 
+async function hasValidMxRecords(email: string): Promise<boolean> {
+  const domain = email.split('@')[1]
+  if (!domain) return false // Seguridad extra para TS
+
+  try {
+    const addresses = await dns.resolveMx(domain)
+    return addresses && addresses.length > 0
+  } catch {
+    return false
+  }
+}
+
+const DISPOSABLE_DOMAINS = ['mailinator.com', '10minutemail.com', 'temp-mail.org']
+
 export default defineEventHandler(async (event) => {
-  const { contactEmail } = useRuntimeConfig()
+  const config = useRuntimeConfig()
+  // Forzamos a TS a tratarlo como string para el fetch posterior
+  const contactEmail = config.contactEmail as string
 
   if (!contactEmail) {
     throw createError({
@@ -39,8 +55,6 @@ export default defineEventHandler(async (event) => {
   // 2. Extraemos todos los campos validados
   const { name, email, phone, projectStage, website, interest, project } = parsed.data
 
-  // FormSubmit requiere Origin y Referer del navegador para aceptar peticiones
-  // de servidor a servidor — los reenviamos desde los headers de la petición original
   const origin = getHeader(event, 'origin') || 'http://localhost:3000'
 
   // Opcional: Diccionario para traducir el valor de projectStage en el correo
@@ -51,6 +65,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
+    // Aquí es donde contactEmail daba error de 'undefined'
     await $fetch(`https://formsubmit.co/ajax/${contactEmail}`, {
       method: 'POST',
       headers: {

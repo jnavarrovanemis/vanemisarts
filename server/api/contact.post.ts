@@ -1,11 +1,17 @@
 // server/api/contact.post.ts
 import { z } from 'zod'
 
+// 1. Actualizamos el esquema para que coincida con el frontend
 const ContactSchema = z.object({
-  name: z.string().min(2).max(100).trim(),
-  email: z.string().email().max(200).trim().toLowerCase(),
-  interest: z.string().max(100).optional(),
-  message: z.string().min(10).max(2000).trim()
+  name: z.string().min(2, 'El nombre es muy corto').max(100).trim(),
+  email: z.string().email('Email inválido').max(200).trim().toLowerCase(),
+  phone: z.string().max(50).trim().optional(),
+  // Ahora projectStage e interest son obligatorios según tu frontend
+  projectStage: z.string().min(1, 'La etapa es requerida').max(50).trim(),
+  website: z.string().max(200).trim().optional(),
+  interest: z.string().min(1, 'El interés es requerido').max(100).trim(),
+  // 'project' reemplaza al antiguo 'message' y ahora es opcional
+  project: z.string().max(3000).trim().optional()
 })
 
 export default defineEventHandler(async (event) => {
@@ -14,7 +20,7 @@ export default defineEventHandler(async (event) => {
   if (!contactEmail) {
     throw createError({
       statusCode: 500,
-      statusMessage: 'Configuración de servidor incompleta'
+      statusMessage: 'Configuración de servidor incompleta (contactEmail faltante)'
     })
   }
 
@@ -25,15 +31,24 @@ export default defineEventHandler(async (event) => {
     throw createError({
       statusCode: 400,
       statusMessage: 'Datos del formulario inválidos',
+      // Formateamos los errores para que el frontend los pueda leer fácilmente
       data: parsed.error.flatten().fieldErrors
     })
   }
 
-  const { name, email, interest, message } = parsed.data
+  // 2. Extraemos todos los campos validados
+  const { name, email, phone, projectStage, website, interest, project } = parsed.data
 
   // FormSubmit requiere Origin y Referer del navegador para aceptar peticiones
   // de servidor a servidor — los reenviamos desde los headers de la petición original
   const origin = getHeader(event, 'origin') || 'http://localhost:3000'
+
+  // Opcional: Diccionario para traducir el valor de projectStage en el correo
+  const stageMap: Record<string, string> = {
+    idea: 'Tengo una idea',
+    starting: 'Empezando',
+    established: 'Negocio establecido'
+  }
 
   try {
     await $fetch(`https://formsubmit.co/ajax/${contactEmail}`, {
@@ -45,18 +60,25 @@ export default defineEventHandler(async (event) => {
         'Referer': `${origin}/`
       },
       body: {
-        nombre: name,
-        email,
-        servicio: interest ?? 'No especificado',
-        mensaje: message,
-        _subject: `🚀 Nuevo Lead: ${name}`,
+        // 3. Mapeamos los campos para el correo de FormSubmit
+        // Usar mayúsculas o nombres amigables aquí ayuda a que la tabla en el correo se lea mejor
+        Nombre: name,
+        Email: email,
+        Teléfono: phone || 'No especificado',
+        Sitio_Web: website || 'No especificado',
+        Etapa_Del_Proyecto: stageMap[projectStage] || projectStage,
+        Servicio_De_Interés: interest,
+        Detalles_Del_Proyecto: project || 'No especificado',
+        // Configuraciones de FormSubmit
+        _subject: `🚀 Nuevo Lead: ${name} - ${interest}`,
         _template: 'table',
         _captcha: 'false'
       }
     })
 
     return { success: true }
-  } catch {
+  } catch (error) {
+    console.error('Error enviando a FormSubmit:', error)
     throw createError({
       statusCode: 502,
       statusMessage: 'Error al procesar el envío del formulario con el proveedor externo.'

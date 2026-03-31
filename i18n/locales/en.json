@@ -62,32 +62,55 @@
       "title": "Let's talk about your project",
       "subtitle": "Tell us your idea and we'll get back to you within 24 hours.",
       "form": {
+        "steps": {
+          "step1": "Basic Information",
+          "step2": "Project Details"
+        },
         "labels": {
           "name": "Name",
           "email": "Email",
+          "phone": "WhatsApp / Phone (Optional)",
+          "projectStage": "What stage is your project in?",
           "interest": "Service of interest",
-          "message": "Message"
+          "website": "Website or Instagram (If you have one)",
+          "project": "Tell us about your project (Optional)"
         },
         "placeholders": {
           "name": "Your full name",
-          "select": "How can we help you?",
-          "message": "Tell us about your project, goals or any questions you have..."
+          "email": "hola{'@'}vanemisarts.com",
+          "phone": "+1 234 567 8900",
+          "stageSelect": "Select an option",
+          "interestSelect": "How can we help you?",
+          "website": "www.vanemisarts.com or {'@'}vanemisarts",
+          "project": "What goals do you want to achieve?"
+        },
+        "stages": {
+          "idea": "I have an idea and want to launch it",
+          "starting": "Just starting (Less than 1 year)",
+          "established": "Established business looking to grow"
         },
         "interests": {
+          "web": "Web Development",
           "community": "Community Management",
+          "branding": "Branding & Identity",
+          "strategy": "Marketing Strategy",
           "video": "Video Editing",
-          "strategy": "Digital Strategy",
           "other": "Other"
         },
         "errors": {
           "title": "Failed to send",
           "name": "Name must be at least 2 characters",
           "email": "Enter a valid email",
-          "message": "Message must be at least 10 characters",
+          "stage": "Please tell us what stage you are in",
+          "interest": "Please select a service",
           "generic": "An error occurred while sending. Please try again."
         },
-        "submit": "Send Message",
-        "sending": "Sending..."
+        "buttons": {
+          "next": "Next step",
+          "back": "Back",
+          "submit": "Let's talk about your project",
+          "sending": "Sending..."
+        }
       },
       "success": {
         "title": "Message sent!",

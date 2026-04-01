@@ -14,7 +14,7 @@
   "lint-staged": {
     "*.{ts,vue}": [
       "eslint --fix",
-      "vue-tsc --noEmit"
+      "nuxi typecheck" 
     ]
   },
   "dependencies": {

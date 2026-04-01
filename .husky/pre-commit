@@ -1,2 +1,7 @@
 # .husky/pre-commit
+
+# Primero: Revisa los tipos de TODO el proyecto (sin que nadie le pase archivos extraños)
+pnpm nuxi typecheck
+
+# Segundo: Ejecuta ESLint solo en los archivos que modificaste
 pnpm lint-staged

@@ -13,8 +13,7 @@
   },
   "lint-staged": {
     "*.{ts,vue}": [
-      "eslint --fix",
-      "nuxi typecheck" 
+      "eslint --fix"
     ]
   },
   "dependencies": {

@@ -16,6 +16,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     contactEmail: '',
+    resendApiKey: '',
     public: {}
   },
 

@@ -15,9 +15,6 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   runtimeConfig: {
-    // Nuxt mapea NUXT_CONTACT_EMAIL → contactEmail automáticamente en runtime.
-    // No leer process.env aquí — el string vacío es solo el valor por defecto
-    // que se usa si la variable de entorno no está definida.
     contactEmail: '',
     public: {}
   },
@@ -26,6 +23,14 @@ export default defineNuxtConfig({
     '/': { prerender: true }
   },
   compatibilityDate: '2025-01-15',
+
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        esModuleInterop: true
+      }
+    }
+  },
 
   eslint: {
     config: {

@@ -53,7 +53,9 @@ export default defineEventHandler(async (event) => {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Origin': origin,
-        'Referer': `${origin}/`
+        'Referer': `${origin}/`,
+        // FormSubmit a menudo bloquea peticiones de servidor a servidor.
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
       },
       body: {
         Nombre: name,
@@ -63,7 +65,6 @@ export default defineEventHandler(async (event) => {
         Etapa_Del_Proyecto: stageMap[projectStage] || projectStage,
         Servicio_De_Interés: interest,
         Detalles_Del_Proyecto: project || 'No especificado',
-        // Configuraciones de FormSubmit
         _subject: `🚀 Nuevo Lead: ${name} - ${interest}`,
         _template: 'table',
         _captcha: 'false'
@@ -71,11 +72,18 @@ export default defineEventHandler(async (event) => {
     })
 
     return { success: true }
-  } catch (error) {
-    console.error('Error enviando a FormSubmit:', error)
+  } catch (error: unknown) {
+    // Convertimos el error a un objeto genérico para poder leer sus propiedades de forma segura
+    // sin usar 'any'
+    const err = error as { data?: unknown, message?: string }
+    // Extraemos la información del error que nos da $fetch
+    const errorDetails = err?.data || err?.message || String(error)
+
+    console.error('Error real de FormSubmit:', errorDetails)
     throw createError({
-      statusCode: 502,
-      statusMessage: 'Error al procesar el envío del formulario con el proveedor externo.'
+      statusCode: 500,
+      statusMessage: 'Error al procesar el envío del formulario con el proveedor externo.',
+      data: errorDetails
     })
   }
 })

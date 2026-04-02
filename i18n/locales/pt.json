@@ -1,0 +1,185 @@
+{
+  "meta": {
+    "default": {
+      "title": "Vanemis Arts | Portfólio de Arte e Design",
+      "description": "Explore o universo criativo da Vanemis Arts. Projetos de design, ilustração e arte digital que transformam ideias em experiências visuais únicas."
+    }
+  },
+  "navigation": {
+    "services": "Serviços",
+    "skills": "Habilidades",
+    "about": "Sobre Nós",
+    "contact": "Contato"
+  },
+  "welcome": "Bem-vindo",
+  "description": "Este é um exemplo de internacionalização.",
+  "hero": {
+    "greeting": "🚀 Impulsione sua marca",
+    "title": "Estratégia Digital",
+    "subtitle": "Vídeo Marketing & Social Media",
+    "description": "Transformamos sua visão em conteúdo visual que conecta, engaja e converte seguidores em clientes fiéis.",
+    "cta": "Agende uma Consultoria",
+    "button": "Ver Casos de Sucesso",
+    "scroll": "Descubra como fazemos"
+  },
+  "about": {
+    "badge": "🎨 Criatividade com estratégia",
+    "title": "Não apenas criamos conteúdo.",
+    "titleAccent": "Construímos marcas que conectam.",
+    "description": "A Vanemis Arts nasceu da convicção de que uma boa história, bem contada e bem distribuída, pode transformar uma marca. Combinamos estratégia digital, produção visual e gestão de comunidades para que sua presença online não apenas seja vista — seja sentida.",
+    "stats": {
+      "years": "Anos de experiência",
+      "brands": "Marcas atendidas",
+      "content": "Peças produzidas",
+      "reach": "Alcance gerado"
+    },
+    "pillars": {
+      "strategy": {
+        "title": "Estratégia 360°",
+        "desc": "Desenvolvemos planos de conteúdo orientados a resultados reais: crescimento da comunidade, retenção e conversão. Cada publicação tem um propósito dentro de um sistema maior.",
+        "tag": "Planejamento & ROI"
+      },
+      "video": {
+        "title": "Vídeo como linguagem",
+        "desc": "Especializados em edição de vídeo e narrativas visuais dinâmicas pensadas para a era do scroll. De Reels a séries de conteúdo, fazemos sua marca parar o polegar do usuário.",
+        "tag": "Reels · TikTok · YouTube"
+      },
+      "management": {
+        "title": "Gestão com alma",
+        "desc": "Experiência híbrida entre agência e corporativo, gerindo múltiplas contas com critério, organização e sem perder a voz autêntica de cada marca.",
+        "tag": "Community Management"
+      }
+    },
+    "footer": "Atualmente aperfeiçoando técnicas avançadas de pós-produção."
+  },
+  "skills": {
+    "title": "Ferramentas Criativas",
+    "subtitle": "O stack tecnológico que utilizamos para gerir marcas, criar conteúdo e potencializar estratégias digitais.",
+    "footer": "Constantemente atualizando nosso stack",
+    "items": {
+      "metricool": {
+        "name": "Metricool",
+        "description": "Análise, gestão e planejamento de conteúdo em redes sociais."
+      },
+      "googleSuite": {
+        "name": "Google Suite",
+        "description": "Ferramentas colaborativas para organização e gestão de projetos."
+      },
+      "youtubeStudio": {
+        "name": "YouTube Studio",
+        "description": "Gestão integral de canais, análises e otimização de vídeos."
+      },
+      "canvaPro": {
+        "name": "Canva Pro",
+        "description": "Design gráfico ágil para redes sociais, apresentações e marketing."
+      },
+      "affinitySuite": {
+        "name": "Affinity Suite",
+        "description": "Design vetorial, edição fotográfica e diagramação profissional."
+      },
+      "gamma": {
+        "name": "Gamma",
+        "description": "Criação rápida de apresentações e sites impulsionada por IA."
+      },
+      "capcut": {
+        "name": "CapCut",
+        "description": "Edição de vídeo dinâmica e otimizada para formatos verticais."
+      },
+      "opusClip": {
+        "name": "Opus Clip",
+        "description": "Geração automática de clipes curtos virais a partir de vídeos longos."
+      },
+      "adobePodcast": {
+        "name": "Adobe Podcast",
+        "description": "Melhoria de áudio com Inteligência Artificial para qualidade de estúdio."
+      },
+      "chatgpt": {
+        "name": "ChatGPT",
+        "description": "Assistência em redação, brainstorming e estruturação de conteúdo."
+      },
+      "gemini": {
+        "name": "Gemini",
+        "description": "Análise de dados, pesquisa e geração de textos avançados."
+      },
+      "nuxtjs": {
+        "name": "Nuxt.js",
+        "description": "Framework de Vue para criar aplicações web rápidas e otimizadas para SEO."
+      },
+      "wordpress": {
+        "name": "WordPress",
+        "description": "Criação e gestão de sites, blogs e lojas online."
+      }
+    }
+  },
+  "projects": {
+    "title": "Projetos",
+    "subtitle": "Alguns dos nossos trabalhos recentes",
+    "view": "Ver Projeto",
+    "code": "Ver Código"
+  },
+  "contact": {
+    "status": "Disponíveis para novos projetos",
+    "title": "Vamos conversar sobre o seu projeto",
+    "subtitle": "Conte-nos sua ideia e responderemos em menos de 24 horas.",
+    "form": {
+      "steps": {
+        "step1": "Informações básicas",
+        "step2": "Detalhes do projeto"
+      },
+      "labels": {
+        "name": "Nome",
+        "email": "E-mail",
+        "phone": "WhatsApp / Telefone (Opcional)",
+        "projectStage": "Em que etapa está o seu projeto?",
+        "interest": "Serviço de interesse",
+        "website": "Site ou Instagram (Se já possuir)",
+        "project": "Conte-nos sobre o seu projeto (Opcional)"
+      },
+      "placeholders": {
+        "name": "Seu nome completo",
+        "email": "ola{'@'}vanemisarts.com",
+        "phone": "+58 412 0000000",
+        "stageSelect": "Selecione uma opção",
+        "interestSelect": "Como podemos ajudar?",
+        "website": "www.vanemisarts.com ou {'@'}vanemisarts",
+        "project": "Quais objetivos você quer alcançar?"
+      },
+      "stages": {
+        "idea": "Tenho uma ideia e quero lançá-la",
+        "starting": "Começando agora (Menos de 1 ano)",
+        "established": "Negócio estabelecido buscando crescer"
+      },
+      "interests": {
+        "web": "Desenvolvimento Web",
+        "community": "Gestão de Comunidade",
+        "branding": "Branding e Identidade",
+        "strategy": "Estratégia de Marketing",
+        "video": "Edição de Vídeo",
+        "other": "Outro"
+      },
+      "errors": {
+        "title": "Erro ao enviar",
+        "name": "O nome deve ter pelo menos 2 caracteres",
+        "email": "Insira um e-mail válido",
+        "phone": "O telefone deve ter o formato correto (ex. +55 11 900000000)",
+        "stage": "Por favor, indique em que etapa você está",
+        "interest": "Por favor, selecione um serviço",
+        "generic": "Ocorreu um erro ao enviar. Tente novamente."
+      },
+      "buttons": {
+        "next": "Próximo passo",
+        "back": "Voltar",
+        "submit": "Enviar proposta",
+        "sending": "Enviando..."
+      }
+    },
+    "success": {
+      "title": "Mensagem enviada!",
+      "message": "Obrigado por nos contatar. Responderemos em menos de 24 horas.",
+      "button": "Enviar outra mensagem"
+    }
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados."
+  }
+}

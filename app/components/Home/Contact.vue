@@ -13,7 +13,7 @@ const Step1Schema = computed(() =>
     name: z.string().min(2, t('contact.form.errors.name')),
     email: z.string().email(t('contact.form.errors.email')),
     phone: z.string()
-      .regex(/^\+?[1-9]\d{6,14}$/, t('contact.form.errors.phone'))
+      .regex(/^\+?[1-9]\d{7,14}$/, t('contact.form.errors.phone'))
       .optional()
       .or(z.literal(''))
   })

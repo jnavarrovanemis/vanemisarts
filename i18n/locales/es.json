@@ -47,9 +47,63 @@
       "footer": "Actualmente perfeccionando técnicas avanzadas de postproducción."
     },
     "skills": {
-      "title": "Habilidades",
-      "subtitle": "Herramientas con las que trabajamos",
-      "footer": "Actualizando el stack constantemente"
+      "title": "Herramientas Creativas",
+      "subtitle": "El stack tecnológico que utilizamos para gestionar marcas, diseñar contenido y potenciar estrategias digitales.",
+      "footer": "Constantemente actualizando mi stack",
+      "items": {
+        "metricool": {
+          "name": "Metricool",
+          "description": "Análisis, gestión y planificación de contenido en redes sociales."
+        },
+        "googleSuite": {
+          "name": "Google Suite",
+          "description": "Herramientas colaborativas para la organización y gestión de proyectos."
+        },
+        "youtubeStudio": {
+          "name": "YouTube Studio",
+          "description": "Gestión integral de canales, analíticas y optimización de videos."
+        },
+        "canvaPro": {
+          "name": "Canva Pro",
+          "description": "Diseño gráfico ágil para redes sociales, presentaciones y marketing."
+        },
+        "affinitySuite": {
+          "name": "Affinity Suite",
+          "description": "Diseño vectorial, edición fotográfica y maquetación profesional."
+        },
+        "gamma": {
+          "name": "Gamma",
+          "description": "Creación rápida de presentaciones y sitios web impulsada por IA."
+        },
+        "capcut": {
+          "name": "CapCut",
+          "description": "Edición de video dinámica y optimizada para formatos verticales."
+        },
+        "opusClip": {
+          "name": "Opus Clip",
+          "description": "Generación automática de clips cortos virales a partir de videos largos."
+        },
+        "adobePodcast": {
+          "name": "Adobe Podcast",
+          "description": "Mejora de audio con Inteligencia Artificial para calidad de estudio."
+        },
+        "chatgpt": {
+          "name": "ChatGPT",
+          "description": "Asistencia en redacción, lluvia de ideas y estructuración de contenido."
+        },
+        "gemini": {
+          "name": "Gemini",
+          "description": "Análisis de datos, investigación y generación de textos avanzados."
+        },
+        "nuxtjs": {
+          "name": "Nuxt.js",
+          "description": "Framework de Vue para crear aplicaciones web rápidas y optimizadas para SEO."
+        },
+        "wordpress": {
+          "name": "WordPress",
+          "description": "Creación y gestión de sitios web, blogs y tiendas online."
+        }
+      }
     },
     "projects": {
       "title": "Proyectos",

@@ -161,6 +161,7 @@
         "title": "Error al enviar",
         "name": "El nombre debe tener al menos 2 caracteres",
         "email": "Ingresa un correo válido",
+        "phone": "El teléfono debe tener el formato correcto (ej. +58 412 0000000)",
         "stage": "Por favor, indícanos en qué etapa estás",
         "interest": "Por favor, selecciona un servicio",
         "generic": "Ocurrió un error al enviar. Inténtalo de nuevo."

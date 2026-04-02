@@ -161,6 +161,7 @@
         "title": "Failed to send",
         "name": "Name must be at least 2 characters",
         "email": "Enter a valid email",
+        "phone": "The phone must have the correct format (e.g. +1234567890)",
         "stage": "Please tell us what stage you are in",
         "interest": "Please select a service",
         "generic": "An error occurred while sending. Please try again."

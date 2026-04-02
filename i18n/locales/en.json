@@ -20,7 +20,7 @@
     "description": "We transform your vision into visual content that connects, engages, and converts followers into loyal clients.",
     "cta": "Book a Consultation",
     "button": "View Case Studies",
-    "scroll": "Discover how we do it"
+    "scroll": "How we do it"
   },
   "about": {
     "badge": "🎨 Creativity with strategy",
@@ -55,7 +55,7 @@
   "skills": {
     "title": "Creative Tools",
     "subtitle": "The tech stack we use to manage brands, design content, and power digital strategies.",
-    "footer": "Constantly updating my stack",
+    "footer": "Constantly updating our stack",
     "items": {
       "metricool": {
         "name": "Metricool",

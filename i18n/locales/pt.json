@@ -138,7 +138,7 @@
       "placeholders": {
         "name": "Seu nome completo",
         "email": "ola{'@'}vanemisarts.com",
-        "phone": "+58 412 0000000",
+        "phone": "+55 11 900000000",
         "stageSelect": "Selecione uma opção",
         "interestSelect": "Como podemos ajudar?",
         "website": "www.vanemisarts.com ou {'@'}vanemisarts",

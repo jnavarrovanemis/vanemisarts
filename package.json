@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.10.0",
+    "@nuxtjs/seo": "^5.1.0",
     "@types/node": "^25.5.0",
     "@vueuse/motion": "^3.0.3",
     "eslint": "^9.39.1",

@@ -1,6 +1,9 @@
 # Forzar que todos los archivos de texto se normalicen a LF al hacer commit
 * text=auto
 
-# Asegurar que archivos específicos siempre usen LF (ideal para scripts de shell o config)
+# Asegurar que archivos específicos siempre usen LF
 *.sh text eol=lf
 *.json text eol=lf
+*.md text eol=lf
+*.vue text eol=lf
+*.ts text eol=lf

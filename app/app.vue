@@ -1,4 +1,6 @@
 <script setup>
+const { t, locale } = useI18n()
+
 useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -7,20 +9,18 @@ useHead({
     { rel: 'icon', href: '/logo-minimalista.svg' }
   ],
   htmlAttrs: {
-    lang: 'es'
+    lang: locale
   }
 })
 
-const title = 'Vanemis Arts'
-const description = 'Vanemis Arts Agencia Creativa'
-
+// 3. Usamos funciones flecha () => para que los meta tags sean reactivos
 useSeoMeta({
-  title,
-  description,
-  ogTitle: title,
-  ogDescription: description,
-  ogImage: '/logo-minimalista.svg',
-  twitterImage: '/logo-minimalista.svg',
+  title: () => t('meta.default.title'),
+  description: () => t('meta.default.description'),
+  ogTitle: () => t('meta.default.title'),
+  ogDescription: () => t('meta.default.description'),
+  ogImage: 'https://vanemis.art/logo-minimalista.svg',
+  twitterImage: 'https://vanemis.art/logo-minimalista.svg',
   twitterCard: 'summary_large_image'
 })
 </script>

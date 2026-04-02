@@ -1,30 +1,30 @@
 <script setup lang="ts">
 const { t } = useI18n()
 
-// Lista de herramientas estructurada por categorías
+// Lista estructurada: usamos "id" para conectar con los JSON de traducción
 const skills = [
   // Gestión y Estrategia
-  { name: 'Metricool', icon: 'i-heroicons-chart-bar-square', color: 'blue' },
-  { name: 'Google Suite', icon: 'i-simple-icons-google', color: 'green' },
-  { name: 'YouTube Studio', icon: 'i-simple-icons-youtubestudio', color: 'red' },
+  { id: 'metricool', icon: 'i-heroicons-chart-bar-square', color: 'blue' },
+  { id: 'googleSuite', icon: 'i-simple-icons-google', color: 'green' },
+  { id: 'youtubeStudio', icon: 'i-simple-icons-youtubestudio', color: 'red' },
 
   // Diseño
-  { name: 'Canva Pro', icon: 'i-simple-icons-canva', color: 'teal' },
-  { name: 'Affinity Suite', icon: 'i-simple-icons-affinity', color: 'indigo' },
-  { name: 'Gamma', icon: 'i-heroicons-presentation-chart-bar', color: 'yellow' },
+  { id: 'canvaPro', icon: 'i-simple-icons-canva', color: 'teal' },
+  { id: 'affinitySuite', icon: 'i-simple-icons-affinity', color: 'indigo' },
+  { id: 'gamma', icon: 'i-heroicons-presentation-chart-bar', color: 'yellow' },
 
   // Edición de Video/Audio
-  { name: 'CapCut', icon: 'i-heroicons-video-camera', color: 'gray' },
-  { name: 'Opus Clip', icon: 'i-heroicons-scissors', color: 'purple' },
-  { name: 'Adobe Podcast', icon: 'i-heroicons-microphone', color: 'orange' },
+  { id: 'capcut', icon: 'i-heroicons-video-camera', color: 'gray' },
+  { id: 'opusClip', icon: 'i-heroicons-scissors', color: 'purple' },
+  { id: 'adobePodcast', icon: 'i-heroicons-microphone', color: 'orange' },
 
   // Inteligencia Artificial
-  { name: 'ChatGPT', icon: 'i-simple-icons-openai', color: 'emerald' },
-  { name: 'Gemini', icon: 'i-simple-icons-googlegemini', color: 'blue' },
+  { id: 'chatgpt', icon: 'i-simple-icons-openai', color: 'emerald' },
+  { id: 'gemini', icon: 'i-simple-icons-googlegemini', color: 'blue' },
 
-  // Desarrollo Web / Tech (Agregado para destacar tu perfil técnico)
-  { name: 'Nuxt.js', icon: 'i-simple-icons-nuxtdotjs', color: 'green' },
-  { name: 'WordPress', icon: 'i-simple-icons-wordpress', color: 'blue' }
+  // Desarrollo Web / Tech
+  { id: 'nuxtjs', icon: 'i-simple-icons-nuxtdotjs', color: 'green' },
+  { id: 'wordpress', icon: 'i-simple-icons-wordpress', color: 'blue' }
 ]
 
 // Mapeo estructurado: separamos el estilo del icono del estilo de la tarjeta
@@ -93,12 +93,10 @@ const colorStyles: Record<string, { icon: string, card: string }> = {
           <h2
             class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white tracking-tight"
           >
-            {{ t("skills.title") || "Herramientas Creativas" }}
+            {{ t("skills.title") }}
           </h2>
           <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            {{
-              t("skills.subtitle") || "El stack tecnológico que utilizo para gestionar marcas, diseñar contenido y potenciar estrategias digitales."
-            }}
+            {{ t("skills.subtitle") }}
           </p>
         </div>
 
@@ -107,32 +105,60 @@ const colorStyles: Record<string, { icon: string, card: string }> = {
         >
           <div
             v-for="(skill, index) in skills"
-            :key="skill.name"
+            :key="skill.id"
             v-motion-slide-visible-once-bottom
             :delay="index * 100"
-            class="group"
+            class="h-full"
           >
-            <div
-              class="relative h-full flex flex-col items-center justify-center p-6 rounded-2xl transition-all duration-300 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 hover:-translate-y-1 hover:shadow-xl"
-              :class="[colorStyles[skill.color as keyof typeof colorStyles]?.card || '']"
+            <UPopover
+              mode="hover"
+              class="h-full block"
             >
               <div
-                class="mb-4 p-3 rounded-xl border transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"
-                :class="[colorStyles[skill.color as keyof typeof colorStyles]?.icon || '']"
+                class="group relative h-full w-full focus:outline-none flex flex-col items-center justify-center p-6 rounded-2xl transition-all duration-300 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
+                :class="[colorStyles[skill.color as keyof typeof colorStyles]?.card || '']"
               >
-                <UIcon
-                  :name="skill.icon"
-                  class="w-8 h-8 md:w-10 md:h-10"
-                  dynamic
-                />
+                <div
+                  class="mb-4 p-3 rounded-xl border transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"
+                  :class="[colorStyles[skill.color as keyof typeof colorStyles]?.icon || '']"
+                >
+                  <UIcon
+                    :name="skill.icon"
+                    class="w-8 h-8 md:w-10 md:h-10"
+                    dynamic
+                  />
+                </div>
+
+                <span
+                  class="font-semibold text-center text-sm md:text-base text-gray-800 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white transition-colors"
+                >
+                  {{ t(`skills.items.${skill.id}.name`) }}
+                </span>
               </div>
 
-              <span
-                class="font-semibold text-center text-sm md:text-base text-gray-800 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white transition-colors"
-              >
-                {{ skill.name }}
-              </span>
-            </div>
+              <template #content>
+                <div class="flex flex-col gap-3 p-4 max-w-[260px] bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-xl border border-gray-200/50 dark:border-gray-800/50 shadow-xl">
+                  <div class="flex items-center gap-3">
+                    <div
+                      class="p-1.5 rounded-lg border flex items-center justify-center"
+                      :class="[colorStyles[skill.color as keyof typeof colorStyles]?.icon || '']"
+                    >
+                      <UIcon
+                        :name="skill.icon"
+                        class="w-4 h-4"
+                        dynamic
+                      />
+                    </div>
+                    <span class="font-bold text-sm text-gray-900 dark:text-white">
+                      {{ t(`skills.items.${skill.id}.name`) }}
+                    </span>
+                  </div>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {{ t(`skills.items.${skill.id}.description`) }}
+                  </p>
+                </div>
+              </template>
+            </UPopover>
           </div>
         </div>
 
@@ -149,7 +175,7 @@ const colorStyles: Record<string, { icon: string, card: string }> = {
               class="w-4 h-4"
               dynamic
             />
-            {{ t("skills.footer") || "Constantemente actualizando mi stack" }}
+            {{ t("skills.footer") }}
           </span>
         </div>
       </div>

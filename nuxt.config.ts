@@ -5,7 +5,8 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/ui',
     '@nuxtjs/i18n',
-    '@vueuse/motion/nuxt'
+    '@vueuse/motion/nuxt',
+    '@nuxtjs/seo'
   ],
 
   devtools: {
@@ -13,6 +14,13 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
+
+  site: {
+    url: 'https://vanemis.art',
+    name: 'Vanemis Arts',
+    description: 'Portafolio de arte y diseño', // Personalizar según el enfoque
+    defaultLocale: 'es'
+  },
 
   runtimeConfig: {
     contactEmail: '',

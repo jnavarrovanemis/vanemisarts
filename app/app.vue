@@ -6,7 +6,9 @@ useHead({
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
   ],
   link: [
-    { rel: 'icon', href: '/logo-minimalista.svg' }
+    { rel: 'icon', type: 'image/svg+xml', href: '/logo-minimalista.svg' },
+    { rel: 'icon', type: 'image/png', sizes: '48x48', href: '/favicon-48x48.png' },
+    { rel: 'shortcut icon', href: '/favicon.ico' }
   ],
   htmlAttrs: {
     lang: locale
@@ -27,8 +29,9 @@ useSeoMeta({
   description: () => t('meta.default.description'),
   ogTitle: () => t('meta.default.title'),
   ogDescription: () => t('meta.default.description'),
-  ogImage: 'https://vanemis.art/logo-minimalista.svg',
-  twitterImage: 'https://vanemis.art/logo-minimalista.svg',
+  ogType: 'website',
+  ogImage: 'https://vanemis.art/og-image.png',
+  twitterImage: 'https://vanemis.art/og-image.png',
   twitterCard: 'summary_large_image'
 })
 </script>

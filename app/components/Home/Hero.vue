@@ -16,7 +16,7 @@ const { scrollTo } = useSmoothScroll()
       aria-hidden="true"
     >
       <NuxtImg
-        src="/assets/img/background.svg"
+        src="/background.svg"
         alt="Fondo decorativo de Vanemis Arts"
         fetchpriority="high"
         class="w-full h-full object-cover object-top opacity-70 dark:opacity-85 transition-opacity duration-500"

@@ -29,6 +29,7 @@
   "devDependencies": {
     "@nuxt/eslint": "^1.10.0",
     "@nuxt/fonts": "^0.14.0",
+    "@nuxt/image": "^2.0.0",
     "@nuxtjs/seo": "^5.1.0",
     "@types/node": "^25.5.0",
     "@vueuse/motion": "^3.0.3",

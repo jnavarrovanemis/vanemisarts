@@ -15,13 +15,12 @@ const { scrollTo } = useSmoothScroll()
       class="absolute inset-0 z-0"
       aria-hidden="true"
     >
-      <img
+      <NuxtImg
         src="/assets/img/background.svg"
-        alt=""
+        alt="Fondo decorativo de Vanemis Arts"
         fetchpriority="high"
-        class="w-full h-full object-cover object-top opacity-70 dark:opacity-85
-               transition-opacity duration-500"
-      >
+        class="w-full h-full object-cover object-top opacity-70 dark:opacity-85 transition-opacity duration-500"
+      />
       <div
         class="absolute inset-0
                bg-linear-to-b

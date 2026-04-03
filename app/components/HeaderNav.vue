@@ -35,16 +35,16 @@
           aria-label="Inicio"
           class="relative z-10 shrink-0 flex items-center gap-2.5"
         >
-          <img
+          <NuxtImg
             src="/logo-minimalista.svg"
-            alt="Logo"
+            alt="Logo de Vanemis Arts"
             :class="[
               'object-contain block transition-all duration-500',
               isCompact ? 'w-6 h-6' : 'w-7 h-7'
             ]"
             width="28"
             height="28"
-          >
+          />
           <span
             :class="[
               'overflow-hidden whitespace-nowrap font-semibold text-sm',
@@ -104,13 +104,13 @@
                border border-black/6 dark:border-white/8
                shadow-md shadow-black/10"
       >
-        <img
+        <NuxtImg
           src="/logo-minimalista.svg"
-          alt="Logo"
+          alt="Logo de Vanemis Arts"
           class="w-6 h-6 object-contain"
           width="24"
           height="24"
-        >
+        />
         <span class="text-sm font-semibold text-neutral-800 dark:text-neutral-100 leading-none">
           <slot name="brand-name" />
         </span>

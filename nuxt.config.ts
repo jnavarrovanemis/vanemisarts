@@ -6,7 +6,8 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxtjs/i18n',
     '@vueuse/motion/nuxt',
-    '@nuxtjs/seo'
+    '@nuxtjs/seo',
+    '@nuxt/image'
   ],
 
   devtools: {
@@ -18,7 +19,6 @@ export default defineNuxtConfig({
   site: {
     url: 'https://vanemis.art',
     name: 'Vanemis Arts',
-    description: 'Portafolio de arte y diseño', // Personalizar según el enfoque
     defaultLocale: 'es'
   },
 
@@ -64,5 +64,10 @@ export default defineNuxtConfig({
       cookieKey: 'i18n_redirected',
       redirectOn: 'root'
     }
+  },
+
+  image: {
+    format: ['webp'],
+    quality: 80
   }
 })

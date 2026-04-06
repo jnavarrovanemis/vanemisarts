@@ -180,5 +180,46 @@
   },
   "footer": {
     "rights": "Todos os direitos reservados."
+  },
+  "enums": {
+    "user_role": {
+      "admin": "Administrador",
+      "employee": "Colaborador",
+      "client": "Cliente"
+    },
+    "lead_status": {
+      "new": "Novo",
+      "contacted": "Contatado",
+      "qualified": "Qualificado",
+      "converted": "Convertido",
+      "lost": "Perdido"
+    },
+    "project_stage_type": {
+      "idea": "Ideia",
+      "in_development": "Em desenvolvimento",
+      "launched": "Lançado",
+      "scaling": "Escalando"
+    },
+    "content_status": {
+      "pending": "Pendente",
+      "in_progress": "Em progresso",
+      "waiting_approval": "Aguardando aprovação",
+      "approved": "Aprovado"
+    },
+    "distribution_status": {
+      "pending": "Pendente",
+      "scheduled": "Agendado",
+      "published": "Publicado",
+      "failed": "Falhou",
+      "cancelled": "Cancelado"
+    },
+    "content_format": {
+      "reel": "Reel",
+      "carousel": "Carrossel",
+      "video": "Vídeo",
+      "podcast": "Podcast",
+      "post": "Post",
+      "story": "Story"
+    }
   }
 }

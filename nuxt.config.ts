@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@vueuse/motion/nuxt',
     '@nuxtjs/seo',
-    '@nuxt/image'
+    '@nuxt/image',
+    '@nuxtjs/supabase'
   ],
 
   devtools: {
@@ -30,6 +31,10 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/': { prerender: true }
+  },
+
+  future: {
+    compatibilityVersion: 4
   },
   compatibilityDate: '2025-01-15',
 
@@ -69,5 +74,9 @@ export default defineNuxtConfig({
   image: {
     format: ['webp'],
     quality: 80
+  },
+
+  supabase: {
+    redirect: false
   }
 })

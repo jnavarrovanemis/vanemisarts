@@ -22,6 +22,28 @@ const pillars = [
     gradient: 'from-pink-600 to-primary-600',
     glow: 'group-hover:shadow-pink-500/20',
     badge: 'bg-pink-500/10 text-pink-600 dark:text-pink-400'
+  },
+  // NUEVAS TARJETAS
+  {
+    key: 'web',
+    icon: 'i-heroicons-computer-desktop',
+    gradient: 'from-blue-600 to-cyan-600',
+    glow: 'group-hover:shadow-blue-500/20',
+    badge: 'bg-blue-500/10 text-blue-600 dark:text-blue-400'
+  },
+  {
+    key: 'branding',
+    icon: 'i-heroicons-swatch',
+    gradient: 'from-orange-600 to-red-600',
+    glow: 'group-hover:shadow-orange-500/20',
+    badge: 'bg-orange-500/10 text-orange-600 dark:text-orange-400'
+  },
+  {
+    key: 'podcast',
+    icon: 'i-heroicons-microphone',
+    gradient: 'from-emerald-600 to-teal-600',
+    glow: 'group-hover:shadow-emerald-500/20',
+    badge: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
   }
 ]
 
@@ -40,13 +62,11 @@ const stats = [
     aria-labelledby="about-heading"
   >
     <div
-      class="absolute -top-20 -left-20 w-80 h-80 bg-primary-500/15 rounded-full
-             blur-3xl opacity-40 pointer-events-none animate-pulse"
+      class="absolute -top-20 -left-20 w-80 h-80 bg-primary-500/15 rounded-full blur-3xl opacity-40 pointer-events-none animate-pulse"
       aria-hidden="true"
     />
     <div
-      class="absolute -bottom-20 -right-20 w-80 h-80 bg-pink-500/15 rounded-full
-             blur-3xl opacity-40 pointer-events-none"
+      class="absolute -bottom-20 -right-20 w-80 h-80 bg-pink-500/15 rounded-full blur-3xl opacity-40 pointer-events-none"
       aria-hidden="true"
     />
 
@@ -79,24 +99,18 @@ const stats = [
         class="max-w-3xl mx-auto text-center mb-12"
       >
         <span
-          class="inline-block mb-4 px-4 py-1.5 rounded-full text-sm font-medium
-                 bg-linear-to-r from-primary-500/10 via-purple-500/10 to-pink-500/10
-                 border border-purple-500/20 text-purple-600 dark:text-purple-400
-                 backdrop-blur-md"
+          class="inline-block mb-4 px-4 py-1.5 rounded-full text-sm font-medium bg-linear-to-r from-primary-500/10 via-purple-500/10 to-pink-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400 backdrop-blur-md"
         >
           {{ t('about.badge') }}
         </span>
 
         <h2
           id="about-heading"
-          class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4
-                 text-gray-900 dark:text-white"
+          class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-gray-900 dark:text-white"
         >
           {{ t('about.title') }}
           <span
-            class="block md:inline-block bg-clip-text text-transparent
-                   bg-linear-to-r from-primary-600 via-purple-600 to-pink-600
-                   dark:from-primary-400 dark:via-purple-400 dark:to-pink-500"
+            class="block md:inline-block bg-clip-text text-transparent bg-linear-to-r from-primary-600 via-purple-600 to-pink-600 dark:from-primary-400 dark:via-purple-400 dark:to-pink-500"
           >
             {{ t('about.titleAccent') }}
           </span>
@@ -110,19 +124,15 @@ const stats = [
       <div
         v-motion-slide-visible-once-bottom
         :delay="100"
-        class="grid grid-cols-4 gap-3 mb-12 max-w-4xl mx-auto"
+        class="grid grid-cols-4 gap-3 mb-16 max-w-4xl mx-auto"
       >
         <div
           v-for="stat in stats"
           :key="stat.key"
-          class="col-span-2 md:col-span-1 flex flex-col items-center justify-center py-3 px-2 rounded-2xl
-                 bg-white/60 dark:bg-gray-900/60 backdrop-blur-xl
-                 border border-gray-200/50 dark:border-gray-800/50 text-center"
+          class="col-span-2 md:col-span-1 flex flex-col items-center justify-center py-3 px-2 rounded-2xl bg-white/60 dark:bg-gray-900/60 backdrop-blur-xl border border-gray-200/50 dark:border-gray-800/50 text-center"
         >
           <span
-            class="text-2xl md:text-3xl font-extrabold bg-clip-text text-transparent
-                   bg-linear-to-r from-primary-600 via-purple-600 to-pink-600
-                   dark:from-primary-400 dark:via-purple-400 dark:to-pink-500"
+            class="text-2xl md:text-3xl font-extrabold bg-clip-text text-transparent bg-linear-to-r from-primary-600 via-purple-600 to-pink-600 dark:from-primary-400 dark:via-purple-400 dark:to-pink-500"
           >
             {{ stat.value }}
           </span>
@@ -132,13 +142,21 @@ const stats = [
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto">
+      <UCarousel
+        v-slot="{ item: pillar, index }"
+        :items="pillars"
+        :ui="{
+          item: 'basis-full md:basis-1/2 lg:basis-1/3 snap-start px-3 py-4',
+          dots: 'absolute flex items-center justify-center gap-3 -bottom-8 inset-x-0',
+          dot: 'w-2.5 h-2.5 rounded-full bg-gray-300 dark:bg-gray-700 transition-all duration-300 data-[active=true]:bg-primary-500 data-[active=true]:w-6'
+        }"
+        dots
+        class="max-w-6xl mx-auto pb-12"
+      >
         <div
-          v-for="(pillar, index) in pillars"
-          :key="pillar.key"
           v-motion-slide-visible-once-bottom
-          :delay="index * 150"
-          class="group relative flex flex-col h-full"
+          :delay="(index % 3) * 150"
+          class="group relative flex flex-col h-full w-full"
         >
           <div
             :class="[
@@ -161,16 +179,11 @@ const stats = [
           </div>
 
           <div
-            class="relative flex flex-col h-full p-6 md:p-7 rounded-4xl
-                   bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl
-                   transition-all duration-500
-                   hover:-translate-y-1.5 hover:shadow-xl"
+            class="relative flex flex-col h-full p-6 md:p-7 rounded-4xl bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
             :class="pillar.glow"
           >
             <span
-              class="absolute top-5 right-5 text-6xl font-black select-none pointer-events-none
-                     text-gray-100 dark:text-gray-800 transition-all duration-500
-                     group-hover:scale-110 group-hover:opacity-60"
+              class="absolute top-5 right-5 text-6xl font-black select-none pointer-events-none text-gray-100 dark:text-gray-800 transition-all duration-500 group-hover:scale-110 group-hover:opacity-60"
               aria-hidden="true"
             >
               {{ String(index + 1).padStart(2, '0') }}
@@ -195,6 +208,7 @@ const stats = [
               <UIcon
                 :name="pillar.icon"
                 class="relative w-6 h-6"
+                dynamic
               />
             </div>
 
@@ -228,7 +242,7 @@ const stats = [
             </div>
           </div>
         </div>
-      </div>
+      </UCarousel>
 
       <div
         v-motion-slide-visible-once-bottom
@@ -239,9 +253,7 @@ const stats = [
           variant="outline"
           color="neutral"
           size="md"
-          class="rounded-full px-5 py-1.5 backdrop-blur-md
-                 bg-white/30 dark:bg-gray-800/30
-                 border-gray-200 dark:border-gray-700"
+          class="rounded-full px-5 py-1.5 backdrop-blur-md bg-white/30 dark:bg-gray-800/30 border-gray-200 dark:border-gray-700"
           :label="'✨ ' + t('about.footer')"
         />
       </div>

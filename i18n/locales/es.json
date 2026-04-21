@@ -47,6 +47,21 @@
         "title": "Gestión con alma",
         "desc": "Experiencia híbrida entre agencia y corporativo gestionando múltiples cuentas con criterio, organización y sin perder la voz auténtica de cada marca.",
         "tag": "Community Management"
+      },
+      "web": {
+        "title": "Desarrollo Web",
+        "desc": "Creación de páginas web, landing pages y dashboards interactivos. Utilizamos tecnologías modernas como Nuxt y WordPress para garantizar velocidad y diseño.",
+        "tag": "Sitios web & Apps"
+      },
+      "branding": {
+        "title": "Identidad de Marca",
+        "desc": "Diseñamos la esencia completa de tu marca: desde la creación del logo y la paleta de colores, hasta la definición de la misión, visión y voz.",
+        "tag": "Branding Integral"
+      },
+      "podcast": {
+        "title": "Edición de Podcast",
+        "desc": "Edición y postproducción profesional de audio y video para podcasts. Pulimos cada detalle para que tu mensaje se escuche con calidad de estudio.",
+        "tag": "Audio & Video"
       }
     },
     "footer": "Actualmente perfeccionando técnicas avanzadas de postproducción."
@@ -56,58 +71,24 @@
     "subtitle": "El stack tecnológico que utilizamos para gestionar marcas, diseñar contenido y potenciar estrategias digitales.",
     "footer": "Constantemente actualizando nuestro stack",
     "items": {
-      "metricool": {
-        "name": "Metricool",
-        "description": "Análisis, gestión y planificación de contenido en redes sociales."
-      },
-      "googleSuite": {
-        "name": "Google Suite",
-        "description": "Herramientas colaborativas para la organización y gestión de proyectos."
-      },
-      "youtubeStudio": {
-        "name": "YouTube Studio",
-        "description": "Gestión integral de canales, analíticas y optimización de videos."
-      },
-      "canvaPro": {
-        "name": "Canva Pro",
-        "description": "Diseño gráfico ágil para redes sociales, presentaciones y marketing."
-      },
-      "affinitySuite": {
-        "name": "Affinity Suite",
-        "description": "Diseño vectorial, edición fotográfica y maquetación profesional."
-      },
-      "gamma": {
-        "name": "Gamma",
-        "description": "Creación rápida de presentaciones y sitios web impulsada por IA."
-      },
-      "capcut": {
-        "name": "CapCut",
-        "description": "Edición de video dinámica y optimizada para formatos verticales."
-      },
-      "opusClip": {
-        "name": "Opus Clip",
-        "description": "Generación automática de clips cortos virales a partir de videos largos."
-      },
-      "adobePodcast": {
-        "name": "Adobe Podcast",
-        "description": "Mejora de audio con Inteligencia Artificial para calidad de estudio."
-      },
-      "chatgpt": {
-        "name": "ChatGPT",
-        "description": "Asistencia en redacción, lluvia de ideas y estructuración de contenido."
-      },
-      "gemini": {
-        "name": "Gemini",
-        "description": "Análisis de datos, investigación y generación de textos avanzados."
-      },
-      "nuxtjs": {
-        "name": "Nuxt.js",
-        "description": "Framework de Vue para crear aplicaciones web rápidas y optimizadas para SEO."
-      },
-      "wordpress": {
-        "name": "WordPress",
-        "description": "Creación y gestión de sitios web, blogs y tiendas online."
-      }
+      "metricool": { "name": "Metricool", "description": "Análisis, gestión y planificación de contenido para redes sociales." },
+      "googleSuite": { "name": "Google Suite", "description": "Herramientas colaborativas para la organización y gestión de proyectos." },
+      "youtubeStudio": { "name": "YouTube Studio", "description": "Gestión integral de canales, analíticas y optimización de videos." },
+      "canvaPro": { "name": "Canva Pro", "description": "Diseño gráfico ágil para redes sociales, presentaciones y marketing." },
+      "photoshop": { "name": "Photoshop", "description": "Edición y manipulación profesional de imágenes." },
+      "affinitySuite": { "name": "Affinity Suite", "description": "Diseño vectorial, edición de fotos y maquetación profesional." },
+      "gamma": { "name": "Gamma", "description": "Creación rápida de presentaciones y sitios web impulsada por IA." },
+      "premiere": { "name": "Premiere Pro", "description": "Montaje y edición de video a nivel profesional." },
+      "davinciResolve": { "name": "DaVinci Resolve", "description": "Corrección de color y postproducción avanzada de video." },
+      "capcut": { "name": "CapCut", "description": "Edición de video dinámica optimizada para formatos verticales." },
+      "filmora": { "name": "Filmora", "description": "Edición de video rápida y dinámica para redes sociales." },
+      "opusClip": { "name": "Opus Clip", "description": "Generación automática de clips cortos virales a partir de videos largos." },
+      "adobePodcast": { "name": "Adobe Podcast", "description": "Mejora de audio impulsada por IA para sonido con calidad de estudio." },
+      "chatgpt": { "name": "ChatGPT", "description": "Asistencia en redacción, lluvia de ideas y estructuración de contenido." },
+      "gemini": { "name": "Gemini", "description": "Análisis de datos, investigación y generación avanzada de texto." },
+      "notebookLM": { "name": "NotebookLM", "description": "Asistente de IA para investigación y síntesis de documentos." },
+      "nuxtjs": { "name": "Nuxt.js", "description": "Framework de Vue para crear aplicaciones web rápidas y optimizadas para SEO." },
+      "wordpress": { "name": "WordPress", "description": "Creación y gestión de sitios web, blogs y tiendas online." }
     }
   },
   "projects": {
@@ -180,5 +161,46 @@
   },
   "footer": {
     "rights": "Todos los derechos reservados."
+  },
+  "enums": {
+    "user_role": {
+      "admin": "Administrador",
+      "employee": "Colaborador",
+      "client": "Cliente"
+    },
+    "lead_status": {
+      "new": "Nuevo",
+      "contacted": "Contactado",
+      "qualified": "Calificado",
+      "converted": "Convertido",
+      "lost": "Perdido"
+    },
+    "project_stage_type": {
+      "idea": "Idea",
+      "in_development": "En desarrollo",
+      "launched": "Lanzado",
+      "scaling": "Escalando"
+    },
+    "content_status": {
+      "pending": "Pendiente",
+      "in_progress": "En progreso",
+      "waiting_approval": "Esperando aprobación",
+      "approved": "Aprobado"
+    },
+    "distribution_status": {
+      "pending": "Pendiente",
+      "scheduled": "Programado",
+      "published": "Publicado",
+      "failed": "Fallido",
+      "cancelled": "Cancelado"
+    },
+    "content_format": {
+      "reel": "Reel",
+      "carousel": "Carrusel",
+      "video": "Video",
+      "podcast": "Podcast",
+      "post": "Post",
+      "story": "Story"
+    }
   }
 }

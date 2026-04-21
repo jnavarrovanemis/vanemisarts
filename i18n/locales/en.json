@@ -25,89 +25,70 @@
     "badge": "🎨 Creativity with strategy",
     "title": "We don't just create content.",
     "titleAccent": "We build brands that connect.",
-    "description": "Vanemis Arts was born from the belief that a good story, well told and well distributed, can transform a brand. We combine digital strategy, visual production and community management so your online presence doesn't just look good — it feels right.",
+    "description": "Vanemis Arts was born from the conviction that a good story, well told and well distributed, can transform a brand. We combine digital strategy, visual production, and community management so your online presence isn't just seen — it's felt.",
     "stats": {
       "years": "Years of experience",
-      "brands": "Brands worked with",
+      "brands": "Brands managed",
       "content": "Pieces produced",
       "reach": "Reach generated"
     },
     "pillars": {
       "strategy": {
         "title": "360° Strategy",
-        "desc": "We design content plans focused on real results: community growth, retention and conversion. Every post has a purpose within a larger system.",
+        "desc": "We design content plans aimed at real results: community growth, retention, and conversion. Every post has a purpose within a larger system.",
         "tag": "Planning & ROI"
       },
       "video": {
         "title": "Video as language",
-        "desc": "Specialized in video editing and dynamic visual narratives built for the scroll era. From Reels to content series, we make your brand stop the thumb.",
+        "desc": "Specialized in video editing and dynamic visual narratives designed for the scroll era. From Reels to content series, we make your brand thumb-stopping.",
         "tag": "Reels · TikTok · YouTube"
       },
       "management": {
         "title": "Management with soul",
-        "desc": "Hybrid experience across agency and corporate environments managing multiple accounts with judgment, organization and without losing each brand's authentic voice.",
+        "desc": "Hybrid experience between agency and corporate, managing multiple accounts with criteria, organization, and without losing the authentic voice of each brand.",
         "tag": "Community Management"
+      },
+      "web": {
+        "title": "Web Development",
+        "desc": "Creation of websites, landing pages, and interactive dashboards. We use modern technologies like Nuxt and WordPress to ensure speed and design.",
+        "tag": "Websites & Apps"
+      },
+      "branding": {
+        "title": "Brand Identity",
+        "desc": "We design the complete essence of your brand: from the creation of the logo and color palette to the definition of the mission, vision, and voice.",
+        "tag": "Comprehensive Branding"
+      },
+      "podcast": {
+        "title": "Podcast Editing",
+        "desc": "Professional audio and video post-production for podcasts. We polish every detail so your message is heard with studio quality.",
+        "tag": "Audio & Video"
       }
     },
-    "footer": "Currently refining advanced post-production techniques."
+    "footer": "Currently perfecting advanced post-production techniques."
   },
   "skills": {
     "title": "Creative Tools",
     "subtitle": "The tech stack we use to manage brands, design content, and power digital strategies.",
     "footer": "Constantly updating our stack",
     "items": {
-      "metricool": {
-        "name": "Metricool",
-        "description": "Analysis, management, and content planning for social media."
-      },
-      "googleSuite": {
-        "name": "Google Suite",
-        "description": "Collaborative tools for organization and project management."
-      },
-      "youtubeStudio": {
-        "name": "YouTube Studio",
-        "description": "Comprehensive channel management, analytics, and video optimization."
-      },
-      "canvaPro": {
-        "name": "Canva Pro",
-        "description": "Agile graphic design for social media, presentations, and marketing."
-      },
-      "affinitySuite": {
-        "name": "Affinity Suite",
-        "description": "Vector design, photo editing, and professional layout."
-      },
-      "gamma": {
-        "name": "Gamma",
-        "description": "AI-powered rapid creation of presentations and websites."
-      },
-      "capcut": {
-        "name": "CapCut",
-        "description": "Dynamic video editing optimized for vertical formats."
-      },
-      "opusClip": {
-        "name": "Opus Clip",
-        "description": "Automatic generation of viral short clips from long-form videos."
-      },
-      "adobePodcast": {
-        "name": "Adobe Podcast",
-        "description": "AI-powered audio enhancement for studio-quality sound."
-      },
-      "chatgpt": {
-        "name": "ChatGPT",
-        "description": "Assistance in copywriting, brainstorming, and content structuring."
-      },
-      "gemini": {
-        "name": "Gemini",
-        "description": "Data analysis, research, and advanced text generation."
-      },
-      "nuxtjs": {
-        "name": "Nuxt.js",
-        "description": "Vue framework for building fast, SEO-optimized web applications."
-      },
-      "wordpress": {
-        "name": "WordPress",
-        "description": "Creation and management of websites, blogs, and online stores."
-      }
+      "metricool": { "name": "Metricool", "description": "Analysis, management, and content planning for social media." },
+      "googleSuite": { "name": "Google Suite", "description": "Collaborative tools for organization and project management." },
+      "youtubeStudio": { "name": "YouTube Studio", "description": "Comprehensive channel management, analytics, and video optimization." },
+      "canvaPro": { "name": "Canva Pro", "description": "Agile graphic design for social media, presentations, and marketing." },
+      "photoshop": { "name": "Photoshop", "description": "Professional image editing and manipulation." },
+      "affinitySuite": { "name": "Affinity Suite", "description": "Vector design, photo editing, and professional layout." },
+      "gamma": { "name": "Gamma", "description": "AI-powered rapid creation of presentations and websites." },
+      "premiere": { "name": "Premiere Pro", "description": "Professional-level video editing and assembly." },
+      "davinciResolve": { "name": "DaVinci Resolve", "description": "Advanced color correction and video post-production." },
+      "capcut": { "name": "CapCut", "description": "Dynamic video editing optimized for vertical formats." },
+      "filmora": { "name": "Filmora", "description": "Fast and dynamic video editing for social media." },
+      "opusClip": { "name": "Opus Clip", "description": "Automatic generation of viral short clips from long-form videos." },
+      "adobePodcast": { "name": "Adobe Podcast", "description": "AI-powered audio enhancement for studio-quality sound." },
+      "chatgpt": { "name": "ChatGPT", "description": "Assistance in copywriting, brainstorming, and content structuring." },
+      "gemini": { "name": "Gemini", "description": "Data analysis, research, and advanced text generation." },
+      "notebookLM": { "name": "NotebookLM", "description": "AI assistant for document research and synthesis." },
+      "nuxtjs": { "name": "Nuxt.js", "description": "Vue framework for building fast, SEO-optimized web applications." },
+      "wordpress": { "name": "WordPress", "description": "Creation and management of websites, blogs, and online stores." }
     }
   },
   "projects": {

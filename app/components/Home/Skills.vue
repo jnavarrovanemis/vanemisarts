@@ -1,33 +1,27 @@
 <script setup lang="ts">
 const { t } = useI18n()
 
-// Lista estructurada: usamos "id" para conectar con los JSON de traducción
 const skills = [
-  // Gestión y Estrategia
   { id: 'metricool', icon: 'i-heroicons-chart-bar-square', color: 'blue' },
   { id: 'googleSuite', icon: 'i-simple-icons-google', color: 'green' },
   { id: 'youtubeStudio', icon: 'i-simple-icons-youtubestudio', color: 'red' },
-
-  // Diseño
   { id: 'canvaPro', icon: 'i-simple-icons-canva', color: 'teal' },
+  { id: 'photoshop', icon: 'i-simple-icons-adobephotoshop', color: 'blue' },
   { id: 'affinitySuite', icon: 'i-simple-icons-affinity', color: 'indigo' },
   { id: 'gamma', icon: 'i-heroicons-presentation-chart-bar', color: 'yellow' },
-
-  // Edición de Video/Audio
+  { id: 'premiere', icon: 'i-simple-icons-adobepremierepro', color: 'purple' },
+  { id: 'davinciResolve', icon: 'i-simple-icons-davinciresolve', color: 'teal' },
   { id: 'capcut', icon: 'i-heroicons-video-camera', color: 'gray' },
+  { id: 'filmora', icon: 'i-heroicons-film', color: 'indigo' },
   { id: 'opusClip', icon: 'i-heroicons-scissors', color: 'purple' },
   { id: 'adobePodcast', icon: 'i-heroicons-microphone', color: 'orange' },
-
-  // Inteligencia Artificial
   { id: 'chatgpt', icon: 'i-simple-icons-openai', color: 'emerald' },
   { id: 'gemini', icon: 'i-simple-icons-googlegemini', color: 'blue' },
-
-  // Desarrollo Web / Tech
+  { id: 'notebookLM', icon: 'i-heroicons-book-open', color: 'emerald' },
   { id: 'nuxtjs', icon: 'i-simple-icons-nuxtdotjs', color: 'green' },
   { id: 'wordpress', icon: 'i-simple-icons-wordpress', color: 'blue' }
 ]
 
-// Mapeo estructurado: separamos el estilo del icono del estilo de la tarjeta
 const colorStyles: Record<string, { icon: string, card: string }> = {
   blue: {
     icon: 'text-blue-500 bg-blue-500/10 border-blue-200 dark:border-blue-900',
@@ -70,6 +64,24 @@ const colorStyles: Record<string, { icon: string, card: string }> = {
     card: 'hover:shadow-emerald-500/20 hover:border-emerald-500/50'
   }
 }
+
+// Un único ID activo — garantiza que solo uno esté abierto a la vez
+const activeSkill = ref<string | null>(null)
+
+function open(id: string) {
+  activeSkill.value = id
+}
+
+function close(id: string) {
+  // Solo cierra si el que intenta cerrar es el que está activo
+  if (activeSkill.value === id) {
+    activeSkill.value = null
+  }
+}
+
+onUnmounted(() => {
+  activeSkill.value = null
+})
 </script>
 
 <template>
@@ -90,9 +102,7 @@ const colorStyles: Record<string, { icon: string, card: string }> = {
           v-motion-slide-visible-once-bottom
           class="text-center mb-16"
         >
-          <h2
-            class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white tracking-tight"
-          >
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white tracking-tight">
             {{ t("skills.title") }}
           </h2>
           <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -100,9 +110,7 @@ const colorStyles: Record<string, { icon: string, card: string }> = {
           </p>
         </div>
 
-        <div
-          class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6"
-        >
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
           <div
             v-for="(skill, index) in skills"
             :key="skill.id"
@@ -111,12 +119,15 @@ const colorStyles: Record<string, { icon: string, card: string }> = {
             class="h-full"
           >
             <UPopover
-              mode="hover"
+              :open="activeSkill === skill.id"
               class="h-full block"
+              @update:open="(val) => { if (!val) activeSkill = null }"
             >
               <div
                 class="group relative h-full w-full focus:outline-none flex flex-col items-center justify-center p-6 rounded-2xl transition-all duration-300 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
                 :class="[colorStyles[skill.color as keyof typeof colorStyles]?.card || '']"
+                @mouseenter="open(skill.id)"
+                @mouseleave="close(skill.id)"
               >
                 <div
                   class="mb-4 p-3 rounded-xl border transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"
@@ -128,16 +139,17 @@ const colorStyles: Record<string, { icon: string, card: string }> = {
                     dynamic
                   />
                 </div>
-
-                <span
-                  class="font-semibold text-center text-sm md:text-base text-gray-800 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white transition-colors"
-                >
+                <span class="font-semibold text-center text-sm md:text-base text-gray-800 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
                   {{ t(`skills.items.${skill.id}.name`) }}
                 </span>
               </div>
 
               <template #content>
-                <div class="flex flex-col gap-3 p-4 max-w-[260px] bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-xl border border-gray-200/50 dark:border-gray-800/50 shadow-xl">
+                <div
+                  class="flex flex-col gap-3 p-4 max-w-[260px] bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-xl border border-gray-200/50 dark:border-gray-800/50 shadow-xl"
+                  @mouseenter="open(skill.id)"
+                  @mouseleave="close(skill.id)"
+                >
                   <div class="flex items-center gap-3">
                     <div
                       class="p-1.5 rounded-lg border flex items-center justify-center"
@@ -167,9 +179,7 @@ const colorStyles: Record<string, { icon: string, card: string }> = {
           :delay="800"
           class="mt-16 text-center"
         >
-          <span
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700"
-          >
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700">
             <UIcon
               name="i-heroicons-cpu-chip"
               class="w-4 h-4"

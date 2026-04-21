@@ -16,6 +16,11 @@ const socialLinks = [
     icon: 'i-simple-icons-whatsapp',
     url: 'https://wa.me/584248882878',
     label: 'WhatsApp'
+  },
+  {
+    icon: 'i-simple-icons-telegram',
+    url: 'https://t.me/Vanemisarts',
+    label: 'Telegram'
   }
 ]
 </script>

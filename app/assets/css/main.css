@@ -18,7 +18,40 @@
   --color-green-900: #0A5331;
   --color-green-950: #052E16;
 
-  /* --- Paleta 1: Fucsia / Rosa --- */
+
+  /* ============================================================
+     PALETA DE MARCA — extraida de public/logo-minimalista.svg
+     El logo es una «V» de dos trazos con temperaturas opuestas.
+     Los tonos marcados (logo) son paradas reales del gradiente SVG.
+     ============================================================ */
+
+  /* --- Trazo frio: estructura, tecnologia, profundidad --- */
+  --color-marino-50: #ECF6FF;
+  --color-marino-100: #D4EBFF;
+  --color-marino-200: #ADD8FF;
+  --color-marino-300: #7FC1FF;
+  --color-marino-400: #5BBBFF;  /* logo */
+  --color-marino-500: #569CFF;  /* logo */
+  --color-marino-600: #2A6FA8;  /* texto sobre fondo claro — AA */
+  --color-marino-700: #184E91;  /* logo */
+  --color-marino-800: #10457A;  /* logo */
+  --color-marino-900: #003167;  /* logo */
+  --color-marino-950: #002140;
+
+  /* --- Trazo calido: creatividad, energia, contenido --- */
+  --color-ambar-50: #FFF8EC;
+  --color-ambar-100: #FFEDCF;
+  --color-ambar-200: #FFDBA1;
+  --color-ambar-300: #FFC76E;
+  --color-ambar-400: #FAB33F;  /* logo */
+  --color-ambar-500: #FA812C;  /* logo */
+  --color-ambar-600: #E2601F;
+  --color-ambar-700: #C4432C;  /* texto sobre fondo claro — AA */
+  --color-ambar-800: #A0146D;  /* logo — el giro a magenta */
+  --color-ambar-900: #84006C;  /* logo */
+  --color-ambar-950: #4D0040;
+
+  /* --- Paleta heredada: Fucsia (se conserva para poder revertir) --- */
   --color-fucsia-50: #FFE6F7;
   --color-fucsia-100: #FFB8E7;
   --color-fucsia-200: #FF8AD8;
@@ -62,18 +95,281 @@
 }
 
 @layer base {
+  html {
+    scrollbar-color: var(--color-marino-600) var(--color-gray-100);
+    scrollbar-width: thin;
+  }
+
+  ::selection {
+    color: var(--color-marino-950);
+    background-color: var(--color-ambar-200);
+    text-shadow: none;
+  }
+
+  :root.dark {
+    scrollbar-color: var(--color-ambar-500) var(--color-gray-950);
+  }
+
+  :root.dark ::selection {
+    color: var(--color-ambar-50);
+    background-color: var(--color-ambar-500);
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-gray-100);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    min-height: 48px;
+    border: 3px solid var(--color-gray-100);
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--color-marino-500), var(--color-ambar-500));
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--color-marino-700), var(--color-ambar-700));
+  }
+
+  :root.dark ::-webkit-scrollbar-track {
+    background: var(--color-gray-950);
+  }
+
+  :root.dark ::-webkit-scrollbar-thumb {
+    border-color: var(--color-gray-950);
+  }
+
+  /*
+   * El fondo del body debe coincidir con el de las secciones de la home
+   * (bg-gray-50 / dark:bg-gray-950). Antes declaraba la paleta 'azul', que
+   * nunca llegaba a verse porque cada seccion la tapaba: el resultado era
+   * codigo muerto y un salto de color en el sobredesplazamiento.
+   */
   body {
-    /* MODO CLARO: Usa el tono 50 de tu color o blanco */
-    @apply bg-azul-50 text-slate-900;
-    
+    @apply bg-gray-50 text-slate-900;
+
     /* Suaviza el cambio de color al alternar modos */
     @apply transition-colors duration-300;
   }
 
-  /* MODO OSCURO */
   :root.dark body {
-    /* Usa el tono 950 de tu color para un fondo profundo pero con tinte */
-    @apply bg-azul-950 text-azul-50;
+    @apply bg-gray-950 text-gray-100;
   }
 }
 
+@layer components {
+  .editorial-grid {
+    background-image:
+      linear-gradient(to right, rgb(15 23 42 / 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(15 23 42 / 0.07) 1px, transparent 1px),
+      linear-gradient(to right, rgb(15 23 42 / 0.025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(15 23 42 / 0.025) 1px, transparent 1px);
+    background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+  }
+
+  :root.dark .editorial-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.09) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.09) 1px, transparent 1px),
+      linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  }
+
+  .editorial-art {
+    box-shadow: 0 24px 80px rgb(15 23 42 / 0.09);
+  }
+
+  :root.dark .editorial-art {
+    box-shadow: 0 24px 80px rgb(0 0 0 / 0.28);
+  }
+
+  .hero-motion-viewport {
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  }
+
+  .hero-motion-rail {
+    width: max-content;
+    animation: hero-drift 28s linear infinite;
+    will-change: transform;
+  }
+
+  /*
+   * Riel del wordmark de marca. Sustituye a la seccion BrandSignature:
+   * la presencia a gran escala del nombre pasa a ser fondo en movimiento
+   * del hero en vez de un segundo bloque de cabecera.
+   */
+  .hero-wordmark-rail {
+    width: max-content;
+    animation: hero-drift 52s linear infinite;
+    will-change: transform;
+  }
+
+  /* Deriva muy lenta de la reticula: da vida al fondo sin competir con el texto. */
+  .hero-grid-drift {
+    animation: hero-grid-pan 45s linear infinite;
+  }
+
+  .hero-motion-rail--reverse {
+    animation-direction: reverse;
+    animation-duration: 34s;
+  }
+
+  .hero-art-float {
+    animation: hero-float 6s ease-in-out infinite;
+  }
+
+  .hero-artwork-shell {
+    transform: perspective(900px) rotateX(var(--art-rotate-x)) rotateY(var(--art-rotate-y));
+    transform-style: preserve-3d;
+    transition:
+      transform 180ms ease-out,
+      border-radius 700ms ease,
+      background-color 700ms ease,
+      border-color 700ms ease;
+    will-change: transform;
+  }
+
+
+/* ============================================================
+     TICKER DE MARCA — separador en movimiento entre secciones
+     ============================================================ */
+  .brand-ticker-viewport {
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  .brand-ticker-track {
+    width: max-content;
+    animation: brand-ticker-slide 36s linear infinite;
+    will-change: transform;
+  }
+
+  .brand-ticker-track--reverse {
+    animation-direction: reverse;
+  }
+
+  .brand-ticker-viewport:hover .brand-ticker-track {
+    animation-play-state: paused;
+  }
+
+  .brand-ticker-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px currentColor;
+  }
+
+  /* ============================================================
+     CURSOR — punto y anillo. `difference` lo hace legible sobre
+     cualquier fondo, en claro y en oscuro, sin logica de tema.
+     ============================================================ */
+  .app-cursor-dot,
+  .app-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    border-radius: 9999px;
+    pointer-events: none;
+    mix-blend-mode: difference;
+  }
+
+  .app-cursor-dot {
+    width: 6px;
+    height: 6px;
+    background: #fff;
+  }
+
+  .app-cursor-ring {
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgb(255 255 255 / 0.55);
+    transition:
+      width 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      height 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      background-color 300ms ease,
+      border-color 300ms ease;
+  }
+
+  .app-cursor-ring--grow {
+    width: 82px;
+    height: 82px;
+    background: rgb(255 255 255 / 0.13);
+    border-color: transparent;
+  }
+}
+
+@keyframes brand-ticker-slide {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes hero-drift {
+  from {
+    transform: translate3d(-12%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-62%, 0, 0);
+  }
+}
+
+@keyframes hero-grid-pan {
+  from {
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+
+  to {
+    background-position: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+  }
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (max-width: 639px) {
+  .editorial-grid {
+    background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hero-motion-rail,
+  .hero-wordmark-rail,
+  .hero-grid-drift,
+  .hero-art-float,
+  .brand-ticker-track {
+    animation: none !important;
+  }
+
+  .hero-artwork-shell {
+    transform: none !important;
+  }
+}

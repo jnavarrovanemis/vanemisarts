@@ -26,13 +26,13 @@ const socialLinks = [
 </script>
 
 <template>
-  <div class="h-px w-full bg-linear-to-r from-transparent via-pink-500/30 to-transparent dark:via-pink-500/20" />
+  <div class="h-px w-full bg-linear-to-r from-transparent via-ambar-500/40 to-transparent dark:via-ambar-500/30" />
 
   <UFooter class="bg-gray-50 py-8 dark:bg-gray-950">
     <template #left>
       <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
         © {{ new Date().getFullYear() }}
-        <span class="bg-linear-to-r from-pink-500 to-purple-500 bg-clip-text font-bold text-transparent">
+        <span class="bg-linear-to-r from-ambar-500 to-marino-600 bg-clip-text font-bold text-transparent">
           Vanemis Arts
         </span>
         • {{ t('footer.rights') }}
@@ -51,8 +51,8 @@ const socialLinks = [
           :aria-label="social.label"
           variant="ghost"
           class="text-gray-400 transition-colors duration-200
-                 hover:bg-pink-50 hover:text-pink-600
-                 dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-pink-400"
+                 hover:bg-ambar-50 hover:text-ambar-700
+                 dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-ambar-400"
         />
       </div>
     </template>

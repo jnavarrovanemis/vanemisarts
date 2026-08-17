@@ -1,6 +1,7 @@
 <template>
   <div>
     <UApp>
+      <AppCursor />
       <HeaderNav />
       <UMain>
         <slot />

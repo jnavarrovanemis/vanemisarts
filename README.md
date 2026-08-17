@@ -1,60 +1,95 @@
-# Nuxt Starter Template
+# Vanemis Arts — Landing page
 
-[![Nuxt UI](https://img.shields.io/badge/Made%20with-Nuxt%20UI-00DC82?logo=nuxt&labelColor=020420)](https://ui.nuxt.com)
+Sitio corporativo de [Vanemis Arts](https://vanemis.art), agencia de marketing creativo y desarrollo web.
 
-Use this template to get started with [Nuxt UI](https://ui.nuxt.com) quickly.
+Construido con Nuxt 4 y Nuxt UI. Incluye internacionalización en tres idiomas, captura de prospectos con persistencia en Supabase y notificación transaccional por correo.
 
-- [Live demo](https://starter-template.nuxt.dev/)
-- [Documentation](https://ui.nuxt.com/docs/getting-started/installation/nuxt)
+## Stack
 
-<a href="https://starter-template.nuxt.dev/" target="_blank">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://ui.nuxt.com/assets/templates/nuxt/starter-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="https://ui.nuxt.com/assets/templates/nuxt/starter-light.png">
-    <img alt="Nuxt Starter Template" src="https://ui.nuxt.com/assets/templates/nuxt/starter-light.png">
-  </picture>
-</a>
+| Capa | Tecnología |
+| :--- | :--- |
+| Framework | Nuxt 4 · Vue 3 · TypeScript |
+| UI | Nuxt UI 4 · Tailwind CSS 4 · `@vueuse/motion` |
+| Idiomas | `@nuxtjs/i18n` — español (por defecto), inglés y portugués |
+| SEO | `@nuxtjs/seo` · `@nuxt/image` (WebP) · prerender de `/` |
+| Datos | Supabase (PostgreSQL) |
+| Correo | Resend |
+| Validación | Zod, compartida entre cliente y servidor |
 
-> The starter template for Vue is on https://github.com/nuxt-ui-templates/starter-vue.
+## Estructura
 
-## Quick Start
-
-```bash [Terminal]
-npm create nuxt@latest -- -t github:nuxt-ui-templates/starter
+```
+app/
+  components/Home/    Secciones de la home (Hero, AboutMe, Team, Skills, Contact)
+  components/         Navegación, footer y selector de idioma
+  composables/        Scroll suave, estado del header, transición de tema
+  assets/css/         Tema y paletas
+i18n/locales/         es.json · en.json · pt.json
+server/
+  api/contact.post.ts Endpoint del formulario
+  utils/              Validación, servicio de leads y plantilla de correo
+docs/                 Esquema de base de datos y plan de contenido
 ```
 
-## Deploy your own
+## Requisitos
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-name=starter&repository-url=https%3A%2F%2Fgithub.com%2Fnuxt-ui-templates%2Fstarter&demo-image=https%3A%2F%2Fui.nuxt.com%2Fassets%2Ftemplates%2Fnuxt%2Fstarter-dark.png&demo-url=https%3A%2F%2Fstarter-template.nuxt.dev%2F&demo-title=Nuxt%20Starter%20Template&demo-description=A%20minimal%20template%20to%20get%20started%20with%20Nuxt%20UI.)
+- Node.js 20 o superior
+- pnpm 10
 
-## Setup
-
-Make sure to install the dependencies:
+## Puesta en marcha
 
 ```bash
 pnpm install
 ```
 
-## Development Server
+Crea un archivo `.env` en la raíz con las siguientes variables:
 
-Start the development server on `http://localhost:3000`:
+```bash
+# Correo de destino de los formularios de contacto
+NUXT_CONTACT_EMAIL=
+# API key de Resend
+NUXT_RESEND_API_KEY=
+# Secreto para la generación de imágenes Open Graph
+NUXT_OG_IMAGE_SECRET=
+
+# Supabase
+SUPABASE_URL=
+SUPABASE_KEY=
+SUPABASE_SECRET_KEY=
+```
+
+Levanta el servidor de desarrollo en `http://localhost:3000`:
 
 ```bash
 pnpm dev
 ```
 
-## Production
+## Comandos
 
-Build the application for production:
+| Comando | Descripción |
+| :--- | :--- |
+| `pnpm dev` | Servidor de desarrollo |
+| `pnpm build` | Compilación para producción |
+| `pnpm preview` | Previsualización de la compilación |
+| `pnpm lint` | ESLint |
+| `pnpm typecheck` | Comprobación de tipos con `vue-tsc` |
 
-```bash
-pnpm build
-```
+## Internacionalización
 
-Locally preview production build:
+Los tres archivos de `i18n/locales/` deben mantenerse sincronizados: una clave presente en `es.json` y ausente en `pt.json` provoca que ese texto aparezca vacío en portugués.
 
-```bash
-pnpm preview
-```
+Al añadir una sección nueva, crear su bloque en los tres archivos antes de referenciarlo desde el componente.
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Base de datos
+
+El esquema completo —tablas, ENUMs, funciones RPC y políticas de seguridad a nivel de fila— está documentado en [`docs/database-schema.md`](docs/database-schema.md).
+
+## Convenciones
+
+- Ramas: el trabajo se integra en `dev` mediante Pull Request y de ahí a `main`
+- Husky y lint-staged ejecutan ESLint sobre los archivos `.ts` y `.vue` antes de cada commit
+- Sin comas finales y con estilo de llaves `1tbs`, según la configuración de `eslint.config.mjs`
+
+## Licencia
+
+MIT. Ver [LICENSE](LICENSE).

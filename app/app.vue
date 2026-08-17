@@ -34,6 +34,23 @@ useSeoMeta({
   twitterImage: 'https://vanemis.art/og-image.png',
   twitterCard: 'summary_large_image'
 })
+
+// Datos estructurados: permiten a Google mostrar el nombre, el logo y los
+// perfiles sociales de la agencia como una entidad, en lugar de un enlace suelto.
+// `defineOrganization` lo aporta nuxt-schema-org, incluido en @nuxtjs/seo.
+useSchemaOrg([
+  defineOrganization({
+    name: 'Vanemis Arts',
+    url: 'https://vanemis.art',
+    logo: 'https://vanemis.art/logo-minimalista.svg',
+    description: () => t('meta.default.description'),
+    sameAs: [
+      'https://www.instagram.com/vanemis_arts14/',
+      'https://www.facebook.com/share/1HhP8audD7/',
+      'https://t.me/Vanemisarts'
+    ]
+  })
+])
 </script>
 
 <template>

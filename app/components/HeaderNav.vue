@@ -212,8 +212,9 @@ import { useScrollLock } from '@vueuse/core'
 const { t } = useI18n()
 
 const navLinks = computed(() => [
-  { id: 'hero', hash: '#hero', label: t('navigation.services') },
+  { id: 'hero', hash: '#hero', label: t('navigation.home') },
   { id: 'about', hash: '#about', label: t('navigation.about') },
+  { id: 'team', hash: '#team', label: t('navigation.team') },
   { id: 'skills', hash: '#skills', label: t('navigation.skills') },
   { id: 'contact', hash: '#contact', label: t('navigation.contact') }
 ])

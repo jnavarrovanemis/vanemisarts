@@ -5,21 +5,47 @@
       "description": "Transforme sua marca com a nossa agência de marketing criativa. Somos especialistas em estratégia digital, conteúdo visual e redes sociais que geram resultados."    }
   },
   "navigation": {
-    "services": "Serviços",
+    "home": "Início",
     "skills": "Habilidades",
     "about": "Sobre Nós",
+    "team": "Equipe",
     "contact": "Contato"
   },
   "welcome": "Bem-vindo",
   "description": "Este é um exemplo de internacionalização.",
   "hero": {
-    "greeting": "🚀 Impulsione sua marca",
-    "title": "Estratégia Digital",
-    "subtitle": "Vídeo Marketing & Social Media",
-    "description": "Transformamos sua visão em conteúdo visual que conecta, engaja e converte seguidores em clientes fiéis.",
+    "greeting": "Estúdio criativo digital",
+    "availability": "Disponíveis para novos projetos",
+    "location": "Aragua · Trabalho remoto",
+    "title": "Estratégia que se vê.",
+    "subtitle": "Tecnologia que funciona.",
+    "description": "Unimos estratégia, conteúdo e desenvolvimento para transformar ideias ambiciosas em marcas e experiências digitais que fazem o seu negócio avançar.",
     "cta": "Agende uma Consultoria",
     "button": "Ver Casos de Sucesso",
-    "scroll": "Descubra como fazemos"
+    "scroll": "Descubra como fazemos",
+    "artLabel": "Ideias em movimento",
+    "artHint": "Passe o cursor · toque para ativar",
+    "artActiveLabel": "A marca ganha vida",
+    "artInteraction": "Transformar o visual da Vanemis Arts",
+    "motionWords": "Estratégia · Conteúdo · Desenvolvimento · Comunidade",
+    "artContent": "Conteúdo",
+    "artTechnology": "Tecnologia",
+    "proofLabel": "Abordagem",
+    "proof": "Da estratégia ao lançamento, sem perder o fio.",
+    "metricValue": "6+",
+    "metricLabel": "anos de experiência na equipe",
+    "capabilityLabel": "Capacidade",
+    "capabilityContent": "Conteúdo + comunidade",
+    "capabilityTech": "Desenvolvimento + infraestrutura"
+  },
+  "sectionLabels": {
+    "about": "Estúdio",
+    "team": "Equipe",
+    "skills": "Capacidades",
+    "contact": "Contato"
+  },
+  "ticker": {
+    "words": "Estratégia · Conteúdo · Vídeo · Branding · Desenvolvimento · Comunidade · Podcast"
   },
   "about": {
     "badge": "🎨 Criatividade com estratégia",
@@ -30,7 +56,7 @@
       "years": "Anos de experiência",
       "brands": "Marcas trabalhadas",
       "content": "Peças produzidas",
-      "reach": "Alcance gerado"
+      "reach": "Impressões geradas"
     },
     "pillars": {
       "strategy": {
@@ -66,10 +92,106 @@
     },
     "footer": "Atualmente aperfeiçoando técnicas avançadas de pós-produção."
   },
+  "aboutLab": {
+    "label": "About Lab · teste",
+    "title": "Quatro disciplinas. Um só sistema.",
+    "description": "Uma leitura experimental de como estratégia, conteúdo, desenvolvimento e marca funcionam como partes conectadas da mesma máquina.",
+    "interaction": "Explorar {capability}",
+    "panelLabel": "Painel interativo de capacidades",
+    "selectedLabel": "Área selecionada",
+    "dials": {
+      "strategy": "Estratégia",
+      "content": "Conteúdo",
+      "development": "Desenvolvimento",
+      "branding": "Marca"
+    },
+    "details": {
+      "strategy": {
+        "description": "Observamos o negócio como quem enquadra uma fotografia: escolhemos o foco, eliminamos o ruído e transformamos uma intenção em uma direção clara.",
+        "highlight": "Diagnóstico · conceito · roteiro"
+      },
+      "content": {
+        "description": "Criamos imagens, vídeo e narrativas com intenção. Cada peça combina sensibilidade visual, ritmo e uma ideia capaz de se conectar com a comunidade.",
+        "highlight": "Fotografia · vídeo · narrativa"
+      },
+      "development": {
+        "description": "Transformamos o conceito criativo em uma experiência digital fluida, acessível e cuidada até o último detalhe de interação.",
+        "highlight": "Web · interação · desempenho"
+      },
+      "branding": {
+        "description": "Construímos uma linguagem reconhecível com cor, composição, voz e sistemas visuais que mantêm a marca coerente em cada formato.",
+        "highlight": "Identidade · direção de arte · sistema visual"
+      }
+    },
+    "connection": {
+      "start": "Criatividade",
+      "end": "Tecnologia",
+      "base": "Comunidade",
+      "bridge": "Experiências digitais"
+    },
+    "tools": "Ferramentas do sistema:",
+    "projects": "Em construção:",
+    "toolNames": {
+      "figma": "Figma",
+      "nuxt": "Nuxt",
+      "supabase": "Supabase"
+    },
+    "projectNames": {
+      "brands": "Sistemas de marca",
+      "products": "Produtos digitais"
+    }
+  },
+  "team": {
+    "badge": "👥 Quem está por trás",
+    "title": "Uma agência jovem,",
+    "titleAccent": "com estrada percorrida.",
+    "description": "A Vanemis Arts é nova, mas não começamos do zero. Cada disciplina é conduzida por alguém que já a exercia anos antes de a agência existir.",
+    "previousLabel": "Experiência prévia da equipe",
+    "membersLabel": "A equipe",
+    "disciplines": {
+      "content": {
+        "title": "Conteúdo e comunidade",
+        "credential": "Publicidade e Marketing · Curso Superior de Tecnologia",
+        "years": "6 anos",
+        "description": "Gestão de redes sociais para empresas de setores distintos, com especialização em vídeo vertical e crescimento sustentado de comunidades.",
+        "highlights": {
+          "h1": "Mais de 6.000 peças produzidas, editadas e programadas",
+          "h2": "Até 3 contas simultâneas em ambiente de agência",
+          "h3": "Edição de vídeo, fotografia, retoque e pós-produção de podcast"
+        }
+      },
+      "tech": {
+        "title": "Desenvolvimento e infraestrutura",
+        "credential": "Engenharia de Sistemas",
+        "years": "5+ anos",
+        "description": "Arquitetura completa de plataformas web sob medida: banco de dados, interface, servidor e implantação.",
+        "highlights": {
+          "h1": "Dashboards e plataformas de gestão sob medida",
+          "h2": "Bancos de dados relacionais com segurança em nível de linha",
+          "h3": "Contêineres, servidores Linux e automação de processos"
+        }
+      }
+    },
+    "members": {
+      "content": {
+        "role": "Community Management e produção audiovisual",
+        "bio": "Publicitária e profissional de marketing. Conduz a estratégia de conteúdo, a edição e a gestão de comunidades."
+      },
+      "tech": {
+        "role": "Desenvolvimento e arquitetura técnica",
+        "bio": "Engenheiro de sistemas. Conduz o desenvolvimento web, a infraestrutura e a automação de processos."
+      }
+    },
+    "footer": "Uma equipe pequena, com especialistas de verdade em cada área."
+  },
   "skills": {
     "title": "Ferramentas Criativas",
     "subtitle": "O stack tecnológico que utilizamos para gerir marcas, criar conteúdo e potencializar estratégias digitais.",
     "footer": "Constantemente atualizando nosso stack",
+    "groups": {
+      "content": "Marketing e conteúdo",
+      "dev": "Desenvolvimento e infraestrutura"
+    },
     "items": {
       "metricool": { "name": "Metricool", "description": "Análise, gestão e planejamento de conteúdo para redes sociais." },
       "googleSuite": { "name": "Google Suite", "description": "Ferramentas colaborativas para organização e gestão de projetos." },
@@ -87,6 +209,13 @@
       "chatgpt": { "name": "ChatGPT", "description": "Assistência em redação, brainstorming e estruturação de conteúdo." },
       "gemini": { "name": "Gemini", "description": "Análise de dados, pesquisa e geração avançada de texto." },
       "notebookLM": { "name": "NotebookLM", "description": "Assistente de IA para pesquisa e síntese de documentos." },
+      "typescript": { "name": "TypeScript", "description": "Tipagem estática para aplicações robustas e sustentáveis." },
+      "nodejs": { "name": "Node.js", "description": "Ambiente de execução para serviços e APIs no servidor." },
+      "nestjs": { "name": "NestJS", "description": "Framework de backend para APIs escaláveis e bem estruturadas." },
+      "supabase": { "name": "Supabase", "description": "Banco de dados, autenticação e segurança em nível de linha." },
+      "postgresql": { "name": "PostgreSQL", "description": "Banco de dados relacional para modelos de dados complexos." },
+      "docker": { "name": "Docker", "description": "Contêineres para implantações reproduzíveis e isoladas." },
+      "n8n": { "name": "n8n", "description": "Automação de fluxos de trabalho e integração entre ferramentas." },
       "nuxtjs": { "name": "Nuxt.js", "description": "Framework Vue para criar aplicativos web rápidos e otimizados para SEO." },
       "wordpress": { "name": "WordPress", "description": "Criação e gestão de sites, blogs e lojas online." }
     }
@@ -101,6 +230,11 @@
     "status": "Disponíveis para novos projetos",
     "title": "Vamos conversar sobre o seu projeto",
     "subtitle": "Conte-nos sua ideia e responderemos em menos de 24 horas.",
+    "emailReveal": {
+      "label": "Revelar e-mail",
+      "hint": "Para quem prefere ir direto ao ponto",
+      "hide": "Ocultar e-mail"
+    },
     "form": {
       "steps": {
         "step1": "Informações básicas",

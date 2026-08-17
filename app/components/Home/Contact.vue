@@ -163,8 +163,20 @@ const socialLinks = [
 <template>
   <section
     id="contact"
-    class="relative overflow-hidden bg-gray-50 py-24 selection:bg-pink-500/30 dark:bg-gray-950"
+    class="relative isolate overflow-hidden bg-gray-50 py-24 dark:bg-gray-950"
   >
+    <!--
+      Tipografia fantasma: la palabra de la seccion a gran escala como fondo.
+      Es decorativa (aria-hidden) y queda muy por debajo del contenido en
+      contraste, de modo que no interfiere con la lectura del formulario.
+    -->
+    <span
+      class="pointer-events-none absolute -top-6 left-1/2 -z-10 hidden -translate-x-1/2 select-none whitespace-nowrap text-[clamp(9rem,22vw,20rem)] font-black uppercase leading-none tracking-[-0.08em] text-gray-950/4 md:block dark:text-white/4"
+      aria-hidden="true"
+    >
+      {{ t('sectionLabels.contact') }}
+    </span>
+
     <div class="container relative z-10 mx-auto px-4">
       <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
@@ -173,6 +185,11 @@ const socialLinks = [
             class="space-y-8 lg:sticky lg:top-24"
           >
             <div>
+              <SectionLabel
+                index="04"
+                :label="t('sectionLabels.contact')"
+              />
+              <br>
               <span
                 class="mb-6 inline-flex items-center gap-2 rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1 text-xs font-semibold tracking-wide text-green-600 backdrop-blur-sm dark:text-green-400"
               >
@@ -192,6 +209,8 @@ const socialLinks = [
               </p>
             </div>
 
+            <EmailReveal />
+
             <div class="flex flex-wrap gap-4">
               <UButton
                 v-for="social in socialLinks"
@@ -201,7 +220,7 @@ const socialLinks = [
                 rel="noopener noreferrer"
                 color="primary"
                 variant="ghost"
-                class="flex h-12 w-12 items-center justify-center rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-pink-500 hover:text-pink-500 hover:shadow-lg hover:shadow-pink-500/20 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-pink-400"
+                class="flex h-12 w-12 items-center justify-center rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-ambar-500 hover:text-ambar-500 hover:shadow-lg hover:shadow-ambar-500/20 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-ambar-400"
                 :aria-label="social.label"
               >
                 <UIcon
@@ -218,7 +237,7 @@ const socialLinks = [
             class="relative"
           >
             <div
-              class="absolute -inset-4 rounded-[3rem] bg-linear-to-tr from-pink-500/30 to-purple-600/30 opacity-50 blur-3xl transition-opacity duration-500"
+              class="absolute -inset-4 rounded-[3rem] bg-linear-to-tr from-ambar-500/30 to-marino-600/30 opacity-50 blur-3xl transition-opacity duration-500"
               aria-hidden="true"
             />
 
@@ -265,7 +284,7 @@ const socialLinks = [
                         :class="[
                           'flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold transition-all duration-500',
                           currentStep >= 1
-                            ? 'bg-pink-500 text-white shadow-lg shadow-pink-500/30'
+                            ? 'bg-ambar-500 text-white shadow-lg shadow-ambar-500/30'
                             : 'bg-gray-100 text-gray-400 dark:bg-gray-800'
                         ]"
                       >
@@ -279,7 +298,7 @@ const socialLinks = [
 
                       <div class="relative h-1 w-16 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-800">
                         <div
-                          class="absolute left-0 top-0 h-full bg-pink-500 transition-all duration-500 ease-out"
+                          class="absolute left-0 top-0 h-full bg-ambar-500 transition-all duration-500 ease-out"
                           :class="currentStep === 2 ? 'w-full' : 'w-0'"
                         />
                       </div>
@@ -288,14 +307,14 @@ const socialLinks = [
                         :class="[
                           'flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold transition-all duration-500',
                           currentStep === 2
-                            ? 'bg-pink-500 text-white shadow-lg shadow-pink-500/30'
+                            ? 'bg-ambar-500 text-white shadow-lg shadow-ambar-500/30'
                             : 'bg-gray-100 text-gray-400 dark:bg-gray-800'
                         ]"
                       >
                         2
                       </div>
                     </div>
-                    <span class="text-sm font-semibold tracking-wide text-pink-500 dark:text-pink-400">
+                    <span class="text-sm font-semibold tracking-wide text-ambar-500 dark:text-ambar-400">
                       {{ currentStep === 1 ? t('contact.form.steps.step1') : t('contact.form.steps.step2') }}
                     </span>
                   </div>
@@ -463,7 +482,7 @@ const socialLinks = [
                             size="xl"
                             :loading="loading"
                             :disabled="loading"
-                            class="h-14 flex-1 rounded-xl bg-linear-to-r from-pink-500 via-purple-500 to-violet-600 text-lg font-bold text-white shadow-xl transition-all duration-300 hover:-translate-y-1 hover:opacity-90 hover:shadow-pink-500/30 active:scale-[0.98] disabled:opacity-60"
+                            class="h-14 flex-1 rounded-xl bg-linear-to-r from-ambar-500 via-ambar-700 to-marino-700 text-lg font-bold text-white shadow-xl transition-all duration-300 hover:-translate-y-1 hover:opacity-90 hover:shadow-ambar-500/30 active:scale-[0.98] disabled:opacity-60"
                           >
                             {{ loading ? t('contact.form.buttons.sending') : t('contact.form.buttons.submit') }}
                             <template

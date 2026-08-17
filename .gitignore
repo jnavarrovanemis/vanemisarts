@@ -25,3 +25,6 @@ logs
 
 deploy.tar.gz
 *.tar.gz
+
+.stignore
+.stfolder/

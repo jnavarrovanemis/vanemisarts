@@ -59,10 +59,16 @@ const state = reactive({ ...INITIAL_STATE })
 const loading = ref(false)
 const success = ref(false)
 
+/**
+ * Los `value` DEBEN coincidir con el enum `project_stage_type` de la base de
+ * datos ('idea' | 'in_development' | 'launched' | 'scaling'), que es lo que
+ * valida `server/utils/validations.ts`. Cualquier otra cadena hace que la API
+ * responda 400 y el lead se pierda antes de llegar a la base de datos.
+ */
 const stageOptions = computed(() => [
   { label: t('contact.form.stages.idea'), value: 'idea' },
-  { label: t('contact.form.stages.starting'), value: 'starting' },
-  { label: t('contact.form.stages.established'), value: 'established' }
+  { label: t('contact.form.stages.starting'), value: 'launched' },
+  { label: t('contact.form.stages.established'), value: 'scaling' }
 ])
 
 const interestOptions = computed(() => [
@@ -181,8 +187,7 @@ const socialLinks = [
       <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
           <div
-            v-motion-slide-visible-once-bottom
-            class="space-y-8 lg:sticky lg:top-24"
+            class="reveal space-y-8 lg:sticky lg:top-24"
           >
             <div>
               <SectionLabel
@@ -191,7 +196,7 @@ const socialLinks = [
               />
               <br>
               <span
-                class="mb-6 inline-flex items-center gap-2 rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1 text-xs font-semibold tracking-wide text-green-600 backdrop-blur-sm dark:text-green-400"
+                class="mb-6 inline-flex items-center gap-2 rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1 text-xs font-semibold tracking-wide text-green-600 dark:text-green-400"
               >
                 <span class="relative flex h-2 w-2">
                   <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
@@ -232,12 +237,10 @@ const socialLinks = [
           </div>
 
           <div
-            v-motion-slide-visible-once-bottom
-            :delay="200"
-            class="relative"
+            class="reveal reveal-3 relative"
           >
             <div
-              class="absolute -inset-4 rounded-[3rem] bg-linear-to-tr from-ambar-500/30 to-marino-600/30 opacity-50 blur-3xl transition-opacity duration-500"
+              class="absolute -inset-4 rounded-[3rem] bg-linear-to-tr from-ambar-500/20 to-marino-600/20 opacity-60"
               aria-hidden="true"
             />
 
@@ -250,7 +253,7 @@ const socialLinks = [
               >
                 <div
                   v-if="success"
-                  class="absolute inset-0 z-30 flex flex-col items-center justify-center rounded-4xl bg-white/95 p-8 text-center backdrop-blur-md dark:bg-gray-900/95"
+                  class="absolute inset-0 z-30 flex flex-col items-center justify-center rounded-4xl bg-white p-8 text-center dark:bg-gray-900"
                 >
                   <div class="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-green-100 text-green-500 shadow-inner shadow-green-500/20 dark:bg-green-500/10">
                     <UIcon

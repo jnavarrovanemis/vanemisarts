@@ -1,18 +1,32 @@
 <script setup>
-const { t, locale } = useI18n()
+const { t } = useI18n()
 
-useHead({
+/*
+ * Etiquetas hreflang y og:locale alternativas.
+ *
+ * Sin esto, Google no tiene forma de saber que /en y /pt son traducciones de
+ * la misma pagina: las trata como contenido suelto y no sabe cual servir a
+ * cada usuario. Es el mecanismo que Google pide para sitios multiidioma, y
+ * sustituye a redirigir por Accept-Language (que ademas le afectaba a el, que
+ * rastrea en en-US).
+ *
+ * `useLocaleHead` aporta htmlAttrs (lang y dir), los <link rel="alternate"
+ * hreflang> de cada idioma mas el x-default, y los meta og:locale.
+ */
+const localeHead = useLocaleHead({ dir: true, lang: true, seo: true })
+
+useHead(() => ({
+  ...localeHead.value,
   meta: [
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    ...(localeHead.value.meta ?? [])
   ],
   link: [
     { rel: 'icon', type: 'image/svg+xml', href: '/logo-minimalista.svg' },
     { rel: 'icon', type: 'image/png', sizes: '48x48', href: '/favicon-48x48.png' },
-    { rel: 'shortcut icon', href: '/favicon.ico' }
+    { rel: 'shortcut icon', href: '/favicon.ico' },
+    ...(localeHead.value.link ?? [])
   ],
-  htmlAttrs: {
-    lang: locale
-  },
   script: [
     // Tracker de Metricool
     {
@@ -21,7 +35,7 @@ useHead({
       tagPosition: 'bodyClose'
     }
   ]
-})
+}))
 
 // 3. Usamos funciones flecha () => para que los meta tags sean reactivos
 useSeoMeta({
@@ -30,8 +44,8 @@ useSeoMeta({
   ogTitle: () => t('meta.default.title'),
   ogDescription: () => t('meta.default.description'),
   ogType: 'website',
-  ogImage: 'https://vanemis.art/og-image.png',
-  twitterImage: 'https://vanemis.art/og-image.png',
+  ogImage: 'https://vanemis.art/og-image.jpg',
+  twitterImage: 'https://vanemis.art/og-image.jpg',
   twitterCard: 'summary_large_image'
 })
 

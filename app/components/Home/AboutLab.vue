@@ -68,9 +68,7 @@ function selectCapability(id: string) {
 
 <template>
   <div
-    v-motion-slide-visible-once-bottom
-    :delay="120"
-    class="mx-auto max-w-7xl rounded-[2rem] border border-gray-300 bg-gray-200/70 p-2 shadow-[0_24px_80px_rgba(15,23,42,0.08)] dark:border-white/15 dark:bg-gray-950/80 dark:shadow-black/25"
+    class="reveal reveal-2 mx-auto max-w-7xl rounded-[2rem] border border-gray-300 bg-gray-200/70 p-2 shadow-[0_24px_80px_rgba(15,23,42,0.08)] dark:border-white/15 dark:bg-gray-950/80 dark:shadow-black/25"
     :aria-label="t('aboutLab.panelLabel')"
   >
     <div class="overflow-hidden rounded-[1.55rem] border border-gray-300 bg-gray-50/90 dark:border-white/15 dark:bg-gray-900/95">

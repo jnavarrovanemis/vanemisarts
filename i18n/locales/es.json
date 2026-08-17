@@ -2,7 +2,8 @@
   "meta": {
     "default": {
       "title": "Agencia de Marketing Creativa",
-      "description": "Transforma tu marca con nuestra agencia de marketing creativa. Nos especializamos en estrategia digital, contenido visual y redes sociales que generan resultados."    }
+      "description": "Transforma tu marca con nuestra agencia de marketing creativa. Nos especializamos en estrategia digital, contenido visual y redes sociales que generan resultados."
+    }
   },
   "navigation": {
     "home": "Inicio",
@@ -11,7 +12,6 @@
     "team": "Equipo",
     "contact": "Contacto"
   },
-  "welcome": "Bienvenido",
   "description": "Este es un ejemplo de internacionalización.",
   "hero": {
     "greeting": "Estudio creativo digital",
@@ -193,38 +193,107 @@
       "dev": "Desarrollo e infraestructura"
     },
     "items": {
-      "metricool": { "name": "Metricool", "description": "Análisis, gestión y planificación de contenido para redes sociales." },
-      "googleSuite": { "name": "Google Suite", "description": "Herramientas colaborativas para la organización y gestión de proyectos." },
-      "youtubeStudio": { "name": "YouTube Studio", "description": "Gestión integral de canales, analíticas y optimización de videos." },
-      "canvaPro": { "name": "Canva Pro", "description": "Diseño gráfico ágil para redes sociales, presentaciones y marketing." },
-      "photoshop": { "name": "Photoshop", "description": "Edición y manipulación profesional de imágenes." },
-      "affinitySuite": { "name": "Affinity Suite", "description": "Diseño vectorial, edición de fotos y maquetación profesional." },
-      "gamma": { "name": "Gamma", "description": "Creación rápida de presentaciones y sitios web impulsada por IA." },
-      "premiere": { "name": "Premiere Pro", "description": "Montaje y edición de video a nivel profesional." },
-      "davinciResolve": { "name": "DaVinci Resolve", "description": "Corrección de color y postproducción avanzada de video." },
-      "capcut": { "name": "CapCut", "description": "Edición de video dinámica optimizada para formatos verticales." },
-      "filmora": { "name": "Filmora", "description": "Edición de video rápida y dinámica para redes sociales." },
-      "opusClip": { "name": "Opus Clip", "description": "Generación automática de clips cortos virales a partir de videos largos." },
-      "adobePodcast": { "name": "Adobe Podcast", "description": "Mejora de audio impulsada por IA para sonido con calidad de estudio." },
-      "chatgpt": { "name": "ChatGPT", "description": "Asistencia en redacción, lluvia de ideas y estructuración de contenido." },
-      "gemini": { "name": "Gemini", "description": "Análisis de datos, investigación y generación avanzada de texto." },
-      "notebookLM": { "name": "NotebookLM", "description": "Asistente de IA para investigación y síntesis de documentos." },
-      "typescript": { "name": "TypeScript", "description": "Tipado estático para construir aplicaciones robustas y mantenibles." },
-      "nodejs": { "name": "Node.js", "description": "Entorno de ejecución para servicios y APIs del lado del servidor." },
-      "nestjs": { "name": "NestJS", "description": "Framework backend para APIs escalables y bien estructuradas." },
-      "supabase": { "name": "Supabase", "description": "Base de datos, autenticación y seguridad a nivel de fila." },
-      "postgresql": { "name": "PostgreSQL", "description": "Base de datos relacional para modelos de datos complejos." },
-      "docker": { "name": "Docker", "description": "Contenedores para despliegues reproducibles y aislados." },
-      "n8n": { "name": "n8n", "description": "Automatización de flujos de trabajo e integración entre herramientas." },
-      "nuxtjs": { "name": "Nuxt.js", "description": "Framework de Vue para crear aplicaciones web rápidas y optimizadas para SEO." },
-      "wordpress": { "name": "WordPress", "description": "Creación y gestión de sitios web, blogs y tiendas online." }
+      "metricool": {
+        "name": "Metricool",
+        "description": "Análisis, gestión y planificación de contenido para redes sociales."
+      },
+      "googleSuite": {
+        "name": "Google Suite",
+        "description": "Herramientas colaborativas para la organización y gestión de proyectos."
+      },
+      "youtubeStudio": {
+        "name": "YouTube Studio",
+        "description": "Gestión integral de canales, analíticas y optimización de videos."
+      },
+      "canvaPro": {
+        "name": "Canva Pro",
+        "description": "Diseño gráfico ágil para redes sociales, presentaciones y marketing."
+      },
+      "photoshop": {
+        "name": "Photoshop",
+        "description": "Edición y manipulación profesional de imágenes."
+      },
+      "affinitySuite": {
+        "name": "Affinity Suite",
+        "description": "Diseño vectorial, edición de fotos y maquetación profesional."
+      },
+      "gamma": {
+        "name": "Gamma",
+        "description": "Creación rápida de presentaciones y sitios web impulsada por IA."
+      },
+      "premiere": {
+        "name": "Premiere Pro",
+        "description": "Montaje y edición de video a nivel profesional."
+      },
+      "davinciResolve": {
+        "name": "DaVinci Resolve",
+        "description": "Corrección de color y postproducción avanzada de video."
+      },
+      "capcut": {
+        "name": "CapCut",
+        "description": "Edición de video dinámica optimizada para formatos verticales."
+      },
+      "filmora": {
+        "name": "Filmora",
+        "description": "Edición de video rápida y dinámica para redes sociales."
+      },
+      "opusClip": {
+        "name": "Opus Clip",
+        "description": "Generación automática de clips cortos virales a partir de videos largos."
+      },
+      "adobePodcast": {
+        "name": "Adobe Podcast",
+        "description": "Mejora de audio impulsada por IA para sonido con calidad de estudio."
+      },
+      "chatgpt": {
+        "name": "ChatGPT",
+        "description": "Asistencia en redacción, lluvia de ideas y estructuración de contenido."
+      },
+      "gemini": {
+        "name": "Gemini",
+        "description": "Análisis de datos, investigación y generación avanzada de texto."
+      },
+      "notebookLM": {
+        "name": "NotebookLM",
+        "description": "Asistente de IA para investigación y síntesis de documentos."
+      },
+      "typescript": {
+        "name": "TypeScript",
+        "description": "Tipado estático para construir aplicaciones robustas y mantenibles."
+      },
+      "nodejs": {
+        "name": "Node.js",
+        "description": "Entorno de ejecución para servicios y APIs del lado del servidor."
+      },
+      "nestjs": {
+        "name": "NestJS",
+        "description": "Framework backend para APIs escalables y bien estructuradas."
+      },
+      "supabase": {
+        "name": "Supabase",
+        "description": "Base de datos, autenticación y seguridad a nivel de fila."
+      },
+      "postgresql": {
+        "name": "PostgreSQL",
+        "description": "Base de datos relacional para modelos de datos complejos."
+      },
+      "docker": {
+        "name": "Docker",
+        "description": "Contenedores para despliegues reproducibles y aislados."
+      },
+      "n8n": {
+        "name": "n8n",
+        "description": "Automatización de flujos de trabajo e integración entre herramientas."
+      },
+      "nuxtjs": {
+        "name": "Nuxt.js",
+        "description": "Framework de Vue para crear aplicaciones web rápidas y optimizadas para SEO."
+      },
+      "wordpress": {
+        "name": "WordPress",
+        "description": "Creación y gestión de sitios web, blogs y tiendas online."
+      }
     }
-  },
-  "projects": {
-    "title": "Proyectos",
-    "subtitle": "Algunos de nuestros trabajos recientes",
-    "view": "Ver Proyecto",
-    "code": "Ver Código"
   },
   "contact": {
     "status": "Disponibles para nuevos proyectos",

@@ -120,12 +120,6 @@ function close(id: string) {
   }
 }
 
-// La animación se escalona solo en las primeras posiciones: con más de 20
-// herramientas, un retardo lineal dejaría las últimas tarjetas fuera de tiempo.
-function staggerDelay(index: number) {
-  return Math.min(index, 7) * 80
-}
-
 onUnmounted(() => {
   activeSkill.value = null
 })
@@ -137,17 +131,18 @@ onUnmounted(() => {
     class="py-24 relative bg-gray-50 dark:bg-gray-950 overflow-hidden"
   >
     <div
-      class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-soft-light"
+      class="grain-overlay"
+      aria-hidden="true"
     />
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-marino-500/5 rounded-full blur-3xl pointer-events-none"
+      class="section-glow section-glow--cool left-1/2 top-1/2 size-[44rem] -translate-x-1/2 -translate-y-1/2"
+      aria-hidden="true"
     />
 
     <div class="container mx-auto px-4 relative z-10">
       <div class="max-w-6xl mx-auto">
         <div
-          v-motion-slide-visible-once-bottom
-          class="text-center mb-16"
+          class="reveal text-center mb-16"
         >
           <SectionLabel
             index="03"
@@ -167,8 +162,7 @@ onUnmounted(() => {
           :class="groupIndex > 0 ? 'mt-16' : ''"
         >
           <div
-            v-motion-slide-visible-once-bottom
-            class="flex items-center gap-3 mb-8"
+            class="reveal flex items-center gap-3 mb-8"
           >
             <UIcon
               :name="group.icon"
@@ -186,11 +180,9 @@ onUnmounted(() => {
 
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
             <div
-              v-for="(skill, index) in group.items"
+              v-for="skill in group.items"
               :key="skill.id"
-              v-motion-slide-visible-once-bottom
-              :delay="staggerDelay(index)"
-              class="h-full"
+              class="reveal reveal-2 h-full"
             >
               <UPopover
                 :open="activeSkill === skill.id"
@@ -198,7 +190,7 @@ onUnmounted(() => {
                 @update:open="(val) => { if (!val) activeSkill = null }"
               >
                 <div
-                  class="group relative h-full w-full focus:outline-none flex flex-col items-center justify-center p-6 rounded-2xl transition-all duration-300 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
+                  class="group relative h-full w-full focus:outline-none flex flex-col items-center justify-center p-6 rounded-2xl transition-all duration-300 bg-white/85 dark:bg-gray-900/80 border border-gray-200/50 dark:border-gray-800/50 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
                   :class="[colorStyles[skill.color as keyof typeof colorStyles]?.card || '']"
                   @mouseenter="open(skill.id)"
                   @mouseleave="close(skill.id)"
@@ -220,7 +212,7 @@ onUnmounted(() => {
 
                 <template #content>
                   <div
-                    class="flex flex-col gap-3 p-4 max-w-[260px] bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-xl border border-gray-200/50 dark:border-gray-800/50 shadow-xl"
+                    class="flex flex-col gap-3 p-4 max-w-[260px] bg-white dark:bg-gray-900 rounded-xl border border-gray-200/50 dark:border-gray-800/50 shadow-xl"
                     @mouseenter="open(skill.id)"
                     @mouseleave="close(skill.id)"
                   >
@@ -250,9 +242,7 @@ onUnmounted(() => {
         </div>
 
         <div
-          v-motion-slide-visible-once-bottom
-          :delay="400"
-          class="mt-16 text-center"
+          class="reveal reveal-4 mt-16 text-center"
         >
           <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700">
             <UIcon

@@ -28,3 +28,9 @@ deploy.tar.gz
 
 .stignore
 .stfolder/
+
+# Vercel
+.vercel
+
+# Carpeta local de descartes
+_to_delete/

@@ -16,41 +16,22 @@ const stats = [
     aria-labelledby="about-heading"
   >
     <div
-      class="absolute -top-20 -left-20 w-80 h-80 bg-marino-500/15 rounded-full blur-3xl opacity-40 pointer-events-none animate-pulse"
+      class="section-glow section-glow--cool -left-24 -top-24"
       aria-hidden="true"
     />
     <div
-      class="absolute -bottom-20 -right-20 w-80 h-80 bg-ambar-500/15 rounded-full blur-3xl opacity-40 pointer-events-none"
+      class="section-glow section-glow--warm -bottom-24 -right-24"
       aria-hidden="true"
     />
 
-    <svg
-      class="absolute inset-0 w-full h-full opacity-20 pointer-events-none mix-blend-soft-light"
+    <div
+      class="grain-overlay"
       aria-hidden="true"
-    >
-      <filter id="about-noise">
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.65"
-          numOctaves="3"
-          stitchTiles="stitch"
-        />
-        <feColorMatrix
-          type="saturate"
-          values="0"
-        />
-      </filter>
-      <rect
-        width="100%"
-        height="100%"
-        filter="url(#about-noise)"
-      />
-    </svg>
+    />
 
     <UContainer class="relative z-10">
       <div
-        v-motion-slide-visible-once-bottom
-        class="max-w-3xl mx-auto text-center mb-12"
+        class="reveal max-w-3xl mx-auto text-center mb-12"
       >
         <SectionLabel
           index="01"
@@ -75,14 +56,12 @@ const stats = [
       </div>
 
       <div
-        v-motion-slide-visible-once-bottom
-        :delay="100"
-        class="grid grid-cols-4 gap-3 mb-16 max-w-4xl mx-auto"
+        class="reveal reveal-2 grid grid-cols-4 gap-3 mb-16 max-w-4xl mx-auto"
       >
         <div
           v-for="stat in stats"
           :key="stat.key"
-          class="col-span-2 md:col-span-1 flex flex-col items-center justify-center py-3 px-2 rounded-2xl bg-white/60 dark:bg-gray-900/60 backdrop-blur-xl border border-gray-200/50 dark:border-gray-800/50 text-center"
+          class="col-span-2 md:col-span-1 flex flex-col items-center justify-center py-3 px-2 rounded-2xl bg-white/85 dark:bg-gray-900/80 border border-gray-200/50 dark:border-gray-800/50 text-center"
         >
           <span
             class="text-2xl md:text-3xl font-extrabold bg-clip-text text-transparent bg-linear-to-r from-marino-700 via-marino-500 to-ambar-500 dark:from-marino-400 dark:via-marino-300 dark:to-ambar-400"
@@ -101,15 +80,13 @@ const stats = [
       <HomeAboutLab />
 
       <div
-        v-motion-slide-visible-once-bottom
-        :delay="400"
-        class="text-center mt-12"
+        class="reveal reveal-4 text-center mt-12"
       >
         <UBadge
           variant="outline"
           color="neutral"
           size="md"
-          class="rounded-full px-5 py-1.5 backdrop-blur-md bg-white/30 dark:bg-gray-800/30 border-gray-200 dark:border-gray-700"
+          class="rounded-full px-5 py-1.5 bg-white/70 dark:bg-gray-800/60 border-gray-200 dark:border-gray-700"
           :label="'✨ ' + t('about.footer')"
         />
       </div>

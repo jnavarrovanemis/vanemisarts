@@ -76,18 +76,17 @@ const disciplines = [
     aria-labelledby="team-heading"
   >
     <div
-      class="absolute -top-24 right-0 w-80 h-80 bg-ambar-500/10 rounded-full blur-3xl opacity-40 pointer-events-none"
+      class="section-glow section-glow--warm -top-24 right-0"
       aria-hidden="true"
     />
     <div
-      class="absolute -bottom-24 left-0 w-80 h-80 bg-marino-500/10 rounded-full blur-3xl opacity-40 pointer-events-none"
+      class="section-glow section-glow--cool -bottom-24 left-0"
       aria-hidden="true"
     />
 
     <UContainer class="relative z-10">
       <div
-        v-motion-slide-visible-once-bottom
-        class="max-w-3xl mx-auto text-center mb-12"
+        class="reveal max-w-3xl mx-auto text-center mb-12"
       >
         <SectionLabel
           index="02"
@@ -112,9 +111,7 @@ const disciplines = [
       </div>
 
       <div
-        v-motion-slide-visible-once-bottom
-        :delay="100"
-        class="flex items-center justify-center gap-3 mb-10"
+        class="reveal reveal-2 flex items-center justify-center gap-3 mb-10"
       >
         <span
           class="h-px w-8 bg-gray-200 dark:bg-gray-800"
@@ -131,11 +128,9 @@ const disciplines = [
 
       <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
         <article
-          v-for="(discipline, index) in disciplines"
+          v-for="discipline in disciplines"
           :key="discipline.key"
-          v-motion-slide-visible-once-bottom
-          :delay="index * 150"
-          class="group relative flex flex-col h-full"
+          class="reveal reveal-2 group relative flex flex-col h-full"
         >
           <div
             :class="[
@@ -158,7 +153,7 @@ const disciplines = [
           </div>
 
           <div
-            class="relative flex flex-col h-full p-6 md:p-8 rounded-4xl bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
+            class="relative flex flex-col h-full p-6 md:p-8 rounded-4xl bg-white/90 dark:bg-gray-900/85 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
             :class="discipline.glow"
           >
             <div class="flex items-start justify-between gap-4 mb-5">
@@ -220,8 +215,7 @@ const disciplines = [
         class="mt-16"
       >
         <div
-          v-motion-slide-visible-once-bottom
-          class="flex items-center justify-center gap-3 mb-10"
+          class="reveal flex items-center justify-center gap-3 mb-10"
         >
           <span
             class="h-px w-8 bg-gray-200 dark:bg-gray-800"
@@ -238,11 +232,9 @@ const disciplines = [
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           <article
-            v-for="(member, index) in visibleMembers"
+            v-for="member in visibleMembers"
             :key="member.id"
-            v-motion-slide-visible-once-bottom
-            :delay="index * 120"
-            class="group relative flex flex-col items-center text-center p-6 rounded-4xl bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border border-gray-200/60 dark:border-gray-800/60 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
+            class="reveal reveal-2 group relative flex flex-col items-center text-center p-6 rounded-4xl bg-white/90 dark:bg-gray-900/85 border border-gray-200/60 dark:border-gray-800/60 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
           >
             <div class="relative mb-4">
               <div
@@ -314,15 +306,13 @@ const disciplines = [
       </div>
 
       <div
-        v-motion-slide-visible-once-bottom
-        :delay="300"
-        class="text-center mt-14"
+        class="reveal reveal-4 text-center mt-14"
       >
         <UBadge
           variant="outline"
           color="neutral"
           size="md"
-          class="rounded-full px-5 py-1.5 backdrop-blur-md bg-white/30 dark:bg-gray-800/30 border-gray-200 dark:border-gray-700"
+          class="rounded-full px-5 py-1.5 bg-white/70 dark:bg-gray-800/60 border-gray-200 dark:border-gray-700"
           :label="'🤝 ' + t('team.footer')"
         />
       </div>

@@ -106,23 +106,31 @@ const colorStyles: Record<string, { icon: string, card: string }> = {
   }
 }
 
-// Un único ID activo — garantiza que solo uno esté abierto a la vez
-const activeSkill = ref<string | null>(null)
+/** Un unico panel abierto a la vez. */
+const openSkill = ref<string | null>(null)
 
-function open(id: string) {
-  activeSkill.value = id
+/**
+ * En pantallas tactiles no existe el estado `hover`, asi que un tooltip nunca
+ * llegaba a aparecer: la descripcion de cada herramienta era simplemente
+ * inalcanzable desde el movil. Ahora el panel se abre con click en cualquier
+ * dispositivo y, ademas, al pasar el raton en los que tienen puntero fino.
+ *
+ * La deteccion vive dentro del manejador de evento, no en un `useMediaQuery` a
+ * nivel de setup. Si el componente que se renderiza dependiera del dispositivo,
+ * el HTML prerenderizado (generado sin navegador) y el del cliente no
+ * coincidirian, y volveriamos a tener desajustes de hidratacion.
+ */
+function pointerCanHover() {
+  return window.matchMedia('(hover: hover) and (pointer: fine)').matches
 }
 
-function close(id: string) {
-  // Solo cierra si el que intenta cerrar es el que está activo
-  if (activeSkill.value === id) {
-    activeSkill.value = null
-  }
+function hoverOpen(id: string) {
+  if (pointerCanHover()) openSkill.value = id
 }
 
-onUnmounted(() => {
-  activeSkill.value = null
-})
+function hoverClose(id: string) {
+  if (pointerCanHover() && openSkill.value === id) openSkill.value = null
+}
 </script>
 
 <template>
@@ -153,6 +161,16 @@ onUnmounted(() => {
           </h2>
           <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             {{ t("skills.subtitle") }}
+          </p>
+
+          <!-- Solo en tactil: sin hover, el panel hay que abrirlo con un toque. -->
+          <p class="tap-hint mx-auto mt-5 max-w-xs items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-4 py-2 text-xs font-medium leading-snug text-gray-600 dark:border-gray-700 dark:bg-gray-900/70 dark:text-gray-300">
+            <UIcon
+              name="i-heroicons-hand-raised"
+              class="size-4 shrink-0 text-marino-500"
+              aria-hidden="true"
+            />
+            {{ t('skills.tapHint') }}
           </p>
         </div>
 
@@ -185,15 +203,18 @@ onUnmounted(() => {
               class="reveal reveal-2 h-full"
             >
               <UPopover
-                :open="activeSkill === skill.id"
+                mode="click"
+                :open="openSkill === skill.id"
+                :ui="{ content: 'bg-transparent ring-0 shadow-none p-0 w-auto' }"
                 class="h-full block"
-                @update:open="(val) => { if (!val) activeSkill = null }"
+                @update:open="(isOpen: boolean) => openSkill = isOpen ? skill.id : null"
               >
-                <div
-                  class="group relative h-full w-full focus:outline-none flex flex-col items-center justify-center p-6 rounded-2xl transition-all duration-300 bg-white/85 dark:bg-gray-900/80 border border-gray-200/50 dark:border-gray-800/50 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
+                <button
+                  type="button"
+                  class="group relative h-full w-full flex flex-col items-center justify-center p-6 rounded-2xl transition-all duration-300 bg-white/85 dark:bg-gray-900/80 border border-gray-200/50 dark:border-gray-800/50 hover:-translate-y-1 hover:shadow-xl cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
                   :class="[colorStyles[skill.color as keyof typeof colorStyles]?.card || '']"
-                  @mouseenter="open(skill.id)"
-                  @mouseleave="close(skill.id)"
+                  @mouseenter="hoverOpen(skill.id)"
+                  @mouseleave="hoverClose(skill.id)"
                 >
                   <div
                     class="mb-4 p-3 rounded-xl border transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"
@@ -208,13 +229,11 @@ onUnmounted(() => {
                   <span class="font-semibold text-center text-sm md:text-base text-gray-800 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
                     {{ t(`skills.items.${skill.id}.name`) }}
                   </span>
-                </div>
+                </button>
 
                 <template #content>
                   <div
                     class="flex flex-col gap-3 p-4 max-w-[260px] bg-white dark:bg-gray-900 rounded-xl border border-gray-200/50 dark:border-gray-800/50 shadow-xl"
-                    @mouseenter="open(skill.id)"
-                    @mouseleave="close(skill.id)"
                   >
                     <div class="flex items-center gap-3">
                       <div
@@ -244,7 +263,7 @@ onUnmounted(() => {
         <div
           class="reveal reveal-4 mt-16 text-center"
         >
-          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700">
+          <span class="inline-flex max-w-full items-center gap-2 rounded-2xl border border-gray-200 bg-gray-100 px-4 py-2 text-center text-xs font-medium leading-snug text-gray-600 sm:rounded-full dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400">
             <UIcon
               name="i-heroicons-cpu-chip"
               class="w-4 h-4"

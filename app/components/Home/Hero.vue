@@ -76,7 +76,7 @@ function handleArtworkLeave() {
         la zona de identidad, en lugar de repetir el nombre a pantalla completa.
       -->
       <div
-        class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-300 py-5 dark:border-white/15"
+        class="flex flex-col items-center gap-4 border-b border-gray-300 py-5 text-center lg:flex-row lg:justify-between lg:text-left dark:border-white/15"
       >
         <div class="flex items-center gap-3">
           <img
@@ -88,7 +88,7 @@ function handleArtworkLeave() {
             class="size-9 object-contain md:size-10"
             aria-hidden="true"
           >
-          <div class="leading-tight">
+          <div class="text-left leading-tight">
             <span class="block text-base font-extrabold tracking-[-0.03em] md:text-lg">
               Vanemis <span class="text-primary-600 dark:text-primary-400">Arts</span>
             </span>
@@ -98,7 +98,7 @@ function handleArtworkLeave() {
           </div>
         </div>
 
-        <div class="flex flex-wrap items-center gap-3">
+        <div class="flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-end">
           <span class="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white/90 px-3 py-1.5 text-xs font-semibold text-gray-700 dark:border-white/15 dark:bg-gray-950/75 dark:text-gray-200">
             <span
               class="relative flex size-2"
@@ -117,10 +117,10 @@ function handleArtworkLeave() {
       </div>
 
       <div class="grid flex-1 grid-cols-1 items-center gap-10 py-8 lg:grid-cols-12 lg:gap-8 lg:py-6">
-        <div class="lg:col-span-8">
+        <div class="text-center lg:col-span-8 lg:text-left">
           <h1
             id="hero-heading"
-            class="max-w-4xl text-balance text-[clamp(3.25rem,5.5vw,6.5rem)] font-extrabold leading-[0.92] tracking-[-0.055em]"
+            class="mx-auto max-w-4xl text-balance text-[clamp(2.6rem,5.5vw,6.5rem)] font-extrabold leading-[0.95] tracking-[-0.045em] sm:leading-[0.92] sm:tracking-[-0.055em] lg:mx-0"
           >
             {{ t('hero.title') }}
             <span class="block text-primary-600 dark:text-primary-400">
@@ -129,9 +129,9 @@ function handleArtworkLeave() {
           </h1>
 
           <div
-            class="mt-8 grid max-w-3xl gap-6 border-l border-gray-300 pl-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:pl-7 dark:border-white/15"
+            class="mx-auto mt-8 grid max-w-3xl justify-items-center gap-6 lg:mx-0 lg:justify-items-stretch lg:border-l lg:border-gray-300 lg:pl-7 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end dark:lg:border-white/15"
           >
-            <p class="max-w-xl text-pretty text-base leading-relaxed text-gray-600 md:text-lg dark:text-gray-300">
+            <p class="mx-auto max-w-xl text-pretty text-base leading-relaxed text-gray-600 md:text-lg lg:mx-0 dark:text-gray-300">
               {{ t('hero.description') }}
             </p>
 
@@ -179,10 +179,19 @@ function handleArtworkLeave() {
               aria-hidden="true"
             />
 
-            <span class="absolute left-5 top-5 text-[10px] font-bold uppercase tracking-[0.22em] text-gray-500 dark:text-gray-400">
+            <!--
+              La pieza es una cupula (`rounded-[45%_45%_2rem_2rem]`) con
+              `overflow-hidden`, asi que la esquina superior izquierda recorta
+              cualquier contenido colocado ahi. En movil el texto se centra y
+              baja hasta donde la forma ya es ancha; desde `sm` la pieza es
+              suficientemente grande para el ancla original en la esquina.
+              «VA / 01» se oculta en movil porque la curva derecha lo tapaba
+              por completo.
+            -->
+            <span class="absolute left-1/2 top-12 max-w-[62%] -translate-x-1/2 text-center text-[10px] font-bold uppercase leading-tight tracking-[0.14em] text-gray-500 sm:left-5 sm:top-5 sm:max-w-[55%] sm:translate-x-0 sm:text-left sm:tracking-[0.22em] dark:text-gray-400">
               {{ artworkActive ? t('hero.artActiveLabel') : t('hero.artHint') }}
             </span>
-            <span class="absolute right-5 top-5 font-mono text-[10px] text-gray-400 dark:text-gray-500">
+            <span class="absolute right-5 top-5 hidden font-mono text-[10px] text-gray-400 sm:block dark:text-gray-500">
               VA / 01
             </span>
 

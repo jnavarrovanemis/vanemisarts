@@ -50,7 +50,7 @@ const dotClass = computed(() =>
         v-for="(word, index) in [...words, ...words]"
         :key="`${word}-${index}`"
         class="inline-flex items-center gap-6 px-6 text-[clamp(1.35rem,3.2vw,2.6rem)] font-black uppercase leading-none tracking-[-0.03em]"
-        :class="index % 2 ? 'brand-ticker-outline text-gray-400 dark:text-gray-500' : ''"
+        :class="index % 2 ? 'brand-ticker-outline text-gray-500 dark:text-gray-400' : ''"
       >
         {{ word }}
         <span

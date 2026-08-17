@@ -293,7 +293,8 @@
         "name": "WordPress",
         "description": "Creation and management of websites, blogs, and online stores."
       }
-    }
+    },
+    "tapHint": "Tap any tool to see more information"
   },
   "contact": {
     "status": "Available for new projects",

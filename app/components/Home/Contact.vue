@@ -196,7 +196,7 @@ const socialLinks = [
               />
               <br>
               <span
-                class="mb-6 inline-flex items-center gap-2 rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1 text-xs font-semibold tracking-wide text-green-600 dark:text-green-400"
+                class="mb-6 inline-flex items-center gap-2 rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1 text-xs font-semibold tracking-wide text-green-800 dark:text-green-400"
               >
                 <span class="relative flex h-2 w-2">
                   <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />

@@ -162,6 +162,30 @@
 }
 
 @layer components {
+  /*
+   * Aviso «toca para ver mas» de la seccion de herramientas.
+   *
+   * Se oculta segun la CAPACIDAD del puntero, no segun el ancho de pantalla:
+   * una tablet en horizontal supera los 640 px y sigue sin tener hover, asi que
+   * `sm:hidden` la habria dejado sin instrucciones. `@media (hover: hover)`
+   * pregunta exactamente lo que importa.
+   */
+  .tap-hint {
+    /*
+     * El `display` lo gobierna esta clase, no una utilidad en el marcado.
+     * En Tailwind v4 la capa `utilities` tiene mas precedencia que
+     * `components`: si el elemento llevara `inline-flex`, ganaria siempre y el
+     * `display: none` de abajo no ocultaria nada.
+     */
+    display: inline-flex;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .tap-hint {
+      display: none;
+    }
+  }
+
   /* ============================================================
      APARICION AL HACER SCROLL — sin JavaScript.
      Sustituye a los 22 `v-motion-slide-visible-once-bottom` de
@@ -191,14 +215,26 @@
     }
   }
 
+  /*
+   * Solo se anima `transform`, nunca `opacity`.
+   *
+   * Con una animacion conducida por scroll, todo lo que esta por debajo del
+   * pliegue se encuentra en el fotograma inicial mientras la pagina no se
+   * desplaza. Si ese fotograma fuera `opacity: 0`, ese texto quedaria
+   * permanentemente ilegible para cualquier analisis estatico — y para quien
+   * llegue con el JavaScript a medias. Ademas la cuenta no da: gris 600 sobre
+   * gris 100 no alcanza 4.5:1 hasta la opacidad completa (al 80 % da 4.24),
+   * asi que ningun fundido parcial cumple.
+   *
+   * Animar solo el desplazamiento conserva la sensacion de entrada y mantiene
+   * el texto legible en todo momento.
+   */
   @keyframes reveal-in {
     from {
-      opacity: 0;
       transform: translateY(26px);
     }
 
     to {
-      opacity: 1;
       transform: none;
     }
   }

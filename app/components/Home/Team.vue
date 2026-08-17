@@ -185,7 +185,7 @@ const disciplines = [
               {{ t(`team.disciplines.${discipline.key}.title`) }}
             </h3>
 
-            <p class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-4">
+            <p class="text-xs font-medium text-gray-600 dark:text-gray-400 mb-4">
               {{ t(`team.disciplines.${discipline.key}.credential`) }}
             </p>
 
@@ -312,7 +312,8 @@ const disciplines = [
           variant="outline"
           color="neutral"
           size="md"
-          class="rounded-full px-5 py-1.5 bg-white/70 dark:bg-gray-800/60 border-gray-200 dark:border-gray-700"
+          class="mx-auto max-w-full whitespace-normal rounded-2xl border-gray-200 bg-white/70 px-5 py-2 text-center leading-snug sm:rounded-full dark:border-gray-700 dark:bg-gray-800/60"
+          :ui="{ label: 'whitespace-normal' }"
           :label="'🤝 ' + t('team.footer')"
         />
       </div>

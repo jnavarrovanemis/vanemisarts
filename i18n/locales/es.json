@@ -293,7 +293,8 @@
         "name": "WordPress",
         "description": "Creación y gestión de sitios web, blogs y tiendas online."
       }
-    }
+    },
+    "tapHint": "Toca cualquier herramienta para ver más información"
   },
   "contact": {
     "status": "Disponibles para nuevos proyectos",

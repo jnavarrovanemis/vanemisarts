@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
 
   // 3. Guardar en Base de Datos
   try {
-    const newLead = await createLeadInDB(event, parsed.data)
+    const newLead = await createLeadInDB(parsed.data)
 
     // 4. Mapeo para el correo (Traducimos el ENUM a texto legible para ti)
     const stageMap: Record<string, string> = {

@@ -31,6 +31,9 @@ function onPointerMove(event: PointerEvent) {
   if (dot.value) {
     dot.value.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0) translate(-50%, -50%)`
   }
+
+  // El bucle solo existe mientras el anillo tiene que alcanzar al puntero.
+  if (!frame) frame = requestAnimationFrame(loop)
 }
 
 function onPointerOver(event: PointerEvent) {
@@ -44,11 +47,24 @@ function onPointerOver(event: PointerEvent) {
 function loop() {
   // Interpolacion simple: el anillo recorre un 16 % de la distancia restante
   // en cada fotograma, lo que produce el retardo elastico sin libreria.
-  ringX += (pointerX - ringX) * 0.16
-  ringY += (pointerY - ringY) * 0.16
+  const dx = pointerX - ringX
+  const dy = pointerY - ringY
+
+  ringX += dx * 0.16
+  ringY += dy * 0.16
 
   if (ring.value) {
     ring.value.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`
+  }
+
+  // Antes esto se reprogramaba siempre, asi que el bucle corria a 60 fps
+  // durante toda la visita aunque el raton llevara minutos quieto: trabajo
+  // constante en el hilo principal compitiendo con el scroll y con cualquier
+  // interaccion. Ahora se detiene en cuanto el anillo alcanza al puntero y
+  // `onPointerMove` lo vuelve a arrancar al primer movimiento.
+  if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) {
+    frame = 0
+    return
   }
 
   frame = requestAnimationFrame(loop)
@@ -68,7 +84,7 @@ onMounted(() => {
 
   window.addEventListener('pointermove', onPointerMove, { passive: true })
   document.addEventListener('pointerover', onPointerOver, { passive: true })
-  frame = requestAnimationFrame(loop)
+  // El bucle arranca solo con el primer movimiento del puntero.
 })
 
 onBeforeUnmount(() => {

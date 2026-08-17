@@ -17,12 +17,14 @@
     ]
   },
   "dependencies": {
+    "@iconify-json/circle-flags": "^1.2.10",
+    "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/lucide": "^1.2.74",
     "@iconify-json/simple-icons": "^1.2.59",
     "@nuxt/ui": "^4.2.1",
     "@nuxtjs/i18n": "10.2.1",
-    "@nuxtjs/supabase": "^2.0.4",
     "@resvg/resvg-js": "^2.6.2",
+    "@supabase/supabase-js": "^2.112.3",
     "nuxt": "^4.2.2",
     "satori": "^0.26.0",
     "zod": "^4.3.6"
@@ -33,7 +35,6 @@
     "@nuxt/image": "^2.0.0",
     "@nuxtjs/seo": "^5.1.0",
     "@types/node": "^25.5.0",
-    "@vueuse/motion": "^3.0.3",
     "baseline-browser-mapping": "^2.10.15",
     "eslint": "^9.39.1",
     "husky": "^9.1.7",

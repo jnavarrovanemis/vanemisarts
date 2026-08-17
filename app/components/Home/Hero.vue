@@ -76,18 +76,18 @@ function handleArtworkLeave() {
         la zona de identidad, en lugar de repetir el nombre a pantalla completa.
       -->
       <div
-        v-motion-slide-visible-once-bottom
         class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-300 py-5 dark:border-white/15"
       >
         <div class="flex items-center gap-3">
-          <NuxtImg
+          <img
             src="/logo-minimalista.svg"
             alt=""
             width="40"
             height="40"
+            decoding="async"
             class="size-9 object-contain md:size-10"
             aria-hidden="true"
-          />
+          >
           <div class="leading-tight">
             <span class="block text-base font-extrabold tracking-[-0.03em] md:text-lg">
               Vanemis <span class="text-primary-600 dark:text-primary-400">Arts</span>
@@ -99,7 +99,7 @@ function handleArtworkLeave() {
         </div>
 
         <div class="flex flex-wrap items-center gap-3">
-          <span class="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white/80 px-3 py-1.5 text-xs font-semibold text-gray-700 backdrop-blur-md dark:border-white/15 dark:bg-gray-950/75 dark:text-gray-200">
+          <span class="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white/90 px-3 py-1.5 text-xs font-semibold text-gray-700 dark:border-white/15 dark:bg-gray-950/75 dark:text-gray-200">
             <span
               class="relative flex size-2"
               aria-hidden="true"
@@ -120,8 +120,6 @@ function handleArtworkLeave() {
         <div class="lg:col-span-8">
           <h1
             id="hero-heading"
-            v-motion-slide-visible-once-bottom
-            :delay="120"
             class="max-w-4xl text-balance text-[clamp(3.25rem,5.5vw,6.5rem)] font-extrabold leading-[0.92] tracking-[-0.055em]"
           >
             {{ t('hero.title') }}
@@ -131,8 +129,6 @@ function handleArtworkLeave() {
           </h1>
 
           <div
-            v-motion-slide-visible-once-bottom
-            :delay="240"
             class="mt-8 grid max-w-3xl gap-6 border-l border-gray-300 pl-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:pl-7 dark:border-white/15"
           >
             <p class="max-w-xl text-pretty text-base leading-relaxed text-gray-600 md:text-lg dark:text-gray-300">
@@ -151,13 +147,11 @@ function handleArtworkLeave() {
         </div>
 
         <div
-          v-motion-slide-visible-once-bottom
-          :delay="220"
           class="hero-art-float relative mx-auto w-full max-w-md lg:col-span-4 lg:mr-0"
         >
           <button
             type="button"
-            class="hero-artwork-shell editorial-art group relative mx-auto block aspect-[4/5] w-[min(100%,20rem)] overflow-hidden border border-gray-300 bg-white/75 text-left backdrop-blur-sm transition-[border-radius,background-color,border-color] duration-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 lg:w-[min(100%,18rem)] xl:w-[min(100%,20rem)] dark:border-white/15 dark:bg-gray-900/70"
+            class="hero-artwork-shell editorial-art group relative mx-auto block aspect-[4/5] w-[min(100%,20rem)] overflow-hidden border border-gray-300 bg-white/90 text-left transition-[border-radius,background-color,border-color] duration-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 lg:w-[min(100%,18rem)] xl:w-[min(100%,20rem)] dark:border-white/15 dark:bg-gray-900/70"
             :class="artworkActive ? 'rounded-[2.5rem] border-primary-500/50' : 'rounded-[45%_45%_2rem_2rem]'"
             :style="artworkStyle"
             :aria-label="t('hero.artInteraction')"
@@ -169,13 +163,16 @@ function handleArtworkLeave() {
             @click="artworkPinned = !artworkPinned"
             @pointermove="handleArtworkPointerMove"
           >
-            <NuxtImg
+            <img
               src="/background.svg"
               alt=""
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
               class="absolute inset-0 size-full object-cover object-center transition-all duration-700"
               :class="artworkActive ? 'scale-110 opacity-35' : 'scale-100 opacity-0'"
               aria-hidden="true"
-            />
+            >
             <div
               class="absolute inset-0 bg-white/25 opacity-0 transition-opacity duration-700 group-hover:opacity-100 group-focus-visible:opacity-100 dark:bg-gray-950/35"
               :class="artworkActive ? 'opacity-100' : ''"
@@ -221,14 +218,16 @@ function handleArtworkLeave() {
                 class="absolute flex size-32 items-center justify-center rounded-[2rem] border border-white/70 bg-white/90 p-5 shadow-2xl transition-all duration-700 sm:size-40 dark:border-white/15 dark:bg-gray-950/85"
                 :class="artworkActive ? 'scale-100 rotate-0 opacity-100' : 'scale-50 -rotate-12 opacity-0'"
               >
-                <NuxtImg
+                <img
                   src="/logo-minimalista.svg"
                   alt=""
                   width="128"
                   height="128"
+                  loading="lazy"
+                  decoding="async"
                   class="size-full object-contain"
                   aria-hidden="true"
-                />
+                >
               </div>
             </div>
 
@@ -241,8 +240,6 @@ function handleArtworkLeave() {
       </div>
 
       <div
-        v-motion-slide-visible-once-bottom
-        :delay="380"
         class="grid border-y border-gray-300 bg-gray-50/70 sm:grid-cols-2 lg:grid-cols-4 dark:border-white/15 dark:bg-gray-950/70"
       >
         <div class="p-4 sm:p-5 lg:border-r lg:border-gray-300 dark:lg:border-white/15">

@@ -162,7 +162,81 @@
 }
 
 @layer components {
+  /* ============================================================
+     APARICION AL HACER SCROLL — sin JavaScript.
+     Sustituye a los 22 `v-motion-slide-visible-once-bottom` de
+     @vueuse/motion, que costaban ~30 KB de JS y, sobre todo,
+     dejaban el contenido en opacity:0 hasta que hidrataba: el h1
+     del hero no era visible hasta que el navegador ejecutaba el
+     bundle, lo que hundia el LCP.
+
+     Aqui la animacion la conduce el propio scroll del navegador
+     (`animation-timeline: view()`), fuera del hilo principal.
+     Es mejora progresiva: si el navegador no lo soporta, la regla
+     entera no aplica y el contenido se ve desde el primer pintado,
+     que es exactamente el comportamiento deseable.
+     ============================================================ */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        animation: reveal-in linear both;
+        animation-timeline: view();
+        animation-range: entry 8% cover 26%;
+      }
+
+      /* Escalonado: cada paso entra un poco mas tarde en el recorrido. */
+      .reveal-2 { animation-range: entry 12% cover 32%; }
+      .reveal-3 { animation-range: entry 16% cover 38%; }
+      .reveal-4 { animation-range: entry 20% cover 44%; }
+    }
+  }
+
+  @keyframes reveal-in {
+    from {
+      opacity: 0;
+      transform: translateY(26px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ============================================================
+     GRANO COMPARTIDO — una sola implementacion para todas las
+     secciones. Antes habia tres: un <svg> con feTurbulence a
+     tamano de seccion en AboutMe (filtro caro de rasterizar), una
+     peticion a grainy-gradients.vercel.app en Skills (dominio de
+     terceros en la ruta critica) y este data-URI en AboutLab.
+     ============================================================ */
+  .grain-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.38'/%3E%3C/svg%3E");
+    mix-blend-mode: soft-light;
+    opacity: 0.2;
+  }
+
+  /*
+   * La reticula vive en un pseudo-elemento propio para poder desplazarla con
+   * `transform`, que el navegador compone en GPU. Antes se animaba
+   * `background-position` sobre la seccion a pantalla completa: eso obliga a
+   * repintar toda el area en cada fotograma durante los 45 s del bucle.
+   * El `inset` negativo da margen para que el desplazamiento no descubra el
+   * borde de la reticula.
+   */
   .editorial-grid {
+    position: relative;
+  }
+
+  .editorial-grid::before {
+    content: "";
+    position: absolute;
+    inset: -140px;
+    z-index: -1;
+    pointer-events: none;
     background-image:
       linear-gradient(to right, rgb(15 23 42 / 0.07) 1px, transparent 1px),
       linear-gradient(to bottom, rgb(15 23 42 / 0.07) 1px, transparent 1px),
@@ -171,13 +245,43 @@
     background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
   }
 
-  :root.dark .editorial-grid {
+  :root.dark .editorial-grid::before {
     background-image:
       linear-gradient(to right, rgb(255 255 255 / 0.09) 1px, transparent 1px),
       linear-gradient(to bottom, rgb(255 255 255 / 0.09) 1px, transparent 1px),
       linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
       linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
   }
+
+  /*
+   * Halo de seccion. Sustituye al patron `size-80 blur-3xl`, que aplicaba
+   * `filter: blur(64px)` sobre una capa de 320 px: el navegador reserva un
+   * buffer aparte y lo vuelve a desenfocar en cada repintado. Un gradiente
+   * radial da practicamente el mismo resultado sin filtro.
+   */
+  .section-glow {
+    position: absolute;
+    z-index: 0;
+    width: 26rem;
+    height: 26rem;
+    pointer-events: none;
+    border-radius: 9999px;
+    /*
+     * Los valores buscan igualar el resultado del patron anterior
+     * (`bg-<color>/15` + `blur-3xl` + `opacity-40`), cuya opacidad efectiva en
+     * el centro rondaba el 6 %. Un gradiente radial de tres paradas reproduce
+     * esa caida suave sin `filter: blur()`.
+     */
+    background: radial-gradient(
+      closest-side,
+      color-mix(in oklab, var(--glow, var(--color-marino-500)) 7%, transparent) 0%,
+      color-mix(in oklab, var(--glow, var(--color-marino-500)) 2.5%, transparent) 55%,
+      transparent 100%
+    );
+  }
+
+  .section-glow--warm { --glow: var(--color-ambar-500); }
+  .section-glow--cool { --glow: var(--color-marino-500); }
 
   .editorial-art {
     box-shadow: 0 24px 80px rgb(15 23 42 / 0.09);
@@ -209,8 +313,9 @@
   }
 
   /* Deriva muy lenta de la reticula: da vida al fondo sin competir con el texto. */
-  .hero-grid-drift {
+  .hero-grid-drift::before {
     animation: hero-grid-pan 45s linear infinite;
+    will-change: transform;
   }
 
   .hero-motion-rail--reverse {
@@ -322,11 +427,11 @@
 
 @keyframes hero-grid-pan {
   from {
-    background-position: 0 0, 0 0, 0 0, 0 0;
+    transform: translate3d(0, 0, 0);
   }
 
   to {
-    background-position: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+    transform: translate3d(120px, 120px, 0);
   }
 }
 
@@ -342,7 +447,7 @@
 }
 
 @media (max-width: 639px) {
-  .editorial-grid {
+  .editorial-grid::before {
     background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
   }
 }
@@ -363,7 +468,7 @@
 
   .hero-motion-rail,
   .hero-wordmark-rail,
-  .hero-grid-drift,
+  .hero-grid-drift::before,
   .hero-art-float,
   .brand-ticker-track {
     animation: none !important;

@@ -70,7 +70,7 @@ useSchemaOrg([
       'Branding'
     ],
     sameAs: [
-      'https://www.instagram.com/vanemis_arts14/',
+      'https://www.instagram.com/vanemis_arts',
       'https://www.facebook.com/share/1HhP8audD7/',
       'https://t.me/Vanemisarts'
     ]

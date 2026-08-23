@@ -145,7 +145,7 @@ const handleSubmit = async () => {
 const socialLinks = [
   {
     icon: 'i-simple-icons-instagram',
-    url: 'https://www.instagram.com/vanemis_arts14/',
+    url: 'https://www.instagram.com/vanemis_arts',
     label: 'Instagram'
   },
   {

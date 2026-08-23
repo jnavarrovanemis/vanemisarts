@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
       Etapa_Del_Proyecto: stageMap[parsed.data.projectStage] || parsed.data.projectStage,
       Servicio_De_Interés: parsed.data.interest,
       Detalles_Del_Proyecto: parsed.data.project || 'No especificado'
-    }, `🚀 Nuevo Lead: ${parsed.data.name} - ${parsed.data.interest}`)
+    }, `🚀 Nuevo Lead: ${parsed.data.name} - ${parsed.data.interest}`, parsed.data.email)
 
     // 6. Retornar éxito
     return {

@@ -1,14 +1,16 @@
 <script setup lang="ts">
 /**
- * Cursor personalizado: un punto que sigue al raton al instante y un anillo que
- * lo persigue con retardo. El anillo crece sobre elementos interactivos.
+ * Cursor personalizado: un pincel cuya punta sigue al raton al instante y un
+ * anillo que lo persigue con retardo. El anillo crece sobre elementos
+ * interactivos.
  *
  * Decisiones:
  * - Se monta solo si el dispositivo tiene puntero fino (`pointer: fine`), de
  *   modo que no aparece en tactiles ni consume trabajo en movil.
  * - Respeta `prefers-reduced-motion`: si esta activo, no se monta.
- * - No oculta el cursor nativo: se superpone. Ocultarlo penaliza a quien navega
- *   con lupa o con ajustes de puntero del sistema.
+ * - Solo oculta el cursor nativo cuando este componente esta activo (puntero
+ *   fino y sin reduccion de movimiento). Tactil, teclado y reduced motion
+ *   conservan el comportamiento nativo.
  * - La deteccion de elementos interactivos usa delegacion sobre `document`, asi
  *   que funciona con contenido que aparece despues (formularios, popovers).
  */
@@ -29,7 +31,9 @@ function onPointerMove(event: PointerEvent) {
   pointerY = event.clientY
 
   if (dot.value) {
-    dot.value.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0) translate(-50%, -50%)`
+    // La punta superior de las cerdas es el punto de accion exacto del puntero.
+    // El SVG esta anclado en (50 %, 1.5 %), donde comienza el pincel.
+    dot.value.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0) translate(-50%, -1.5%) rotate(-28deg)`
   }
 
   // El bucle solo existe mientras el anillo tiene que alcanzar al puntero.
@@ -77,6 +81,7 @@ onMounted(() => {
   if (!finePointer || reducedMotion) return
 
   enabled.value = true
+  document.documentElement.classList.add('has-art-cursor')
   pointerX = window.innerWidth / 2
   pointerY = window.innerHeight / 2
   ringX = pointerX
@@ -90,6 +95,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('pointermove', onPointerMove)
   document.removeEventListener('pointerover', onPointerOver)
+  document.documentElement.classList.remove('has-art-cursor')
   cancelAnimationFrame(frame)
 })
 </script>
@@ -102,11 +108,24 @@ onBeforeUnmount(() => {
         class="app-cursor-ring"
         aria-hidden="true"
       />
-      <div
+      <svg
         ref="dot"
-        class="app-cursor-dot"
+        class="app-cursor-brush"
+        viewBox="0 0 26 46"
         aria-hidden="true"
-      />
+      >
+        <!-- Cerda caligrafica: una punta definida y cuerpo ligeramente curvo. -->
+        <path d="M13 1C17.4 3.5 20.1 7.2 21 12.8l-5.2 7.4h-5.6L5 12.8C5.9 7.2 8.6 3.5 13 1Z" />
+        <!-- Dos virolas separadas evocan el pincel de la referencia. -->
+        <path d="M10.1 21.8h5.8l1.5 3.4H8.6Z" />
+        <path d="M8.1 27h9.8l1.8 3.8H6.3Z" />
+        <!-- Mango largo, afinado y con remate redondeado. -->
+        <path d="M8.5 32.2h9l3.2 10.8c.5 1.8-.5 3-2 3H7.3c-1.5 0-2.5-1.2-2-3Z" />
+        <path
+          class="app-cursor-brush__shine"
+          d="M12.2 4.4c2.4 2 3.9 4.4 4.4 7.6l-1.5 2.1h-1.7Z"
+        />
+      </svg>
     </div>
   </ClientOnly>
 </template>

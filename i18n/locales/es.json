@@ -1,8 +1,8 @@
 {
   "meta": {
     "default": {
-      "title": "Agencia de Marketing Creativa",
-      "description": "Transforma tu marca con nuestra agencia de marketing creativa. Nos especializamos en estrategia digital, contenido visual y redes sociales que generan resultados."
+      "title": "Agencia de Marketing Digital en Aragua, Venezuela | Vanemis Arts",
+      "description": "Agencia de marketing digital en Aragua, Venezuela. Creamos contenido, manejamos redes sociales, desarrollamos páginas web y construimos marcas que conectan."
     }
   },
   "navigation": {
@@ -14,12 +14,12 @@
   },
   "description": "Este es un ejemplo de internacionalización.",
   "hero": {
-    "greeting": "Estudio creativo digital",
+    "greeting": "Agencia de marketing digital en Aragua, Venezuela",
     "availability": "Disponibles para nuevos proyectos",
-    "location": "Aragua · Trabajo remoto",
+    "location": "Aragua, Venezuela · Trabajo remoto",
     "title": "Estrategia que se ve.",
     "subtitle": "Tecnología que funciona.",
-    "description": "Unimos estrategia, contenido y desarrollo para convertir ideas ambiciosas en marcas y experiencias digitales que hacen avanzar tu negocio.",
+    "description": "Creamos contenido, gestionamos redes sociales y desarrollamos páginas web para negocios de Aragua, Venezuela y equipos que trabajan remoto.",
     "cta": "Agenda una Asesoría",
     "button": "Ver Casos de Éxito",
     "scroll": "Descubre cómo lo hacemos",
@@ -129,16 +129,17 @@
       "base": "Comunidad",
       "bridge": "Experiencias digitales"
     },
-    "tools": "Herramientas del sistema:",
-    "projects": "En construcción:",
-    "toolNames": {
-      "figma": "Figma",
-      "nuxt": "Nuxt",
-      "supabase": "Supabase"
+    "process": "Cómo trabajamos:",
+    "outcomes": "Lo que cuidamos:",
+    "processItems": {
+      "brief": "Escuchamos tu objetivo",
+      "direction": "Trazamos una dirección",
+      "launch": "Lanzamos con intención"
     },
-    "projectNames": {
-      "brands": "Sistemas de marca",
-      "products": "Productos digitales"
+    "outcomeItems": {
+      "clarity": "Mensaje claro",
+      "consistency": "Marca coherente",
+      "momentum": "Avance medible"
     }
   },
   "team": {

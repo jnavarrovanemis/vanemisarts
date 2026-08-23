@@ -58,6 +58,17 @@ useSchemaOrg([
     url: 'https://vanemis.art',
     logo: 'https://vanemis.art/logo-minimalista.svg',
     description: () => t('meta.default.description'),
+    areaServed: {
+      '@type': 'AdministrativeArea',
+      'name': 'Aragua, Venezuela'
+    },
+    knowsAbout: [
+      'Agencia de marketing digital',
+      'Creación de contenido',
+      'Gestión de redes sociales',
+      'Diseño y desarrollo de páginas web',
+      'Branding'
+    ],
     sameAs: [
       'https://www.instagram.com/vanemis_arts14/',
       'https://www.facebook.com/share/1HhP8audD7/',

@@ -5,8 +5,12 @@ export const sendWithResend = async (
   replyTo?: string
 ) => {
   const { resendApiKey, contactEmail, resendFromEmail } = useRuntimeConfig()
+  const recipients = contactEmail
+    .split(',')
+    .map(email => email.trim())
+    .filter(Boolean)
 
-  if (!resendApiKey || !contactEmail || !resendFromEmail) {
+  if (!resendApiKey || !recipients.length || !resendFromEmail) {
     throw createError({
       statusCode: 500,
       statusMessage: 'Configuración de Resend incompleta en el servidor: faltan destinatario, API key o remitente verificado'
@@ -80,7 +84,7 @@ export const sendWithResend = async (
       },
       body: {
         from: resendFromEmail,
-        to: [contactEmail],
+        to: recipients,
         // Al responder la notificacion, el correo llega directamente al lead.
         reply_to: replyTo,
         subject,

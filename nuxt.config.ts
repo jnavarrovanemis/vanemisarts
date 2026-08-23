@@ -28,8 +28,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     contactEmail: '',
     resendApiKey: '',
-    // Debe pertenecer exactamente a un dominio o subdominio verificado en
-    // Resend, por ejemplo: Vanemis Arts <hola@send.vanemis.art>.
+    // Debe pertenecer exactamente al dominio verificado en Resend. Para la
+    // configuracion actual: Vanemis Arts <hola@vanemis.art>.
     resendFromEmail: '',
     public: {}
   },

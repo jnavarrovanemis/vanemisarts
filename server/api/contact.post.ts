@@ -42,14 +42,19 @@ export default defineEventHandler(async (event) => {
       leadId: newLead.id
     }
   } catch (error: unknown) {
-    // Verificamos de forma segura si el error tiene la propiedad 'message'
-    const errorMessage = error instanceof Error
-      ? error.message
-      : 'Error interno del servidor'
+    // Conservamos el detalle seguro del proveedor (por ejemplo, dominio o API
+    // key invalida) para no convertir todos los fallos en un 500 generico.
+    const appError = error as {
+      statusCode?: number
+      statusMessage?: string
+      data?: unknown
+      message?: string
+    }
 
     throw createError({
-      statusCode: 500,
-      statusMessage: errorMessage
+      statusCode: appError.statusCode || 500,
+      statusMessage: appError.statusMessage || appError.message || 'Error interno del servidor',
+      data: appError.data
     })
   }
 })

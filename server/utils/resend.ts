@@ -5,7 +5,7 @@ export const sendWithResend = async (
   replyTo?: string
 ) => {
   const { resendApiKey, contactEmail, resendFromEmail } = useRuntimeConfig()
-  const recipients = contactEmail
+  const recipients = String(contactEmail || '')
     .split(',')
     .map(email => email.trim())
     .filter(Boolean)
@@ -94,14 +94,21 @@ export const sendWithResend = async (
 
     return response
   } catch (error: unknown) {
-    const err = error as { data?: unknown, message?: string }
+    const err = error as { data?: { message?: string } | string, message?: string }
     const errorDetails = err?.data || err?.message || String(error)
+    const providerMessage = typeof err?.data === 'object'
+      ? err.data?.message
+      : typeof err?.data === 'string'
+        ? err.data
+        : err?.message
 
     console.error('💥 Error de Resend:', errorDetails)
 
     throw createError({
       statusCode: 500,
-      statusMessage: 'Error al enviar el correo con Resend',
+      statusMessage: providerMessage
+        ? `Resend: ${providerMessage}`
+        : 'Error al enviar el correo con Resend',
       data: errorDetails
     })
   }

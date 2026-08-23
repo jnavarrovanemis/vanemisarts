@@ -1,8 +1,8 @@
 {
   "meta": {
     "default": {
-      "title": "Creative Marketing Agency",
-      "description": "Transform your brand with our creative marketing agency. We specialize in digital strategy, video content, and social media that drives results."
+      "title": "Digital Marketing Agency in Aragua, Venezuela | Vanemis Arts",
+      "description": "Digital marketing agency in Aragua, Venezuela. We create content, manage social media, build websites and develop brands that connect."
     }
   },
   "navigation": {
@@ -14,12 +14,12 @@
   },
   "description": "This is an internationalization example.",
   "hero": {
-    "greeting": "Digital creative studio",
+    "greeting": "Digital marketing agency in Aragua, Venezuela",
     "availability": "Available for new projects",
-    "location": "Aragua · Working remotely",
+    "location": "Aragua, Venezuela · Working remotely",
     "title": "Strategy you can see.",
     "subtitle": "Technology that works.",
-    "description": "We bring strategy, content and development together to turn ambitious ideas into brands and digital experiences that move your business forward.",
+    "description": "We create content, manage social media and build websites for businesses in Aragua, Venezuela and remote teams.",
     "cta": "Book a Consultation",
     "button": "View Case Studies",
     "scroll": "How we do it",
@@ -129,16 +129,17 @@
       "base": "Community",
       "bridge": "Digital experiences"
     },
-    "tools": "System tools:",
-    "projects": "In progress:",
-    "toolNames": {
-      "figma": "Figma",
-      "nuxt": "Nuxt",
-      "supabase": "Supabase"
+    "process": "How we work:",
+    "outcomes": "What we protect:",
+    "processItems": {
+      "brief": "We listen to your goal",
+      "direction": "We define a direction",
+      "launch": "We launch with intention"
     },
-    "projectNames": {
-      "brands": "Brand systems",
-      "products": "Digital products"
+    "outcomeItems": {
+      "clarity": "Clear message",
+      "consistency": "Consistent brand",
+      "momentum": "Measurable progress"
     }
   },
   "team": {

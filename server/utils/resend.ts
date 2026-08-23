@@ -1,14 +1,15 @@
 // server/utils/resend.ts
 export const sendWithResend = async (
   data: Record<string, unknown>,
-  subject: string
+  subject: string,
+  replyTo?: string
 ) => {
-  const { resendApiKey, contactEmail } = useRuntimeConfig()
+  const { resendApiKey, contactEmail, resendFromEmail } = useRuntimeConfig()
 
-  if (!resendApiKey || !contactEmail) {
+  if (!resendApiKey || !contactEmail || !resendFromEmail) {
     throw createError({
       statusCode: 500,
-      statusMessage: 'Configuración de Resend incompleta en el servidor'
+      statusMessage: 'Configuración de Resend incompleta en el servidor: faltan destinatario, API key o remitente verificado'
     })
   }
 
@@ -78,8 +79,10 @@ export const sendWithResend = async (
         'Content-Type': 'application/json'
       },
       body: {
-        from: 'Vanemis Arts <onboarding@resend.dev>',
+        from: resendFromEmail,
         to: [contactEmail],
+        // Al responder la notificacion, el correo llega directamente al lead.
+        reply_to: replyTo,
         subject,
         html: emailTemplate // Aquí inyectamos todo el diseño
       }

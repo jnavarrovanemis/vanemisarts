@@ -54,16 +54,12 @@ const disciplines = [
   {
     key: 'content',
     icon: 'i-heroicons-megaphone',
-    gradient: 'from-ambar-400 to-ambar-800',
-    glow: 'group-hover:shadow-ambar-500/20',
     badge: 'bg-ambar-500/10 text-ambar-700 dark:text-ambar-400',
     highlights: ['h1', 'h2', 'h3']
   },
   {
     key: 'tech',
     icon: 'i-heroicons-command-line',
-    gradient: 'from-marino-600 to-marino-800',
-    glow: 'group-hover:shadow-marino-500/20',
     badge: 'bg-marino-500/10 text-marino-700 dark:text-marino-400',
     highlights: ['h1', 'h2', 'h3']
   }
@@ -128,80 +124,68 @@ const disciplines = [
 
       <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
         <article
-          v-for="discipline in disciplines"
+          v-for="(discipline, index) in disciplines"
           :key="discipline.key"
-          class="reveal reveal-2 group relative flex flex-col h-full"
+          :class="['reveal reveal-2 team-editorial-card group relative flex h-full flex-col', `team-editorial-card--${discipline.key}`]"
         >
-          <div
-            :class="[
-              'absolute -inset-1 bg-linear-to-br rounded-4xl opacity-0',
-              'group-hover:opacity-40 blur-xl transition-all duration-700',
-              discipline.gradient
-            ]"
+          <span
+            class="team-editorial-card__marker"
             aria-hidden="true"
           />
 
           <div
-            :class="[
-              'absolute inset-0 rounded-4xl p-px bg-linear-to-br opacity-20',
-              'group-hover:opacity-60 transition-opacity duration-500',
-              discipline.gradient
-            ]"
-            aria-hidden="true"
+            class="team-editorial-card__surface relative flex h-full flex-col rounded-[1.35rem] p-7 transition-all duration-500 sm:p-8 md:p-9"
           >
-            <div class="w-full h-full rounded-[calc(2rem-1px)] bg-white dark:bg-gray-900" />
-          </div>
-
-          <div
-            class="relative flex flex-col h-full p-6 md:p-8 rounded-4xl bg-white/90 dark:bg-gray-900/85 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
-            :class="discipline.glow"
-          >
-            <div class="flex items-start justify-between gap-4 mb-5">
-              <div
-                :class="[
-                  'w-12 h-12 rounded-2xl flex items-center justify-center shrink-0',
-                  'transition-all duration-500 group-hover:scale-110 group-hover:rotate-6',
-                  discipline.badge
-                ]"
-              >
-                <UIcon
-                  :name="discipline.icon"
-                  class="w-6 h-6"
-                  dynamic
-                />
+            <div class="flex items-start justify-between gap-5 mb-7">
+              <div class="min-w-0 pt-1">
+                <span
+                  :class="[
+                    'inline-flex px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide',
+                    discipline.badge
+                  ]"
+                >
+                  {{ t(`team.disciplines.${discipline.key}.years`) }}
+                </span>
+                <h3 class="mt-4 text-xl md:text-2xl font-extrabold tracking-tight text-gray-950 dark:text-white">
+                  {{ t(`team.disciplines.${discipline.key}.title`) }}
+                </h3>
+                <p class="mt-2 text-sm font-semibold text-gray-600 dark:text-gray-300">
+                  {{ t(`team.disciplines.${discipline.key}.credential`) }}
+                </p>
               </div>
 
-              <span
-                :class="[
-                  'px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide whitespace-nowrap',
-                  discipline.badge
-                ]"
+              <div
+                class="team-editorial-card__print shrink-0"
+                aria-hidden="true"
               >
-                {{ t(`team.disciplines.${discipline.key}.years`) }}
-              </span>
+                <span class="team-editorial-card__artwork flex size-full items-center justify-center">
+                  <UIcon
+                    :name="discipline.icon"
+                    class="relative z-10 size-9 text-white/90 drop-shadow-md transition-transform duration-500 group-hover:scale-110"
+                    dynamic
+                  />
+                  <span class="absolute bottom-2 right-2 font-mono text-[9px] tracking-[0.18em] text-white/75">0{{ index + 1 }}</span>
+                </span>
+                <span class="mt-2 flex items-center justify-between font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-gray-500 dark:text-gray-400">
+                  <span>{{ index === 0 ? 'A' : 'B' }}</span>
+                  <span>VA</span>
+                </span>
+              </div>
             </div>
 
-            <h3 class="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-1">
-              {{ t(`team.disciplines.${discipline.key}.title`) }}
-            </h3>
-
-            <p class="text-xs font-medium text-gray-600 dark:text-gray-400 mb-4">
-              {{ t(`team.disciplines.${discipline.key}.credential`) }}
-            </p>
-
-            <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-sm mb-5">
+            <p class="text-base text-gray-700 dark:text-gray-200 leading-relaxed mb-7">
               {{ t(`team.disciplines.${discipline.key}.description`) }}
             </p>
 
-            <ul class="mt-auto space-y-2.5 pt-4 border-t border-gray-100 dark:border-gray-800">
+            <ul class="mt-auto space-y-3 pt-5 border-t border-gray-200/80 dark:border-white/15">
               <li
                 v-for="highlight in discipline.highlights"
                 :key="highlight"
-                class="flex items-start gap-2.5 text-sm text-gray-600 dark:text-gray-400"
+                class="flex items-start gap-3 text-[15px] leading-relaxed text-gray-700 dark:text-gray-200"
               >
                 <UIcon
                   name="i-heroicons-check-circle"
-                  class="w-4 h-4 mt-0.5 shrink-0 text-primary-500"
+                  class="w-5 h-5 mt-0.5 shrink-0 text-primary-500"
                 />
                 <span>{{ t(`team.disciplines.${discipline.key}.highlights.${highlight}`) }}</span>
               </li>
@@ -320,3 +304,104 @@ const disciplines = [
     </UContainer>
   </section>
 </template>
+
+<style scoped>
+.team-editorial-card {
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 1.8rem;
+  border: 1px solid rgb(148 163 184 / 0.22);
+  background: rgb(15 23 42 / 0.96);
+  box-shadow: 0 18px 38px rgb(15 23 42 / 0.14);
+  transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 500ms ease;
+}
+
+.team-editorial-card::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(145deg, rgb(255 255 255 / 0.07), transparent 38%);
+  content: '';
+}
+
+.team-editorial-card__marker {
+  position: absolute;
+  z-index: 2;
+  top: 13px;
+  right: 13px;
+  width: 9px;
+  height: 9px;
+  border: 1px solid rgb(148 163 184 / 0.55);
+  border-radius: 9999px;
+  background: rgb(15 23 42);
+}
+
+.team-editorial-card--content .team-editorial-card__marker {
+  border-color: rgb(250 179 63 / 0.65);
+}
+
+.team-editorial-card:hover {
+  transform: translateY(-6px);
+  border-color: rgb(148 163 184 / 0.48);
+  box-shadow: 0 25px 48px rgb(15 23 42 / 0.26);
+}
+
+.team-editorial-card--content:hover {
+  border-color: rgb(250 179 63 / 0.46);
+}
+
+.team-editorial-card__surface {
+  min-height: 25rem;
+  background:
+    radial-gradient(circle at 12% 0%, rgb(91 187 255 / 0.11), transparent 36%),
+    linear-gradient(145deg, rgb(255 255 255 / 0.03), transparent 52%);
+}
+
+.team-editorial-card--content .team-editorial-card__surface {
+  background:
+    radial-gradient(circle at 12% 0%, rgb(250 179 63 / 0.14), transparent 36%),
+    linear-gradient(145deg, rgb(255 255 255 / 0.03), transparent 52%);
+}
+
+.team-editorial-card__print {
+  width: 92px;
+  padding: 6px 6px 0;
+  border: 1px solid rgb(255 255 255 / 0.14);
+  background: #05080e;
+  box-shadow: 0 10px 22px rgb(0 0 0 / 0.25);
+  transform: rotate(1.5deg);
+  transition: transform 500ms ease, box-shadow 500ms ease;
+}
+
+.team-editorial-card:hover .team-editorial-card__print {
+  transform: rotate(0deg) translateY(-3px);
+  box-shadow: 0 15px 28px rgb(0 0 0 / 0.34);
+}
+
+.team-editorial-card__artwork {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.44);
+  background:
+    linear-gradient(90deg, transparent 48%, rgb(255 255 255 / 0.13) 49% 51%, transparent 52%),
+    linear-gradient(transparent 48%, rgb(255 255 255 / 0.13) 49% 51%, transparent 52%),
+    linear-gradient(145deg, #1e3a8a, #2563eb 52%, #22d3ee);
+}
+
+.team-editorial-card--content .team-editorial-card__artwork {
+  background:
+    radial-gradient(circle at 29% 30%, #fbbf24 0 15%, transparent 16%),
+    radial-gradient(circle at 70% 64%, #fb7185 0 22%, transparent 23%),
+    linear-gradient(135deg, #1e3a8a, #a855f7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-editorial-card,
+  .team-editorial-card:hover,
+  .team-editorial-card__print,
+  .team-editorial-card:hover .team-editorial-card__print {
+    transform: none;
+  }
+}
+</style>

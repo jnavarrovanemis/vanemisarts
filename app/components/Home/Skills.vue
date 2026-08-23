@@ -108,12 +108,13 @@ const colorStyles: Record<string, { icon: string, card: string }> = {
 
 /** Un unico panel abierto a la vez. */
 const openSkill = ref<string | null>(null)
+const popoverMode = ref<'click' | 'hover'>('click')
 
 /**
- * En pantallas tactiles no existe el estado `hover`, asi que un tooltip nunca
- * llegaba a aparecer: la descripcion de cada herramienta era simplemente
- * inalcanzable desde el movil. Ahora el panel se abre con click en cualquier
- * dispositivo y, ademas, al pasar el raton en los que tienen puntero fino.
+ * En pantallas tactiles no existe el estado `hover`, asi que la descripcion se
+ * abre con click. En escritorio dejamos que HoverCard gestione cada transicion
+ * entre tarjetas: forzar desde fuera el estado de 25 popovers hacia que el
+ * cierre del anterior alcanzara al siguiente y cerrara ambos.
  *
  * La deteccion vive dentro del manejador de evento, no en un `useMediaQuery` a
  * nivel de setup. Si el componente que se renderiza dependiera del dispositivo,
@@ -124,13 +125,22 @@ function pointerCanHover() {
   return window.matchMedia('(hover: hover) and (pointer: fine)').matches
 }
 
-function hoverOpen(id: string) {
-  if (pointerCanHover()) openSkill.value = id
+/**
+ * Solo controla los popovers en tactil. En hover cada HoverCard posee su
+ * propio ciclo de apertura/cierre y el retardo evita parpadeos al cruzar una
+ * tarjeta hacia otra.
+ */
+function syncOpen(id: string, isOpen: boolean) {
+  if (isOpen) {
+    openSkill.value = id
+  } else if (openSkill.value === id) {
+    openSkill.value = null
+  }
 }
 
-function hoverClose(id: string) {
-  if (pointerCanHover() && openSkill.value === id) openSkill.value = null
-}
+onMounted(() => {
+  if (pointerCanHover()) popoverMode.value = 'hover'
+})
 </script>
 
 <template>
@@ -203,18 +213,18 @@ function hoverClose(id: string) {
               class="reveal reveal-2 h-full"
             >
               <UPopover
-                mode="click"
-                :open="openSkill === skill.id"
+                :mode="popoverMode"
+                :open="popoverMode === 'click' ? openSkill === skill.id : undefined"
+                :open-delay="80"
+                :close-delay="140"
                 :ui="{ content: 'bg-transparent ring-0 shadow-none p-0 w-auto' }"
                 class="h-full block"
-                @update:open="(isOpen: boolean) => openSkill = isOpen ? skill.id : null"
+                @update:open="(isOpen: boolean) => popoverMode === 'click' && syncOpen(skill.id, isOpen)"
               >
                 <button
                   type="button"
                   class="group relative h-full w-full flex flex-col items-center justify-center p-6 rounded-2xl transition-all duration-300 bg-white/85 dark:bg-gray-900/80 border border-gray-200/50 dark:border-gray-800/50 hover:-translate-y-1 hover:shadow-xl cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
                   :class="[colorStyles[skill.color as keyof typeof colorStyles]?.card || '']"
-                  @mouseenter="hoverOpen(skill.id)"
-                  @mouseleave="hoverClose(skill.id)"
                 >
                   <div
                     class="mb-4 p-3 rounded-xl border transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"

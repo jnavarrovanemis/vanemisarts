@@ -50,15 +50,16 @@ const dials = [
   }
 ]
 
-const tools = [
-  { id: 'figma', icon: 'i-simple-icons-figma' },
-  { id: 'nuxt', icon: 'i-simple-icons-nuxt' },
-  { id: 'supabase', icon: 'i-simple-icons-supabase' }
+const process = [
+  { id: 'brief', icon: 'i-lucide-message-square-text' },
+  { id: 'direction', icon: 'i-lucide-route' },
+  { id: 'launch', icon: 'i-lucide-rocket' }
 ]
 
-const projects = [
-  { id: 'brands', icon: 'i-lucide-sparkles' },
-  { id: 'products', icon: 'i-lucide-box' }
+const outcomes = [
+  { id: 'clarity', icon: 'i-lucide-scan-search' },
+  { id: 'consistency', icon: 'i-lucide-layers-3' },
+  { id: 'momentum', icon: 'i-lucide-trending-up' }
 ]
 
 function selectCapability(id: string) {
@@ -212,38 +213,38 @@ function selectCapability(id: string) {
 
         <div class="min-h-52 border-b border-gray-300 p-5 lg:border-b-0 lg:border-r dark:border-white/15">
           <h3 class="text-xs font-medium text-gray-400 dark:text-gray-500">
-            {{ t('aboutLab.tools') }}
+            {{ t('aboutLab.process') }}
           </h3>
-          <div class="mt-5 flex flex-wrap gap-3">
+          <div class="mt-4 space-y-2">
             <div
-              v-for="tool in tools"
-              :key="tool.id"
-              class="group flex size-14 items-center justify-center rounded-xl border border-gray-300 bg-gray-100 text-gray-400 transition-all duration-300 hover:-translate-y-1 hover:border-marino-400 hover:bg-white hover:text-marino-600 hover:shadow-lg dark:border-white/15 dark:bg-white/6 dark:text-gray-500 dark:hover:border-marino-400 dark:hover:bg-white/10 dark:hover:text-marino-300"
-              :title="t(`aboutLab.toolNames.${tool.id}`)"
+              v-for="step in process"
+              :key="step.id"
+              class="group flex items-center gap-3 rounded-xl border border-gray-300 bg-gray-100 px-3 py-2 text-gray-500 transition-all duration-300 hover:border-marino-400 hover:bg-white hover:text-marino-600 dark:border-white/15 dark:bg-white/6 dark:text-gray-400 dark:hover:border-marino-400 dark:hover:bg-white/10 dark:hover:text-marino-300"
             >
               <UIcon
-                :name="tool.icon"
-                class="size-7 transition-transform duration-300 group-hover:rotate-[-5deg] group-hover:scale-110"
+                :name="step.icon"
+                class="size-4 shrink-0 transition-transform duration-300 group-hover:scale-110"
               />
+              <span class="text-xs font-medium">{{ t(`aboutLab.processItems.${step.id}`) }}</span>
             </div>
           </div>
         </div>
 
         <div class="min-h-52 p-5">
           <h3 class="text-xs font-medium text-gray-400 dark:text-gray-500">
-            {{ t('aboutLab.projects') }}
+            {{ t('aboutLab.outcomes') }}
           </h3>
-          <div class="mt-5 flex flex-wrap gap-3">
+          <div class="mt-4 space-y-2">
             <div
-              v-for="project in projects"
-              :key="project.id"
-              class="group flex size-14 items-center justify-center rounded-xl border border-gray-300 bg-gray-100 text-gray-400 transition-all duration-300 hover:-translate-y-1 hover:border-ambar-400 hover:bg-white hover:text-ambar-600 hover:shadow-lg dark:border-white/15 dark:bg-white/6 dark:text-gray-500 dark:hover:border-ambar-400 dark:hover:bg-white/10 dark:hover:text-ambar-300"
-              :title="t(`aboutLab.projectNames.${project.id}`)"
+              v-for="outcome in outcomes"
+              :key="outcome.id"
+              class="group flex items-center gap-3 rounded-xl border border-gray-300 bg-gray-100 px-3 py-2 text-gray-500 transition-all duration-300 hover:border-ambar-400 hover:bg-white hover:text-ambar-600 dark:border-white/15 dark:bg-white/6 dark:text-gray-400 dark:hover:border-ambar-400 dark:hover:bg-white/10 dark:hover:text-ambar-300"
             >
               <UIcon
-                :name="project.icon"
-                class="size-7 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110"
+                :name="outcome.icon"
+                class="size-4 shrink-0 transition-transform duration-300 group-hover:scale-110"
               />
+              <span class="text-xs font-medium">{{ t(`aboutLab.outcomeItems.${outcome.id}`) }}</span>
             </div>
           </div>
         </div>

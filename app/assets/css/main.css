@@ -402,30 +402,38 @@
   }
 
   /* ============================================================
-     CURSOR — punto y anillo. `difference` lo hace legible sobre
+     CURSOR — pincel y anillo. `difference` lo hace legible sobre
      cualquier fondo, en claro y en oscuro, sin logica de tema.
      ============================================================ */
-  .app-cursor-dot,
+  .app-cursor-brush,
   .app-cursor-ring {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 9999;
-    border-radius: 9999px;
     pointer-events: none;
     mix-blend-mode: difference;
   }
 
-  .app-cursor-dot {
-    width: 6px;
-    height: 6px;
-    background: #fff;
+  .app-cursor-brush {
+    width: 19px;
+    height: 33px;
+    overflow: visible;
+    fill: #fff;
+    filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.25));
+    /* La punta superior del pincel coincide con el cursor real. */
+    transform-origin: 50% 1.5%;
+  }
+
+  .app-cursor-brush__shine {
+    fill: rgb(15 23 42 / 0.45);
   }
 
   .app-cursor-ring {
     width: 38px;
     height: 38px;
     border: 1px solid rgb(255 255 255 / 0.55);
+    border-radius: 9999px;
     transition:
       width 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
       height 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -438,6 +446,12 @@
     height: 82px;
     background: rgb(255 255 255 / 0.13);
     border-color: transparent;
+  }
+
+  /* Se activa desde AppCursor solo en dispositivos con puntero fino. */
+  .has-art-cursor,
+  .has-art-cursor * {
+    cursor: none !important;
   }
 }
 
